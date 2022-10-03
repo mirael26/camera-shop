@@ -10,7 +10,7 @@ const App = (): JSX.Element => (
     <Routes>
       <Route path={AppUrl.Main} element={<Navigate replace to={AppUrl.Catalog} />}/>
       <Route path={AppUrl.Catalog} element={<CatalogPage />}/>
-      <Route path={AppUrl.Product} element={<ProductPage />}/>
+      <Route path={`${AppUrl.Product}/:id`} element={<ProductPage />}/>
       <Route path={AppUrl.Cart} element={<CartPage />}/>
       <Route path={AppUrl.NotFound} element={<NotFoundPage />}/>
     </Routes>

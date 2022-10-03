@@ -1,7 +1,5 @@
-const NotFoundPage = ():JSX.Element => {
-  return (
-    <></>
-  );
-};
+const NotFoundPage = ():JSX.Element => (
+  <div></div>
+);
 
 export default NotFoundPage;

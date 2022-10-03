@@ -1,7 +1,5 @@
-const CartPage = ():JSX.Element => {
-  return (
-    <></>
-  );
-};
+const CartPage = ():JSX.Element => (
+  <div></div>
+);
 
 export default CartPage;

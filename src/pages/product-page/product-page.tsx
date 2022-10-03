@@ -1,7 +1,5 @@
-const ProductPage = ():JSX.Element => {
-  return (
-    <></>
-  );
-};
+const ProductPage = ():JSX.Element => (
+  <div></div>
+);
 
 export default ProductPage;

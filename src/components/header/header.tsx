@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppUrl } from '../../../consts';
+import { AppUrl } from '../../consts';
 import MainNav from './main-nav/main-nav';
 
 const Header = ():JSX.Element => (

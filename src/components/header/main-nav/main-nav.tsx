@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { AppUrl } from '../../../../consts';
+import { AppUrl } from '../../../consts';
 
 const MainNav = ():JSX.Element => {
   const { pathname } = useLocation();

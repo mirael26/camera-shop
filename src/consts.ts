@@ -1,4 +1,5 @@
 export const AppUrl = {
+  Main: '/',
   Catalog: '/catalog',
   Product: '/product',
   Cart: '/cart',

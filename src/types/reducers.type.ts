@@ -1,7 +1,8 @@
-import { IPromo } from './data.type';
+import { IProduct, IPromo } from './data.type';
 
 export interface IDataReducer {
   promo: IPromo | null;
+  products: Array<IProduct> | null;
 }
 
-export type TReducer = IDataReducer;
+// export type TReducer = IDataReducer;

@@ -7,5 +7,6 @@ export const AppUrl = {
 } as const;
 
 export const ApiUrl = {
-  Promo: '/promo'
+  Promo: '/promo',
+  Products: '/cameras',
 } as const;

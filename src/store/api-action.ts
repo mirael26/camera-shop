@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ApiUrl } from '../consts';
-import { IPromo } from '../types/data.type';
+import { IProduct, IPromo } from '../types/data.type';
 import { ActionCreator } from './action';
 import { TAppDispatch } from './store';
 
@@ -10,6 +10,17 @@ export const loadPromo = () => (dispatch: TAppDispatch) => {
   axios
     .get(`${URL}${ApiUrl.Promo}`)
     .then((response) => dispatch(ActionCreator.LoadPromo(response.data as IPromo)))
+    .catch((error) => {
+      throw(error);
+    });
+};
+
+export const loadProducts = () => (dispatch: TAppDispatch) => {
+  axios
+    .get(`${URL}${ApiUrl.Products}`)
+    .then((response) => {
+      dispatch(ActionCreator.LoadProducts(response.data as Array<IProduct>));
+    })
     .catch((error) => {
       throw(error);
     });

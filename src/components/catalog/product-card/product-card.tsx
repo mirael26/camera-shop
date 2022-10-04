@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppUrl } from '../../../consts';
 import { IProduct } from '../../../types/data.type';
 import { addPriceSeparators } from '../../../utils';
+import RatingStars from '../../rating-stars/rating-stars';
 
 interface IProductCardProps {
   product: IProduct;
@@ -20,21 +21,7 @@ const ProductCard = ({ product }: IProductCardProps): JSX.Element => {
       </div>
       <div className="product-card__info">
         <div className="rate product-card__rate">
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="#icon-full-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="#icon-full-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="#icon-full-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-          <svg width="17" height="16" aria-hidden="true">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
+          <RatingStars rating={product.rating} size={'small'}/>
           <p className="visually-hidden">Рейтинг: {product.rating}</p>
           <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{product.reviewCount}</p>
         </div>

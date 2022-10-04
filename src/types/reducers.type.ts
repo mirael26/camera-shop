@@ -5,4 +5,7 @@ export interface IDataReducer {
   products: Array<IProduct> | null;
 }
 
-// export type TReducer = IDataReducer;
+export interface IStateReducer {
+  addToCartModal: boolean;
+  addingToCartItem: IProduct | null;
+}

@@ -10,3 +10,7 @@ export const ApiUrl = {
   Promo: '/promo',
   Products: '/cameras',
 } as const;
+
+export const Modal = {
+  AddToCart: 'addToCartModal',
+} as const;

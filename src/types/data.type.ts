@@ -1,3 +1,5 @@
+import { Modal } from '../consts';
+
 export interface IProduct {
   id: number,
   name: string,
@@ -23,3 +25,5 @@ export interface IPromo {
   previewImgWebp: string,
   previewImgWebp2x: string,
 }
+
+export type TModal = typeof Modal[keyof typeof Modal];

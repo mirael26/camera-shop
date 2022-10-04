@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
-import { AppUrl } from '../../../consts';
+import { AppUrl, Modal } from '../../../consts';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { ActionCreator } from '../../../store/action';
 import { IProduct } from '../../../types/data.type';
 import { addPriceSeparators } from '../../../utils';
 import RatingStars from '../../rating-stars/rating-stars';
@@ -9,6 +11,13 @@ interface IProductCardProps {
 }
 
 const ProductCard = ({ product }: IProductCardProps): JSX.Element => {
+  const dispatch = useAppDispatch();
+
+  const handleAddToCartButtonClick = () => {
+    dispatch(ActionCreator.OpenModal(Modal.AddToCart));
+    dispatch(ActionCreator.ChangeAddingToCartItem(product));
+  };
+
   const adaptedPrice = addPriceSeparators(product.price);
 
   return (
@@ -30,7 +39,7 @@ const ProductCard = ({ product }: IProductCardProps): JSX.Element => {
         </p>
       </div>
       <div className="product-card__buttons">
-        <button className="btn btn--purple product-card__btn" type="button">Купить
+        <button className="btn btn--purple product-card__btn" type="button" onClick={handleAddToCartButtonClick}>Купить
         </button>
         <Link className="btn btn--transparent" to={`${AppUrl.Product}/${product.id}`}>Подробнее</Link>
       </div>

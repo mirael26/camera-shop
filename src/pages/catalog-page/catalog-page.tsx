@@ -3,6 +3,7 @@ import Promo from '../../components/promo/promo';
 import Breadcrumbs from '../../components/breadcrumbs/breadcrumbs';
 import Catalog from '../../components/catalog/catalog';
 import Footer from '../../components/footer/footer';
+import AddToCart from '../../components/modal/add-to-cart/add-to-cart';
 
 const CatalogPage = ():JSX.Element => (
   <div className="wrapper">
@@ -13,6 +14,7 @@ const CatalogPage = ():JSX.Element => (
         <Breadcrumbs />
         <Catalog />
       </div>
+      <AddToCart />
     </main>
     <Footer />
   </div>

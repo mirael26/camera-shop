@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../hooks/hooks';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 import { addPriceSeparators } from '../../../utils';
 
 const AddToCart = (): JSX.Element | null => {

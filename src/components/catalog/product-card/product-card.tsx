@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppUrl, Modal } from '../../../consts';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { ActionCreator } from '../../../store/action';
 import { IProduct } from '../../../types/data.type';
 import { addPriceSeparators } from '../../../utils';

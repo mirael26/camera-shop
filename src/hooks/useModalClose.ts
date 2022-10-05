@@ -11,19 +11,28 @@ interface IuseModalCloseProps {
 export const useModalClose = ({ modalName, cleanCallback }: IuseModalCloseProps) => {
   const dispatch = useAppDispatch();
 
+  const handleEscClick = (evt: KeyboardEvent) => {
+    if (evt.key === 'Escape') {
+      onModalClose();
+    }
+  };
+
+  const handleBackButtonClick = (evt: PopStateEvent) => {
+    evt.preventDefault();
+    onModalClose();
+  };
+
   useEffect(() => {
-    const handleEsc = (evt: KeyboardEvent) => {
-      if (evt.key === 'Escape') {
-        onModalClose();
-      }
-    };
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener('keydown', handleEscClick);
+    window.addEventListener('popstate', handleBackButtonClick);
+
     document.body.style.overflow = 'hidden';
     document.querySelector('header')?.setAttribute('inert', 'inert');
     document.querySelector('main')?.setAttribute('inert', 'inert');
     document.querySelector('footer')?.setAttribute('inert', 'inert');
     return () => {
-      document.removeEventListener('keydown', handleEsc);
+      document.removeEventListener('keydown', handleEscClick);
+      window.removeEventListener('popstate', handleBackButtonClick);
       document.body.style.overflow = 'visible';
     };
   }, []);

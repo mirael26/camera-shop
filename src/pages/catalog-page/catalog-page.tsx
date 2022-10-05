@@ -8,13 +8,13 @@ import AddToCartModal from '../../components/modal/add-to-cart/add-to-cart';
 const CatalogPage = ():JSX.Element => (
   <div className="wrapper">
     <Header />
+    <AddToCartModal />
     <main>
       <Promo />
       <div className="page-content">
         <Breadcrumbs />
         <Catalog />
       </div>
-      <AddToCartModal />
     </main>
     <Footer />
   </div>

@@ -18,10 +18,13 @@ export const useModalClose = ({ modalName, cleanCallback }: IuseModalCloseProps)
       }
     };
     document.addEventListener('keydown', handleEsc);
-    document.body.style.position = 'fixed';
+    document.body.style.overflow = 'hidden';
+    document.querySelector('header')?.setAttribute('inert', 'inert');
+    document.querySelector('main')?.setAttribute('inert', 'inert');
+    document.querySelector('footer')?.setAttribute('inert', 'inert');
     return () => {
       document.removeEventListener('keydown', handleEsc);
-      document.body.style.position = 'static';
+      document.body.style.overflow = 'visible';
     };
   }, []);
 
@@ -30,6 +33,9 @@ export const useModalClose = ({ modalName, cleanCallback }: IuseModalCloseProps)
     if (cleanCallback) {
       cleanCallback();
     }
+    document.querySelector('header')?.removeAttribute('inert');
+    document.querySelector('main')?.removeAttribute('inert');
+    document.querySelector('footer')?.removeAttribute('inert');
   };
 
   return { onModalClose };

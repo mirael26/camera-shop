@@ -3,9 +3,11 @@ import { AppUrl } from '../../consts';
 import CatalogPage from '../../pages/catalog-page/catalog-page';
 import ProductPage from '../../pages/product-page/product-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import ScrollToTop from '../scroll-to-top/scroll-to-top';
 
 const App = (): JSX.Element => (
   <HashRouter>
+    <ScrollToTop />
     <Routes>
       <Route path={AppUrl.Main} element={<Navigate replace to={AppUrl.Catalog} />}/>
       <Route path={AppUrl.Catalog} element={<CatalogPage />}/>

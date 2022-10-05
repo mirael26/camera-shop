@@ -5,6 +5,7 @@ import { ActionType } from '../action';
 const initialState: IDataReducer = {
   promo: null,
   products: null,
+  currentProduct: null,
 };
 
 export const dataReducer = (state = initialState, action: TDataAction) => {
@@ -13,6 +14,8 @@ export const dataReducer = (state = initialState, action: TDataAction) => {
       return {...state, promo: action.payload};
     case ActionType.LoadProducts:
       return {...state, products: action.payload};
+    case ActionType.LoadCurrentProduct:
+      return {...state, currentProduct: action.payload};
     default:
       return state;
   }

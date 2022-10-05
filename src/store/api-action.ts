@@ -25,3 +25,14 @@ export const loadProducts = () => (dispatch: TAppDispatch) => {
       throw(error);
     });
 };
+
+export const loadCurrentProduct = (id: number) => (dispatch: TAppDispatch) => {
+  axios
+    .get(`${URL}${ApiUrl.Products}/${id}`)
+    .then((response) => {
+      dispatch(ActionCreator.LoadCurrentProduct(response.data as IProduct));
+    })
+    .catch((error) => {
+      throw(error);
+    });
+};

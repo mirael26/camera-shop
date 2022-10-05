@@ -11,6 +11,11 @@ export interface ILoadProducts {
   payload: Array<IProduct>,
 }
 
+export interface ILoadCurrentProduct {
+  type: typeof ActionType.LoadCurrentProduct,
+  payload: IProduct,
+}
+
 export interface IOpenModal {
   type: typeof ActionType.OpenModal,
   payload: TModal,
@@ -26,5 +31,5 @@ export interface IChangeAddingToCartItem {
   payload: IProduct | null,
 }
 
-export type TDataAction = ILoadPromo | ILoadProducts;
+export type TDataAction = ILoadPromo | ILoadProducts | ILoadCurrentProduct;
 export type TStateAction = IOpenModal | ICloseModal | IChangeAddingToCartItem;

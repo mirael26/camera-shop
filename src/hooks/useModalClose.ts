@@ -18,8 +18,10 @@ export const useModalClose = ({ modalName, cleanCallback }: IuseModalCloseProps)
       }
     };
     document.addEventListener('keydown', handleEsc);
+    document.body.style.position = 'fixed';
     return () => {
       document.removeEventListener('keydown', handleEsc);
+      document.body.style.position = 'static';
     };
   }, []);
 

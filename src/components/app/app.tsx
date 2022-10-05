@@ -2,7 +2,6 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppUrl } from '../../consts';
 import CatalogPage from '../../pages/catalog-page/catalog-page';
 import ProductPage from '../../pages/product-page/product-page';
-import CartPage from '../../pages/cart-page/cart-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 
 const App = (): JSX.Element => (
@@ -12,7 +11,6 @@ const App = (): JSX.Element => (
       <Route path={AppUrl.Catalog} element={<CatalogPage />}/>
       <Route path={`${AppUrl.Catalog}${AppUrl.Page}:page`} element={<CatalogPage />}/>
       <Route path={`${AppUrl.Product}/:id`} element={<ProductPage />}/>
-      <Route path={AppUrl.Cart} element={<CartPage />}/>
       <Route path={AppUrl.NotFound} element={<NotFoundPage />}/>
     </Routes>
   </HashRouter>

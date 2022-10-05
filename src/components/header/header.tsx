@@ -35,11 +35,11 @@ const Header = ():JSX.Element => (
           </svg><span className="visually-hidden">Сбросить поиск</span>
         </button>
       </div>
-      <Link className="header__basket-link" to={AppUrl.Cart}>
+      <a className="header__basket-link" href='#'>
         <svg width="16" height="16" aria-hidden="true">
           <use xlinkHref="#icon-basket"></use>
         </svg>
-      </Link>
+      </a>
     </div>
   </header>
 );

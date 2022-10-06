@@ -41,7 +41,7 @@ const ProductCard = ({ product }: IProductCardProps): JSX.Element => {
       <div className="product-card__buttons">
         <button className="btn btn--purple product-card__btn" type="button" onClick={handleAddToCartButtonClick}>Купить
         </button>
-        <Link className="btn btn--transparent" to={`${AppUrl.Product}/${product.id}`}>Подробнее</Link>
+        <Link className="btn btn--transparent" to={`${AppUrl.Catalog}${AppUrl.Product}/${product.id}`}>Подробнее</Link>
       </div>
     </div>
   );

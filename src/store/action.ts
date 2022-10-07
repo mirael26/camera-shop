@@ -1,5 +1,6 @@
 import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadProducts, ILoadPromo, IOpenModal } from '../types/actions.type';
-import { IProduct, IPromo, TModal } from '../types/data.type';
+import { TModal } from '../types/app.type';
+import { IProduct, IPromo } from '../types/data.type';
 
 export const ActionType = {
   LoadPromo: 'promo/loadPromo',

@@ -1,5 +1,6 @@
 import { ActionType } from '../store/action';
-import { IProduct, IPromo, TModal } from './data.type';
+import { TModal } from './app.type';
+import { IProduct, IPromo } from './data.type';
 
 export interface ILoadPromo {
   type: typeof ActionType.LoadPromo,

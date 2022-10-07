@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { ActionCreator } from '../store/action';
-import { TModal } from '../types/data.type';
+import { TModal } from '../types/app.type';
 import { useAppDispatch } from './useAppDispatch';
 
 interface IuseModalCloseProps {

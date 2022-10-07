@@ -16,7 +16,7 @@ const Pagination = ({ pageCount, changeCurrentPage }: IPaginationProps): JSX.Ele
 
   useEffect(() => {
     if (pathname === AppUrl.Catalog) {
-      navigate(`${AppUrl.Catalog}${AppUrl.Page}${currentPage}`);
+      navigate(`${AppUrl.Catalog}${AppUrl.Page}${currentPage}`, {replace: true});
     }
   }, []);
 

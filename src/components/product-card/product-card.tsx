@@ -8,9 +8,10 @@ import RatingStars from '../rating-stars/rating-stars';
 
 interface IProductCardProps {
   product: IProduct;
+  isActive?: boolean;
 }
 
-const ProductCard = ({ product }: IProductCardProps): JSX.Element => {
+const ProductCard = ({ product, isActive = false }: IProductCardProps): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleAddToCartButtonClick = () => {
@@ -21,7 +22,7 @@ const ProductCard = ({ product }: IProductCardProps): JSX.Element => {
   const adaptedPrice = addPriceSeparators(product.price);
 
   return (
-    <div className="product-card">
+    <div className={`product-card${isActive ? ' is-active' : ''}`}>
       <div className="product-card__img">
         <picture>
           <source type="image/webp" srcSet={`${product.previewImgWebp}, ${product.previewImgWebp2x} 2x`}/>

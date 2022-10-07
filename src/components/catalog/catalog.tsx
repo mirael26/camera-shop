@@ -4,7 +4,7 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { loadProducts } from '../../store/api-action';
 import Filters from './filters/filters';
 import Pagination from './pagination/pagination';
-import ProductCard from './product-card/product-card';
+import ProductCard from '../product-card/product-card';
 import Sorts from './sorts/sorts';
 
 const DISPLAYED_PRODUCTS_COUNT = 9;

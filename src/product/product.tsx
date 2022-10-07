@@ -1,23 +1,42 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import RatingStars from '../components/rating-stars/rating-stars';
-import { Modal } from '../consts';
+import { AppUrl, Modal, Tab } from '../consts';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { ActionCreator } from '../store/action';
 import { loadCurrentProduct } from '../store/api-action';
+import { TTab } from '../types/app.type';
 import { addPriceSeparators } from '../utils';
+
+const DEFAULT_TAB = Tab.Description;
 
 const Product = (): JSX.Element => {
   const product = useAppSelector((state) => state.data.currentProduct);
   const dispatch = useAppDispatch();
-  const { id } = useParams();
+  const navigate = useNavigate();
+  const { id, tab } = useParams();
+
+  const [currentTab, setCurrentTab] = useState<TTab>(DEFAULT_TAB);
 
   useEffect(() => {
     if (id) {
       dispatch(loadCurrentProduct(+id));
     }
   }, [id, dispatch]);
+
+  useEffect(() => {
+    if (!tab && id) {
+      navigate(`${AppUrl.Catalog}${AppUrl.Product}/${id}/${currentTab}`, {replace: true});
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tab && tab !== currentTab) {
+      setCurrentTab(tab as TTab);
+    }
+  }, [tab]);
 
   const handleAddToCartButtonClick = () => {
     dispatch(ActionCreator.OpenModal(Modal.AddToCart));
@@ -28,7 +47,7 @@ const Product = (): JSX.Element => {
 
   return (
     <div className="page-content__section">
-      {product &&
+      {product && id &&
       <section className="product">
         <div className="container">
           <div className="product__img">
@@ -52,11 +71,15 @@ const Product = (): JSX.Element => {
             </button>
             <div className="tabs product__tabs">
               <div className="tabs__controls product__tabs-controls">
-                <button className="tabs__control" type="button">Характеристики</button>
-                <button className="tabs__control is-active" type="button">Описание</button>
+                <Link className={`tabs__control${currentTab === Tab.Features ? ' is-active' : ''}`} to={`${AppUrl.Catalog}${AppUrl.Product}/${id}/${Tab.Features}`}>
+                  Характеристики
+                </Link>
+                <Link className={`tabs__control${currentTab === Tab.Description ? ' is-active' : ''}`} to={`${AppUrl.Catalog}${AppUrl.Product}/${id}/${Tab.Description}`}>
+                  Описание
+                </Link>
               </div>
               <div className="tabs__content">
-                <div className="tabs__element">
+                <div className={`tabs__element${currentTab === Tab.Features ? ' is-active' : ''}`}>
                   <ul className="product__tabs-list">
                     <li className="item-list"><span className="item-list__title">Артикул:</span>
                       <p className="item-list__text"> {product.vendorCode}</p>
@@ -72,7 +95,7 @@ const Product = (): JSX.Element => {
                     </li>
                   </ul>
                 </div>
-                <div className="tabs__element is-active">
+                <div className={`tabs__element${currentTab === Tab.Description ? ' is-active' : ''}`}>
                   <div className="product__tabs-text">
                     {product.description}
                   </div>

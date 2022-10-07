@@ -14,3 +14,8 @@ export const ApiUrl = {
 export const Modal = {
   AddToCart: 'addToCartModal',
 } as const;
+
+export const Tab = {
+  Features: 'features',
+  Description: 'description',
+} as const;

@@ -49,7 +49,7 @@ const Breadcrumbs = (): JSX.Element => {
             if (path === 'Product' && product) {
               return (
                 <li key={key} className="breadcrumbs__item">
-                  <span className="breadcrumbs__link breadcrumbs__link--active">{product.category} {product.name}</span>
+                  <span className="breadcrumbs__link breadcrumbs__link--active">{product.name}</span>
                 </li>
               );
             }

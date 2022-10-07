@@ -38,7 +38,7 @@ const Product = (): JSX.Element => {
             </picture>
           </div>
           <div className="product__content">
-            <h1 className="title title--h3">{product.category} {product.name}</h1>
+            <h1 className="title title--h3">{product.name}</h1>
             <div className="rate product__rate">
               <RatingStars rating={product.rating} size={'small'}/>
               <p className="visually-hidden">Рейтинг: {product.rating}</p>
@@ -75,8 +75,6 @@ const Product = (): JSX.Element => {
                 <div className="tabs__element is-active">
                   <div className="product__tabs-text">
                     {product.description}
-                    {/* <p>Немецкий концерн BRW разработал видеокамеру Das Auge IV в&nbsp;начале 80-х годов, однако она до&nbsp;сих пор пользуется популярностью среди коллекционеров и&nbsp;яростных почитателей старинной техники.</p>
-                    <p>Вы&nbsp;тоже можете прикоснуться к&nbsp;волшебству аналоговой съёмки, заказав этот чудо-аппарат. Кто знает, может с&nbsp;Das Auge IV&nbsp;начнётся ваш путь к&nbsp;наградам всех престижных кинофестивалей.</p> */}
                   </div>
                 </div>
               </div>

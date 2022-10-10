@@ -39,7 +39,8 @@ const Reviews = (): JSX.Element | null => {
     }
   };
 
-  const displayedReviews = reviews ? reviews.slice(0, displayedCount) : null;
+  const sortedReviews = reviews ? reviews.slice().sort((a, b) => new Date(a.createAt) > new Date(b.createAt) ? -1 : 1) : null;
+  const displayedReviews = sortedReviews ? sortedReviews.slice(0, displayedCount) : null;
 
   return (
     reviews &&

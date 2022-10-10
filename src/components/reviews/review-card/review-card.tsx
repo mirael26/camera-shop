@@ -9,7 +9,7 @@ interface IReviewCardProps {
 const ReviewCard = ({ review }: IReviewCardProps) => {
   const date = new Date(review.createAt);
   const day = date.getUTCDate();
-  const month = Month[date.getMonth() as keyof typeof Month];
+  const month = Month[date.getUTCMonth() as keyof typeof Month];
   const dateTimeAttr = date.toISOString().slice(0, 10);
 
   return (

@@ -10,12 +10,13 @@ const ReviewCard = ({ review }: IReviewCardProps) => {
   const date = new Date(review.createAt);
   const day = date.getUTCDate();
   const month = Month[date.getMonth() as keyof typeof Month];
+  const dateTimeAttr = date.toISOString().slice(0, 10);
 
   return (
     <li className="review-card">
       <div className="review-card__head">
         <p className="title title--h4">{review.userName}</p>
-        <time className="review-card__data" dateTime="2022-04-13">{day} {month}</time>
+        <time className="review-card__data" dateTime={dateTimeAttr}>{day} {month}</time>
       </div>
       <div className="rate review-card__rate">
         <RatingStars rating={review.rating} size={'small'}/>

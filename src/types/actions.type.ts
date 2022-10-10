@@ -1,6 +1,6 @@
 import { ActionType } from '../store/action';
 import { TModal } from './app.type';
-import { IProduct, IPromo } from './data.type';
+import { IProduct, IPromo, IReview } from './data.type';
 
 export interface ILoadPromo {
   type: typeof ActionType.LoadPromo,
@@ -15,6 +15,11 @@ export interface ILoadProducts {
 export interface ILoadCurrentProduct {
   type: typeof ActionType.LoadCurrentProduct,
   payload: IProduct,
+}
+
+export interface ILoadReviews {
+  type: typeof ActionType.LoadReviews,
+  payload: Array<IReview> | null,
 }
 
 export interface IOpenModal {
@@ -32,5 +37,5 @@ export interface IChangeAddingToCartItem {
   payload: IProduct | null,
 }
 
-export type TDataAction = ILoadPromo | ILoadProducts | ILoadCurrentProduct;
+export type TDataAction = ILoadPromo | ILoadProducts | ILoadCurrentProduct | ILoadReviews;
 export type TStateAction = IOpenModal | ICloseModal | IChangeAddingToCartItem;

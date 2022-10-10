@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ApiUrl } from '../consts';
-import { IProduct, IPromo } from '../types/data.type';
+import { IProduct, IPromo, IReview } from '../types/data.type';
 import { ActionCreator } from './action';
 import { TAppDispatch } from './store';
 
@@ -31,6 +31,17 @@ export const loadCurrentProduct = (id: number) => (dispatch: TAppDispatch) => {
     .get(`${URL}${ApiUrl.Products}/${id}`)
     .then((response) => {
       dispatch(ActionCreator.LoadCurrentProduct(response.data as IProduct));
+    })
+    .catch((error) => {
+      throw(error);
+    });
+};
+
+export const loadReviews = (id: number) => (dispatch: TAppDispatch) => {
+  axios
+    .get(`${URL}${ApiUrl.Products}/${id}${ApiUrl.Reviews}`)
+    .then((response) => {
+      dispatch(ActionCreator.LoadReviews(response.data as Array<IReview>));
     })
     .catch((error) => {
       throw(error);

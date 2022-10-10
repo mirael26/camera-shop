@@ -1,11 +1,12 @@
-import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadProducts, ILoadPromo, IOpenModal } from '../types/actions.type';
+import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadProducts, ILoadPromo, ILoadReviews, IOpenModal } from '../types/actions.type';
 import { TModal } from '../types/app.type';
-import { IProduct, IPromo } from '../types/data.type';
+import { IProduct, IPromo, IReview } from '../types/data.type';
 
 export const ActionType = {
   LoadPromo: 'promo/loadPromo',
   LoadProducts: 'cameras/loadProducts',
   LoadCurrentProduct: 'cameras/loadCurrentProduct',
+  LoadReviews: 'cameras/loadReviews',
   OpenModal: 'state/openModal',
   CloseModal: 'state/closeModal',
   ChangeAddingToCartItem: 'state/changeAddingToCartItem',
@@ -23,6 +24,10 @@ export const ActionCreator = {
   LoadCurrentProduct: (product: IProduct): ILoadCurrentProduct => ({
     type: ActionType.LoadCurrentProduct,
     payload: product,
+  }),
+  LoadReviews: (reviews: Array<IReview> | null): ILoadReviews => ({
+    type: ActionType.LoadReviews,
+    payload: reviews,
   }),
   OpenModal: (modal: TModal): IOpenModal => ({
     type: ActionType.OpenModal,

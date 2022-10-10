@@ -9,6 +9,7 @@ export const AppUrl = {
 export const ApiUrl = {
   Promo: '/promo',
   Products: '/cameras',
+  Reviews: '/reviews',
 } as const;
 
 export const Modal = {

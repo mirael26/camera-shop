@@ -7,7 +7,7 @@ const initialState: IStateReducer = {
   addingToCartItem: null,
 };
 
-export const stateReducer = (state = initialState, action: TStateAction) => {
+export const stateReducer = (state = initialState, action: TStateAction): IStateReducer => {
   switch (action.type) {
     case ActionType.OpenModal:
       return {...state, [action.payload]: true};

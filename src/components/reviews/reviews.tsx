@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { loadReviews } from '../../store/api-action';
+import { useDebouncedCallback as useDebounce } from 'use-debounce';
 import ReviewCard from './review-card/review-card';
 
 const DISPLAYED_COUNT_STEP = 3;
@@ -19,6 +20,24 @@ const Reviews = (): JSX.Element | null => {
       dispatch(loadReviews(+id));
     }
   }, [id]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', checkPosition);
+    return () => window.removeEventListener('scroll', checkPosition);
+  }, []);
+
+  const changeDisplayedCountDebounced = useDebounce(() => setDisplayedCount(displayedCount + DISPLAYED_COUNT_STEP), 500, { leading: true });
+
+  const checkPosition = () => {
+    const height = document.body.offsetHeight;
+    const screenHeight = window.innerHeight;
+    const scrolled = window.scrollY;
+    const position = scrolled + screenHeight;
+
+    if (position === height) {
+      changeDisplayedCountDebounced();
+    }
+  };
 
   const displayedReviews = reviews ? reviews.slice(0, displayedCount) : null;
 
@@ -38,7 +57,7 @@ const Reviews = (): JSX.Element | null => {
             })}
           </ul>
           {reviews.length > displayedCount &&
-          <div className="review-block__buttons" onClick={() => setDisplayedCount(displayedCount + DISPLAYED_COUNT_STEP)}>
+          <div className="review-block__buttons" onClick={changeDisplayedCountDebounced}>
             <button className="btn btn--purple" type="button">Показать больше отзывов
             </button>
           </div>}

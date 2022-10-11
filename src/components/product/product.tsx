@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
-import RatingStars from '../components/rating-stars/rating-stars';
-import { AppUrl, Modal, Tab } from '../consts';
-import { useAppDispatch } from '../hooks/useAppDispatch';
-import { useAppSelector } from '../hooks/useAppSelector';
-import { ActionCreator } from '../store/action';
-import { loadCurrentProduct } from '../store/api-action';
-import { TTab } from '../types/app.type';
-import { addPriceSeparators } from '../utils';
+import RatingStars from '../rating-stars/rating-stars';
+import { AppUrl, Modal, Tab } from '../../consts';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { ActionCreator } from '../../store/action';
+import { loadCurrentProduct } from '../../store/api-action';
+import { TTab } from '../../types/app.type';
+import { addPriceSeparators } from '../../utils';
 
 const DEFAULT_TAB = Tab.Description;
 

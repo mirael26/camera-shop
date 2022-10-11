@@ -3,8 +3,9 @@ import { IStateReducer } from '../../types/reducers.type';
 import { ActionType } from '../action';
 
 const initialState: IStateReducer = {
-  addToCartModal: false,
+  addToCartModalOpen: false,
   addingToCartItem: null,
+  reviewModalOpen: false,
 };
 
 export const stateReducer = (state = initialState, action: TStateAction): IStateReducer => {

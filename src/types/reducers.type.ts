@@ -8,6 +8,7 @@ export interface IDataReducer {
 }
 
 export interface IStateReducer {
-  addToCartModal: boolean;
+  addToCartModalOpen: boolean;
   addingToCartItem: IProduct | null;
+  reviewModalOpen: boolean;
 }

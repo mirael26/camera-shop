@@ -34,3 +34,12 @@ export interface IReview {
   createAt: string,
   cameraId: number,
 }
+
+export interface IReviewPost {
+  userName: string,
+  advantage: string,
+  disadvantage: string,
+  review: string,
+  rating: number,
+  cameraId: number,
+}

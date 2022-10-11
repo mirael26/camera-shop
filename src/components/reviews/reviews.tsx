@@ -5,6 +5,8 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { loadReviews } from '../../store/api-action';
 import { useDebouncedCallback as useDebounce } from 'use-debounce';
 import ReviewCard from './review-card/review-card';
+import { ActionCreator } from '../../store/action';
+import { Modal } from '../../consts';
 
 const DISPLAYED_COUNT_STEP = 3;
 
@@ -49,7 +51,7 @@ const Reviews = (): JSX.Element | null => {
         <div className="container">
           <div className="page-content__headed">
             <h2 className="title title--h3">Отзывы</h2>
-            <button className="btn" type="button">Оставить свой отзыв</button>
+            <button className="btn" type="button" onClick={() => dispatch(ActionCreator.OpenModal(Modal.Review))}>Оставить свой отзыв</button>
           </div>
           {!reviews.length && <p>Отзывов пока нет</p>}
           <ul className="review-block__list">

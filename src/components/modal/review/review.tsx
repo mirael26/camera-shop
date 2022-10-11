@@ -1,18 +1,13 @@
-import { useState } from 'react';
-import ReviewForm from './form/form';
-import ThanksModal from './thanks/thanks';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import ReviewModalContent from './modal-content/modal-content';
 
-const ReviewModal = () => {
-  const [mode, setMode] = useState<'reviewForm' | 'thanks'>('reviewForm');
-
-  /*eslint-disable */
-  /*eslint-enable */
+const ReviewModal = (): JSX.Element | null => {
+  const isOpen = useAppSelector((state) => state.state.reviewModalOpen);
 
   return (
-    <>
-      {mode === 'reviewForm' && <ReviewForm showThanks={() => setMode('thanks')} />}
-      {mode === 'thanks' && <ThanksModal />}
-    </>
+    isOpen
+      ? <ReviewModalContent />
+      : null
   );
 };
 

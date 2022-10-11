@@ -13,7 +13,8 @@ export const ApiUrl = {
 } as const;
 
 export const Modal = {
-  AddToCart: 'addToCartModal',
+  AddToCart: 'addToCartModalOpen',
+  Review: 'reviewModalOpen',
 } as const;
 
 export const Tab = {

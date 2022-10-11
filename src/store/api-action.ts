@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ApiUrl } from '../consts';
-import { IProduct, IPromo, IReview } from '../types/data.type';
+import { IProduct, IPromo, IReview, IReviewPost } from '../types/data.type';
 import { ActionCreator } from './action';
 import { TAppDispatch } from './store';
 
@@ -43,6 +43,14 @@ export const loadReviews = (id: number) => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadReviews(response.data as Array<IReview>));
     })
+    .catch((error) => {
+      throw(error);
+    });
+};
+
+export const postReview = (review: IReviewPost) => (dispatch: TAppDispatch) => {
+  axios
+    .post(`${URL}${ApiUrl.Reviews}`, review)
     .catch((error) => {
       throw(error);
     });

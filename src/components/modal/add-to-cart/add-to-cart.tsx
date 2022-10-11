@@ -2,7 +2,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import AddToCartModalContent from './modal-content/modal-content';
 
 const AddToCartModal = (): JSX.Element | null => {
-  const isOpen = useAppSelector((state) => state.state.addToCartModal);
+  const isOpen = useAppSelector((state) => state.state.addToCartModalOpen);
   const product = useAppSelector((state) => state.state.addingToCartItem);
 
   return (

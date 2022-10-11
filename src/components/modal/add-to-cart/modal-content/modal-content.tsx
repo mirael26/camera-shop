@@ -56,7 +56,7 @@ const AddToCartModalContent = ({product}: IAddToCartModalContentProps) => {
             </svg>Добавить в корзину
           </button>
         </div>
-        <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={() => onModalClose()}>
+        <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={onModalClose}>
           <svg width="10" height="10" aria-hidden="true">
             <use xlinkHref="#icon-close"></use>
           </svg>

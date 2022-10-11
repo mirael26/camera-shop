@@ -51,6 +51,7 @@ const Reviews = (): JSX.Element | null => {
             <h2 className="title title--h3">Отзывы</h2>
             <button className="btn" type="button">Оставить свой отзыв</button>
           </div>
+          {!reviews.length && <p>Отзывов пока нет</p>}
           <ul className="review-block__list">
             {displayedReviews && displayedReviews.map((review, i) => {
               const key = `review-card-${i}`;

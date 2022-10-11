@@ -31,7 +31,7 @@ const ProductCard = ({ product, isActive = false }: IProductCardProps): JSX.Elem
       </div>
       <div className="product-card__info">
         <div className="rate product-card__rate">
-          <RatingStars rating={product.rating} size={'small'}/>
+          <RatingStars rating={product.rating}/>
           <p className="visually-hidden">Рейтинг: {product.rating}</p>
           <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{product.reviewCount}</p>
         </div>

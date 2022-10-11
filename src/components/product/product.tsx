@@ -59,7 +59,7 @@ const Product = (): JSX.Element => {
           <div className="product__content">
             <h1 className="title title--h3">{product.name}</h1>
             <div className="rate product__rate">
-              <RatingStars rating={product.rating} size={'small'}/>
+              <RatingStars rating={product.rating}/>
               <p className="visually-hidden">Рейтинг: {product.rating}</p>
               <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{product.reviewCount}</p>
             </div>

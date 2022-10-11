@@ -19,7 +19,7 @@ const ReviewCard = ({ review }: IReviewCardProps) => {
         <time className="review-card__data" dateTime={dateTimeAttr}>{day} {month}</time>
       </div>
       <div className="rate review-card__rate">
-        <RatingStars rating={review.rating} size={'small'}/>
+        <RatingStars rating={review.rating}/>
         <p className="visually-hidden">Оценка: {review.rating}</p>
       </div>
       <ul className="review-card__list">

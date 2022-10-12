@@ -34,6 +34,9 @@ const Product = (): JSX.Element => {
 
   useEffect(() => {
     if (tab && tab !== currentTab) {
+      if (!Object.values(Tab).some((el) => el === tab)) {
+        navigate(AppUrl.NotFound);
+      }
       setCurrentTab(tab as TTab);
     }
   }, [tab]);

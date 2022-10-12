@@ -11,4 +11,5 @@ export interface IStateReducer {
   addToCartModalOpen: boolean;
   addingToCartItem: IProduct | null;
   reviewModalOpen: boolean;
+  redirect: null | string;
 }

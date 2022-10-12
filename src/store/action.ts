@@ -1,4 +1,4 @@
-import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadProducts, ILoadPromo, ILoadReviews, IOpenModal } from '../types/actions.type';
+import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadProducts, ILoadPromo, ILoadReviews, IOpenModal, IRedirect } from '../types/actions.type';
 import { TModal } from '../types/app.type';
 import { IProduct, IPromo, IReview } from '../types/data.type';
 
@@ -10,6 +10,7 @@ export const ActionType = {
   OpenModal: 'state/openModal',
   CloseModal: 'state/closeModal',
   ChangeAddingToCartItem: 'state/changeAddingToCartItem',
+  Redirect: 'state/redirect',
 } as const;
 
 export const ActionCreator = {
@@ -40,5 +41,9 @@ export const ActionCreator = {
   ChangeAddingToCartItem: (item: IProduct | null): IChangeAddingToCartItem => ({
     type: ActionType.ChangeAddingToCartItem,
     payload: item,
+  }),
+  Redirect: (path: string | null): IRedirect => ({
+    type: ActionType.Redirect,
+    payload: path,
   }),
 };

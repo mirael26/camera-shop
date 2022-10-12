@@ -6,6 +6,7 @@ const initialState: IStateReducer = {
   addToCartModalOpen: false,
   addingToCartItem: null,
   reviewModalOpen: false,
+  redirect: null,
 };
 
 export const stateReducer = (state = initialState, action: TStateAction): IStateReducer => {
@@ -16,6 +17,8 @@ export const stateReducer = (state = initialState, action: TStateAction): IState
       return {...state, [action.payload]: false};
     case ActionType.ChangeAddingToCartItem:
       return {...state, addingToCartItem: action.payload};
+    case ActionType.Redirect:
+      return {...state, redirect: action.payload};
     default:
       return state;
   }

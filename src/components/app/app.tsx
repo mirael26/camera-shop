@@ -4,10 +4,12 @@ import CatalogPage from '../../pages/catalog-page/catalog-page';
 import ProductPage from '../../pages/product-page/product-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
+import Redirect from '../redirect/redirect';
 
 const App = (): JSX.Element => (
   <HashRouter>
     <ScrollToTop />
+    <Redirect />
     <Routes>
       <Route path={AppUrl.Main} element={<Navigate replace to={AppUrl.Catalog} />}/>
       <Route path={AppUrl.Catalog} element={<CatalogPage />}/>

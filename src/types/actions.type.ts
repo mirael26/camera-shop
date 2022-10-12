@@ -37,5 +37,10 @@ export interface IChangeAddingToCartItem {
   payload: IProduct | null,
 }
 
+export interface IRedirect {
+  type: typeof ActionType.Redirect,
+  payload: string | null,
+}
+
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadCurrentProduct | ILoadReviews;
-export type TStateAction = IOpenModal | ICloseModal | IChangeAddingToCartItem;
+export type TStateAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect;

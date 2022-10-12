@@ -5,6 +5,7 @@ import ProductPage from '../../pages/product-page/product-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import Redirect from '../redirect/redirect';
+import ServerUnavailablePage from '../../pages/server-unavailable-page/server-unavailable-page';
 
 const App = (): JSX.Element => (
   <HashRouter>
@@ -17,6 +18,7 @@ const App = (): JSX.Element => (
       <Route path={`${AppUrl.Catalog}${AppUrl.Product}/:id`} element={<ProductPage />}/>
       <Route path={`${AppUrl.Catalog}${AppUrl.Product}/:id/:tab`} element={<ProductPage />}/>
       <Route path={AppUrl.NotFound} element={<NotFoundPage />}/>
+      <Route path={AppUrl.ServerUnavailable} element={<ServerUnavailablePage />}/>
       <Route path='/*' element={<NotFoundPage />}/>
     </Routes>
   </HashRouter>

@@ -3568,6 +3568,30 @@ button,
   align-items: center;
 }
 
+.server-unavailable {
+  padding-top: 200px;
+}
+
+.server-unavailable__title.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.server-unavailable__text {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #333333;
+}
+
+.server-unavailable .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (hover: hover), screen and (min-width: 0\0) {
   .header__basket-link:hover,
   .header__basket-link:focus {

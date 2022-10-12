@@ -4,6 +4,7 @@ export const AppUrl = {
   Page: '/page_',
   Product: '/product',
   NotFound: '/404',
+  ServerUnavailable: '/server_unavailable',
 } as const;
 
 export const ApiUrl = {

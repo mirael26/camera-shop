@@ -795,6 +795,11 @@ button,
   background-color: #a2a2ff;
 }
 
+.main-nav__link--disabled {
+  cursor: auto;
+  transition: none;
+}
+
 .main-nav__toggle {
   display: none;
 }
@@ -3269,6 +3274,11 @@ button,
   color: #a2a2ff;
 }
 
+.link--disabled {
+  cursor: auto;
+  transition: none;
+}
+
 .basket-item {
   position: relative;
   display: -ms-grid;
@@ -3544,6 +3554,20 @@ button,
   }
 } */
 
+.not-found {
+  padding-top: 200px;
+}
+
+.not-found__title {
+  text-align: center;
+}
+
+.not-found .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (hover: hover), screen and (min-width: 0\0) {
   .header__basket-link:hover,
   .header__basket-link:focus {
@@ -3624,7 +3648,6 @@ button,
   .slider-controls:active {
     color: #7575e2;
     background-color: #a2a2ff;
-    pointer-events: none;
   }
 
   .link:hover,

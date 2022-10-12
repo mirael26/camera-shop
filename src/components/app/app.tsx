@@ -15,6 +15,7 @@ const App = (): JSX.Element => (
       <Route path={`${AppUrl.Catalog}${AppUrl.Product}/:id`} element={<ProductPage />}/>
       <Route path={`${AppUrl.Catalog}${AppUrl.Product}/:id/:tab`} element={<ProductPage />}/>
       <Route path={AppUrl.NotFound} element={<NotFoundPage />}/>
+      <Route path='/*' element={<NotFoundPage />}/>
     </Routes>
   </HashRouter>
 );

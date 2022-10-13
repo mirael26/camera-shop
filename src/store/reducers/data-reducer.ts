@@ -6,6 +6,7 @@ const initialState: IDataReducer = {
   promo: null,
   products: null,
   currentProduct: null,
+  similarProducts: null,
   reviews: null,
 };
 
@@ -17,6 +18,8 @@ export const dataReducer = (state = initialState, action: TDataAction): IDataRed
       return {...state, products: action.payload};
     case ActionType.LoadCurrentProduct:
       return {...state, currentProduct: action.payload};
+    case ActionType.LoadSimilarProducts:
+      return {...state, similarProducts: action.payload};
     case ActionType.LoadReviews:
       return {...state, reviews: action.payload};
     default:

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { redirect } from 'react-router-dom';
 import { ApiUrl, AppUrl } from '../consts';
 import { IProduct, IPromo, IReview, IReviewPost } from '../types/data.type';
 import { ActionCreator } from './action';
@@ -43,6 +42,23 @@ export const loadCurrentProduct = (id: number) => (dispatch: TAppDispatch) => {
     .get(`${URL}${ApiUrl.Products}/${id}`)
     .then((response) => {
       dispatch(ActionCreator.LoadCurrentProduct(response.data as IProduct));
+    })
+    .catch((error: NodeJS.ErrnoException) => {
+      if (error.code === StatusCode.BadRequest) {
+        dispatch(ActionCreator.Redirect(AppUrl.NotFound));
+      }
+      if (error.code === StatusCode.NoNetwork) {
+        dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      }
+      throw(error);
+    });
+};
+
+export const loadSimilarProducts = (id: number) => (dispatch: TAppDispatch) => {
+  axios
+    .get(`${URL}${ApiUrl.Products}/${id}${ApiUrl.Similar}`)
+    .then((response) => {
+      dispatch(ActionCreator.LoadSimilarProducts(response.data as Array<IProduct>));
     })
     .catch((error: NodeJS.ErrnoException) => {
       if (error.code === StatusCode.BadRequest) {

@@ -1,23 +1,22 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { IProduct } from '../../types/data.type';
+import { loadSimilarProducts } from '../../store/api-action';
 import ProductCard from '../product-card/product-card';
 
 const SimilarProducts = (): JSX.Element | null => {
-  const currentProduct = useAppSelector((state) => state.data.currentProduct);
-  const products = useAppSelector((state) => state.data.products);
+  const similarProducts = useAppSelector((state) => state.data.similarProducts);
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
 
   const [visibleRange, setVisibleRange] = useState({min: 0, max: 2});
 
-  const findSimilarProducts = (referenceProduct: IProduct, allProducts: Array<IProduct>) => {
-    const type = referenceProduct.type;
-    const level = referenceProduct.level;
-    const category = referenceProduct.category;
-    const id = referenceProduct.id;
-
-    const filteredProducts = allProducts.filter((product) => product.id !== id && (product.type === type || product.level === level || product.category === category));
-    return filteredProducts;
-  };
+  useEffect(() => {
+    if (id) {
+      dispatch(loadSimilarProducts(+id));
+    }
+  }, [id]);
 
   const handlePrevButtonClick = () => {
     setVisibleRange((prevState) => ({min: prevState.min - 1, max: prevState.max - 1}));
@@ -27,7 +26,6 @@ const SimilarProducts = (): JSX.Element | null => {
     setVisibleRange((prevState) => ({min: prevState.min + 1, max: prevState.max + 1}));
   };
 
-  const similarProducts = useMemo(() => currentProduct && products ? findSimilarProducts(currentProduct, products) : null, [currentProduct, products]);
   const isPrevButtonDisabled = visibleRange.min === 0;
   const isNextButtonDisabled = similarProducts ? visibleRange.max === (similarProducts.length - 1) : false;
 

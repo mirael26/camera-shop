@@ -11,6 +11,7 @@ export const ApiUrl = {
   Promo: '/promo',
   Products: '/cameras',
   Reviews: '/reviews',
+  Similar: '/similar',
 } as const;
 
 export const Modal = {

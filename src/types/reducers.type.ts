@@ -4,6 +4,7 @@ export interface IDataReducer {
   promo: IPromo | null;
   products: Array<IProduct> | null;
   currentProduct: IProduct | null;
+  similarProducts: Array<IProduct> | null;
   reviews: Array<IReview> | null;
 }
 

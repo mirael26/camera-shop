@@ -38,7 +38,7 @@ const Breadcrumbs = (): JSX.Element => {
   const paths = getCrumbs(pathname);
 
   return (
-    <div className="breadcrumbs">
+    <div className="breadcrumbs" data-testid='breadcrumbs'>
       <div className="container">
         <ul className="breadcrumbs__list">
           {paths && paths.map((path, i) => {

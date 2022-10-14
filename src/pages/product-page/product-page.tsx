@@ -9,7 +9,7 @@ import UpButton from '../../components/up-button/up-button';
 import Product from '../../components/product/product';
 
 const ProductPage = ():JSX.Element => (
-  <div className="wrapper">
+  <div data-testid='product-page' className="wrapper">
     <Header />
     <AddToCartModal />
     <ReviewModal />

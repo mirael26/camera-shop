@@ -6,7 +6,7 @@ import Footer from '../../components/footer/footer';
 import AddToCartModal from '../../components/modal/add-to-cart/add-to-cart';
 
 const CatalogPage = ():JSX.Element => (
-  <div className="wrapper">
+  <div data-testid='catalog-page' className="wrapper">
     <Header />
     <AddToCartModal />
     <main>

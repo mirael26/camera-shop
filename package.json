@@ -76,6 +76,7 @@
     "axios-mock-adapter": "^1.21.2",
     "eslint-config-htmlacademy": "^7.0.0",
     "faker": "^5.5.3",
+    "jest": "^27.5.1",
     "redux-devtools-extension": "^2.13.9",
     "typescript": "^4.8.4"
   }

@@ -1,8 +1,7 @@
-import {render, screen} from '@testing-library/react';
+import { renderWithRedux } from '../../test/helpers/renderWithRedux';
 import App from './app';
 
-test('Renders app-component', () => {
-  render(<App />);
-  const textElement = screen.getByText(/Hello, world!/i);
-  expect(textElement).toBeInTheDocument();
+test('Render App', () => {
+  const app = renderWithRedux(<App />);
+  expect(app).toMatchSnapshot();
 });

@@ -33,7 +33,7 @@ const Pagination = ({ pageCount, changeCurrentPage }: IPaginationProps): JSX.Ele
   const pages = new Array(pageCount).fill(1);
 
   return (
-    <div className="pagination">
+    <div className="pagination" data-testid='pagination'>
       <ul className="pagination__list">
         {currentPage > 1 &&
           <li className="pagination__item">
@@ -48,7 +48,7 @@ const Pagination = ({ pageCount, changeCurrentPage }: IPaginationProps): JSX.Ele
           const pageNumber = i + 1;
           const isActive = (pageNumber) === currentPage;
           return (
-            <li key={key} className="pagination__item">
+            <li key={key} className="pagination__item" data-testid='pagination-item'>
               <Link className={`pagination__link${isActive ? ' pagination__link--active' : ''}`}
                 to={`${AppUrl.Catalog}${AppUrl.Page}${pageNumber}`}
               >{pageNumber}

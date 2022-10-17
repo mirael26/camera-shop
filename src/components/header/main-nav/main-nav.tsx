@@ -5,7 +5,7 @@ const MainNav = ():JSX.Element => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="main-nav">
+    <nav className="main-nav" data-testid='main-nav'>
       <ul className="main-nav__list">
         <li className="main-nav__item">
           {pathname === AppUrl.Catalog

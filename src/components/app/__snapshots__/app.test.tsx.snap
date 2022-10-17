@@ -36,6 +36,7 @@ Object {
             >
               <nav
                 class="main-nav"
+                data-testid="main-nav"
               >
                 <ul
                   class="main-nav__list"
@@ -499,6 +500,7 @@ Object {
           >
             <nav
               class="main-nav"
+              data-testid="main-nav"
             >
               <ul
                 class="main-nav__list"

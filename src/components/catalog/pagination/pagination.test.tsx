@@ -1,8 +1,7 @@
-/*eslint-disable*/
 import { getByText, screen } from '@testing-library/react';
-import { MemoryRouter, useParams } from 'react-router-dom';
-import { renderTestApp } from '../../../test/helpers/renderTestApp';
-import { renderWithRedux } from '../../../test/helpers/renderWithRedux';
+import { useParams } from 'react-router-dom';
+import { renderTestApp } from '../../../test/helpers/render-test-app';
+import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
 import Pagination from './pagination';
 
 const noop = () => {};
@@ -20,30 +19,18 @@ describe('Pagination', () => {
   });
 
   test('Render correctly', () => { 
-    const pagination = renderWithRedux(
-      <MemoryRouter>
-        <Pagination pageCount={3} changeCurrentPage={noop}/>
-      </MemoryRouter>
-    );
+    const pagination = renderWithReduxAndRouter(<Pagination pageCount={3} changeCurrentPage={noop}/>);
     expect(pagination).toMatchSnapshot();
   });
 
   test('Render pages-buttons correctly', () => {
-    renderWithRedux(
-      <MemoryRouter>
-        <Pagination pageCount={3} changeCurrentPage={noop}/>
-      </MemoryRouter>
-    );
+    renderWithReduxAndRouter(<Pagination pageCount={3} changeCurrentPage={noop}/>);
     const buttons = screen.getAllByTestId('pagination-item');
     expect(buttons).toHaveLength(3);
   });
 
   test('Render prev/next button correctly on first page', () => {
-    renderWithRedux(
-      <MemoryRouter>
-        <Pagination pageCount={3} changeCurrentPage={noop}/>
-      </MemoryRouter>
-    );
+    renderWithReduxAndRouter(<Pagination pageCount={3} changeCurrentPage={noop}/>);
     expect(screen.queryByText(/Назад/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Далее/i)).toBeInTheDocument();
   });
@@ -51,11 +38,7 @@ describe('Pagination', () => {
   test('Render prev/next button correctly on last page', () => {
     jest.mocked(useParams).mockReturnValue({ page: '3' });
 
-    renderWithRedux(
-      <MemoryRouter>
-        <Pagination pageCount={3} changeCurrentPage={noop}/>
-      </MemoryRouter>
-    );
+    renderWithReduxAndRouter(<Pagination pageCount={3} changeCurrentPage={noop}/>);
 
     expect(screen.queryByText(/Назад/i)).toBeInTheDocument();
     expect(screen.queryByText(/Далее/i)).not.toBeInTheDocument();
@@ -64,11 +47,7 @@ describe('Pagination', () => {
   test('Render active link correctly', () => {
     jest.mocked(useParams).mockReturnValue({ page: '3' });
 
-    renderWithRedux(
-      <MemoryRouter>
-        <Pagination pageCount={3} changeCurrentPage={noop}/>
-      </MemoryRouter>
-    );
+    renderWithReduxAndRouter(<Pagination pageCount={3} changeCurrentPage={noop}/>);
     const pagination = screen.getByTestId('pagination');
     expect(getByText<HTMLLinkElement>(pagination, /2/i)).not.toHaveClass('pagination__link--active');
     expect(getByText<HTMLLinkElement>(pagination, /3/i)).toHaveClass('pagination__link--active');

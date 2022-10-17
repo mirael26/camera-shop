@@ -1,26 +1,17 @@
 import { fireEvent, getByText, render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { AppUrl } from '../../consts';
-import { renderTestApp } from '../../test/helpers/renderTestApp';
-import { renderWithRedux } from '../../test/helpers/renderWithRedux';
+import { renderTestApp } from '../../test/helpers/render-test-app';
+import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
 import Breadcrumbs from './breadcrumbs';
 
 describe('Breacrumbs', () => {
   test('Render Breacrumbs', () => {
-    const breadcrumbs = renderWithRedux(
-      <MemoryRouter>
-        <Breadcrumbs />
-      </MemoryRouter>
-    );
+    const breadcrumbs = renderWithReduxAndRouter(<Breadcrumbs/>);
     expect(breadcrumbs).toMatchSnapshot();
   });
 
   test('Links render right', () => {
-    renderWithRedux(
-      <MemoryRouter initialEntries={[`${AppUrl.Catalog}`]}>
-        <Breadcrumbs />
-      </MemoryRouter>
-    );
+    renderWithReduxAndRouter(<Breadcrumbs/>, { route: `${AppUrl.Catalog}` });
     const catalogLink = screen.getByText(/Каталог/i);
     expect(catalogLink).toBeInTheDocument();
 

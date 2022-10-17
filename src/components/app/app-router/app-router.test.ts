@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { AppUrl, Tab } from '../../../consts';
-import { renderTestApp } from '../../../test/helpers/renderTestApp';
+import { renderTestApp } from '../../../test/helpers/render-test-app';
 
 describe('Test AppRouter routers', () => {
   test('Route to catalog page', () => {

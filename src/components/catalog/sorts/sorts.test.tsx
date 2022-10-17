@@ -1,12 +1,7 @@
-import { MemoryRouter } from 'react-router-dom';
-import { renderWithRedux } from '../../../test/helpers/renderWithRedux';
+import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
 import Sorts from './sorts';
 
 test('Sorts render correctly', () => {
-  const sorts = renderWithRedux(
-    <MemoryRouter>
-      <Sorts/>
-    </MemoryRouter>
-  );
+  const sorts = renderWithReduxAndRouter(<Sorts/>);
   expect(sorts).toMatchSnapshot();
 });

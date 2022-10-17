@@ -5,7 +5,7 @@ const Footer = (): JSX.Element => {
   const { pathname } = useLocation();
 
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid='footer'>
       <div className="container">
         <div className="footer__info">
           <Link className="footer__logo" to={AppUrl.Main} aria-label="Переход на главную">

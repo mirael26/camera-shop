@@ -240,6 +240,7 @@ Object {
         </main>
         <footer
           class="footer"
+          data-testid="footer"
         >
           <div
             class="container"
@@ -702,6 +703,7 @@ Object {
       </main>
       <footer
         class="footer"
+        data-testid="footer"
       >
         <div
           class="container"

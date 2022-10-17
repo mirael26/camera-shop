@@ -6,7 +6,7 @@ const AddToCartModal = (): JSX.Element | null => {
   const product = useAppSelector((state) => state.state.addingToCartItem);
 
   return (
-    <div className={`modal${isOpen && product ? ' is-active' : ''}`}>
+    <div className={`modal${isOpen && product ? ' is-active' : ''}`} data-testid='add-to-cart-modal'>
       {isOpen && product && <AddToCartModalContent product={product} />}
     </div>
   );

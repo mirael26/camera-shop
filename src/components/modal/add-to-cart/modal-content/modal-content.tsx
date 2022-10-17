@@ -27,9 +27,9 @@ const AddToCartModalContent = ({product}: IAddToCartModalContentProps) => {
   const adaptedPrice = product ? addPriceSeparators(product.price) : null;
 
   return (
-    <div className="modal__wrapper">
-      <div className="modal__overlay" onClick={handleOverlayClick}></div>
-      <div className="modal__content">
+    <div className="modal__wrapper" data-testid='add-to-cart-modal-content'>
+      <div className="modal__overlay" data-testid='modal-overlay' onClick={handleOverlayClick}></div>
+      <div className="modal__content" data-testid='modal-content'>
         <p className="title title--h4">Добавить товар в корзину</p>
         <div className="basket-item basket-item--short">
           <div className="basket-item__img">

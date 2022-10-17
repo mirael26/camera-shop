@@ -178,6 +178,7 @@ Object {
         </header>
         <div
           class="modal"
+          data-testid="add-to-cart-modal"
         />
         <main>
           <div
@@ -642,6 +643,7 @@ Object {
       </header>
       <div
         class="modal"
+        data-testid="add-to-cart-modal"
       />
       <main>
         <div

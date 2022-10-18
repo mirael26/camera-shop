@@ -47,7 +47,7 @@ const Reviews = (): JSX.Element | null => {
   return (
     reviews &&
     <div className="page-content__section">
-      <section className="review-block">
+      <section className="review-block" data-testid='reviews'>
         <div className="container">
           <div className="page-content__headed">
             <h2 className="title title--h3">Отзывы</h2>

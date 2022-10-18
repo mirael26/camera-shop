@@ -15,14 +15,14 @@ const Promo = (): JSX.Element | null => {
 
   return (
     promo &&
-    <div className="banner">
+    <div className="banner" data-testid='banner'>
       <picture>
         <source type="image/webp" srcSet={`${promo?.previewImgWebp}, ${promo?.previewImgWebp} 2x`}/>
         <img src={promo.previewImg} srcSet={`${promo.previewImg2x} 2x`} width="1280" height="280" alt="баннер"/>
       </picture>
       <p className="banner__info">
         <span className="banner__message">Новинка!</span>
-        <span className="title title--h1">{promo.name}</span>
+        <span className="title title--h1" data-testid='promo-title'>{promo.name}</span>
         <span className="banner__text">Профессиональная камера от&nbsp;известного производителя</span>
         <Link className="btn" to={`${AppUrl.Catalog}${AppUrl.Product}/${promo.id}`}>Подробнее</Link>
       </p>

@@ -32,11 +32,11 @@ const ProductCard = ({ product, isActive = false }: IProductCardProps): JSX.Elem
       <div className="product-card__info">
         <div className="rate product-card__rate">
           <RatingStars rating={product.rating}/>
-          <p className="visually-hidden">Рейтинг: {product.rating}</p>
-          <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{product.reviewCount}</p>
+          <p className="visually-hidden" data-testid='rating'>Рейтинг: {product.rating}</p>
+          <p className="rate__count" data-testid='rate-count'><span className="visually-hidden">Всего оценок:</span>{product.reviewCount}</p>
         </div>
-        <p className="product-card__title">{product.name}</p>
-        <p className="product-card__price"><span className="visually-hidden">Цена:</span>{adaptedPrice} ₽
+        <p className="product-card__title" data-testid='name'>{product.name}</p>
+        <p className="product-card__price" data-testid='price'><span className="visually-hidden">Цена:</span>{adaptedPrice} ₽
         </p>
       </div>
       <div className="product-card__buttons">

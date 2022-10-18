@@ -46,12 +46,12 @@ const ReviewForm = ({ onSuccess, onModalClose }: IReviewFormProps) => {
   };
 
   return (
-    <div className="modal__content">
+    <div className="modal__content" data-testid='review-form'>
       <p className="title title--h4">Оставить отзыв</p>
       <div className="form-review">
-        <form method="post" onSubmit={handleFormSubmit}>
+        <form method="post" onSubmit={handleFormSubmit} data-testid='form'>
           <div className="form-review__rate">
-            <fieldset className={`rate form-review__item${inputValidity.rating ? '' : ' is-invalid'}`}>
+            <fieldset className={`rate form-review__item${inputValidity.rating ? '' : ' is-invalid'}`} data-testid='rating-input-block'>
               <legend className="rate__caption">Рейтинг
                 <svg width="9" height="9" aria-hidden="true">
                   <use xlinkHref="#icon-snowflake"></use>
@@ -70,12 +70,12 @@ const ReviewForm = ({ onSuccess, onModalClose }: IReviewFormProps) => {
                   <input className="visually-hidden" id="star-1" name="rate" type="radio" value="1" onChange={(evt) => handleInputChange(evt, 'rating')}/>
                   <label className="rate__label" htmlFor="star-1" title="Ужасно"></label>
                 </div>
-                <div className="rate__progress"><span className="rate__stars">{inputValue.rating === '' ? 0 : inputValue.rating}</span> <span>/</span> <span className="rate__all-stars">5</span>
+                <div className="rate__progress"><span className="rate__stars" data-testid='review-form-rate'>{inputValue.rating === '' ? 0 : inputValue.rating}</span> <span>/</span> <span className="rate__all-stars">5</span>
                 </div>
               </div>
               <p className="rate__message">Нужно оценить товар</p>
             </fieldset>
-            <div className={`custom-input form-review__item${inputValidity.userName ? '' : ' is-invalid'}`}>
+            <div className={`custom-input form-review__item${inputValidity.userName ? '' : ' is-invalid'}`} data-testid='name-input-block'>
               <label>
                 <span className="custom-input__label">Ваше имя
                   <svg width="9" height="9" aria-hidden="true">
@@ -86,7 +86,7 @@ const ReviewForm = ({ onSuccess, onModalClose }: IReviewFormProps) => {
               </label>
               <p className="custom-input__error">Нужно указать имя</p>
             </div>
-            <div className={`custom-input form-review__item${inputValidity.advantage ? '' : ' is-invalid'}`}>
+            <div className={`custom-input form-review__item${inputValidity.advantage ? '' : ' is-invalid'}`} data-testid='advantage-input-block'>
               <label>
                 <span className="custom-input__label">Достоинства
                   <svg width="9" height="9" aria-hidden="true">
@@ -97,7 +97,7 @@ const ReviewForm = ({ onSuccess, onModalClose }: IReviewFormProps) => {
               </label>
               <p className="custom-input__error">Нужно указать достоинства</p>
             </div>
-            <div className={`custom-input form-review__item${inputValidity.disadvantage ? '' : ' is-invalid'}`}>
+            <div className={`custom-input form-review__item${inputValidity.disadvantage ? '' : ' is-invalid'}`} data-testid='disadvantage-input-block'>
               <label>
                 <span className="custom-input__label">Недостатки
                   <svg width="9" height="9" aria-hidden="true">
@@ -108,7 +108,7 @@ const ReviewForm = ({ onSuccess, onModalClose }: IReviewFormProps) => {
               </label>
               <p className="custom-input__error">Нужно указать недостатки</p>
             </div>
-            <div className={`custom-textarea form-review__item${inputValidity.review ? '' : ' is-invalid'}`}>
+            <div className={`custom-textarea form-review__item${inputValidity.review ? '' : ' is-invalid'}`} data-testid='review-input-block'>
               <label>
                 <span className="custom-textarea__label">Комментарий
                   <svg width="9" height="9" aria-hidden="true">

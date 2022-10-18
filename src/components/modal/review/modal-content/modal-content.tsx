@@ -19,9 +19,9 @@ const ReviewModalContent = () => {
   };
 
   return (
-    <div className={`modal is-active${mode === 'success' ? ' modal--narrow' : ''}`}>
+    <div className={`modal is-active${mode === 'success' ? ' modal--narrow' : ''}`} data-testid='review-modal'>
       <div className="modal__wrapper">
-        <div className="modal__overlay" onClick={handleOverlayClick}></div>
+        <div className="modal__overlay" onClick={handleOverlayClick} data-testid='modal-overlay'></div>
 
         {mode === 'reviewForm' && <ReviewForm onSuccess={() => setMode('success')} onModalClose={onModalClose} />}
         {mode === 'success' && <ReviewSuccess onModalClose={onModalClose}/>}

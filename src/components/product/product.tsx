@@ -51,7 +51,7 @@ const Product = (): JSX.Element => {
   return (
     <div className="page-content__section">
       {product && id &&
-      <section className="product">
+      <section className="product" data-testid='product'>
         <div className="container">
           <div className="product__img">
             <picture>
@@ -82,7 +82,7 @@ const Product = (): JSX.Element => {
                 </Link>
               </div>
               <div className="tabs__content">
-                <div className={`tabs__element${currentTab === Tab.Features ? ' is-active' : ''}`}>
+                <div className={`tabs__element${currentTab === Tab.Features ? ' is-active' : ''}`} data-testid='features-content'>
                   <ul className="product__tabs-list">
                     <li className="item-list"><span className="item-list__title">Артикул:</span>
                       <p className="item-list__text"> {product.vendorCode}</p>
@@ -98,7 +98,7 @@ const Product = (): JSX.Element => {
                     </li>
                   </ul>
                 </div>
-                <div className={`tabs__element${currentTab === Tab.Description ? ' is-active' : ''}`}>
+                <div className={`tabs__element${currentTab === Tab.Description ? ' is-active' : ''}`} data-testid='description-content'>
                   <div className="product__tabs-text">
                     {product.description}
                   </div>

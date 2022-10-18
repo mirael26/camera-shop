@@ -1,0 +1,524 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product Render correctly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="page-content__section"
+      >
+        <section
+          class="product"
+          data-testid="product"
+        >
+          <div
+            class="container"
+          >
+            <div
+              class="product__img"
+            >
+              <picture>
+                <source
+                  srcset="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+                  type="image/webp"
+                />
+                <img
+                  alt="img/content/orlenok.webp img/content/orlenok@2x.webp"
+                  height="480"
+                  src="img/content/orlenok.jpg"
+                  srcset="img/content/orlenok@2x.jpg 2x"
+                  width="560"
+                />
+              </picture>
+            </div>
+            <div
+              class="product__content"
+            >
+              <h1
+                class="title title--h3"
+              >
+                Орлёнок
+              </h1>
+              <div
+                class="rate product__rate"
+              >
+                <svg
+                  aria-hidden="true"
+                  height="16"
+                  width="17"
+                >
+                  <use
+                    xlink:href="#icon-full-star"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  height="16"
+                  width="17"
+                >
+                  <use
+                    xlink:href="#icon-full-star"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  height="16"
+                  width="17"
+                >
+                  <use
+                    xlink:href="#icon-full-star"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  height="16"
+                  width="17"
+                >
+                  <use
+                    xlink:href="#icon-star"
+                  />
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  height="16"
+                  width="17"
+                >
+                  <use
+                    xlink:href="#icon-star"
+                  />
+                </svg>
+                <p
+                  class="visually-hidden"
+                >
+                  Рейтинг: 
+                  3
+                </p>
+                <p
+                  class="rate__count"
+                >
+                  <span
+                    class="visually-hidden"
+                  >
+                    Всего оценок:
+                  </span>
+                  17
+                </p>
+              </div>
+              <p
+                class="product__price"
+              >
+                <span
+                  class="visually-hidden"
+                >
+                  Цена:
+                </span>
+                19 970
+                 ₽
+              </p>
+              <button
+                class="btn btn--purple"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  height="16"
+                  width="24"
+                >
+                  <use
+                    xlink:href="#icon-add-basket"
+                  />
+                </svg>
+                Добавить в корзину
+              </button>
+              <div
+                class="tabs product__tabs"
+              >
+                <div
+                  class="tabs__controls product__tabs-controls"
+                >
+                  <a
+                    class="tabs__control"
+                    href="/catalog/product/4/features"
+                  >
+                    Характеристики
+                  </a>
+                  <a
+                    class="tabs__control is-active"
+                    href="/catalog/product/4/description"
+                  >
+                    Описание
+                  </a>
+                </div>
+                <div
+                  class="tabs__content"
+                >
+                  <div
+                    class="tabs__element"
+                    data-testid="features-content"
+                  >
+                    <ul
+                      class="product__tabs-list"
+                    >
+                      <li
+                        class="item-list"
+                      >
+                        <span
+                          class="item-list__title"
+                        >
+                          Артикул:
+                        </span>
+                        <p
+                          class="item-list__text"
+                        >
+                           
+                          O78DFGSD83
+                        </p>
+                      </li>
+                      <li
+                        class="item-list"
+                      >
+                        <span
+                          class="item-list__title"
+                        >
+                          Категория:
+                        </span>
+                        <p
+                          class="item-list__text"
+                        >
+                          Фотоаппарат
+                        </p>
+                      </li>
+                      <li
+                        class="item-list"
+                      >
+                        <span
+                          class="item-list__title"
+                        >
+                          Тип камеры:
+                        </span>
+                        <p
+                          class="item-list__text"
+                        >
+                          Плёночная
+                        </p>
+                      </li>
+                      <li
+                        class="item-list"
+                      >
+                        <span
+                          class="item-list__title"
+                        >
+                          Уровень:
+                        </span>
+                        <p
+                          class="item-list__text"
+                        >
+                          Любительский
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="tabs__element is-active"
+                    data-testid="description-content"
+                  >
+                    <div
+                      class="product__tabs-text"
+                    >
+                      Плёночная перезаряжаемая камера нового покаления уже укомплектована плёнкой и оснащена встроенной вспышкой. Легко помещается в руке и обладет интересным дизайном.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="page-content__section"
+    >
+      <section
+        class="product"
+        data-testid="product"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="product__img"
+          >
+            <picture>
+              <source
+                srcset="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+                type="image/webp"
+              />
+              <img
+                alt="img/content/orlenok.webp img/content/orlenok@2x.webp"
+                height="480"
+                src="img/content/orlenok.jpg"
+                srcset="img/content/orlenok@2x.jpg 2x"
+                width="560"
+              />
+            </picture>
+          </div>
+          <div
+            class="product__content"
+          >
+            <h1
+              class="title title--h3"
+            >
+              Орлёнок
+            </h1>
+            <div
+              class="rate product__rate"
+            >
+              <svg
+                aria-hidden="true"
+                height="16"
+                width="17"
+              >
+                <use
+                  xlink:href="#icon-full-star"
+                />
+              </svg>
+              <svg
+                aria-hidden="true"
+                height="16"
+                width="17"
+              >
+                <use
+                  xlink:href="#icon-full-star"
+                />
+              </svg>
+              <svg
+                aria-hidden="true"
+                height="16"
+                width="17"
+              >
+                <use
+                  xlink:href="#icon-full-star"
+                />
+              </svg>
+              <svg
+                aria-hidden="true"
+                height="16"
+                width="17"
+              >
+                <use
+                  xlink:href="#icon-star"
+                />
+              </svg>
+              <svg
+                aria-hidden="true"
+                height="16"
+                width="17"
+              >
+                <use
+                  xlink:href="#icon-star"
+                />
+              </svg>
+              <p
+                class="visually-hidden"
+              >
+                Рейтинг: 
+                3
+              </p>
+              <p
+                class="rate__count"
+              >
+                <span
+                  class="visually-hidden"
+                >
+                  Всего оценок:
+                </span>
+                17
+              </p>
+            </div>
+            <p
+              class="product__price"
+            >
+              <span
+                class="visually-hidden"
+              >
+                Цена:
+              </span>
+              19 970
+               ₽
+            </p>
+            <button
+              class="btn btn--purple"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                height="16"
+                width="24"
+              >
+                <use
+                  xlink:href="#icon-add-basket"
+                />
+              </svg>
+              Добавить в корзину
+            </button>
+            <div
+              class="tabs product__tabs"
+            >
+              <div
+                class="tabs__controls product__tabs-controls"
+              >
+                <a
+                  class="tabs__control"
+                  href="/catalog/product/4/features"
+                >
+                  Характеристики
+                </a>
+                <a
+                  class="tabs__control is-active"
+                  href="/catalog/product/4/description"
+                >
+                  Описание
+                </a>
+              </div>
+              <div
+                class="tabs__content"
+              >
+                <div
+                  class="tabs__element"
+                  data-testid="features-content"
+                >
+                  <ul
+                    class="product__tabs-list"
+                  >
+                    <li
+                      class="item-list"
+                    >
+                      <span
+                        class="item-list__title"
+                      >
+                        Артикул:
+                      </span>
+                      <p
+                        class="item-list__text"
+                      >
+                         
+                        O78DFGSD83
+                      </p>
+                    </li>
+                    <li
+                      class="item-list"
+                    >
+                      <span
+                        class="item-list__title"
+                      >
+                        Категория:
+                      </span>
+                      <p
+                        class="item-list__text"
+                      >
+                        Фотоаппарат
+                      </p>
+                    </li>
+                    <li
+                      class="item-list"
+                    >
+                      <span
+                        class="item-list__title"
+                      >
+                        Тип камеры:
+                      </span>
+                      <p
+                        class="item-list__text"
+                      >
+                        Плёночная
+                      </p>
+                    </li>
+                    <li
+                      class="item-list"
+                    >
+                      <span
+                        class="item-list__title"
+                      >
+                        Уровень:
+                      </span>
+                      <p
+                        class="item-list__text"
+                      >
+                        Любительский
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="tabs__element is-active"
+                  data-testid="description-content"
+                >
+                  <div
+                    class="product__tabs-text"
+                  >
+                    Плёночная перезаряжаемая камера нового покаления уже укомплектована плёнкой и оснащена встроенной вспышкой. Легко помещается в руке и обладет интересным дизайном.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

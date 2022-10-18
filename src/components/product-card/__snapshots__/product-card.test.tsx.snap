@@ -38,6 +38,7 @@ Object {
               width="17"
             >
               <use
+                data-testid="full-star-icon"
                 xlink:href="#icon-full-star"
               />
             </svg>
@@ -47,6 +48,7 @@ Object {
               width="17"
             >
               <use
+                data-testid="full-star-icon"
                 xlink:href="#icon-full-star"
               />
             </svg>
@@ -56,6 +58,7 @@ Object {
               width="17"
             >
               <use
+                data-testid="full-star-icon"
                 xlink:href="#icon-full-star"
               />
             </svg>
@@ -168,6 +171,7 @@ Object {
             width="17"
           >
             <use
+              data-testid="full-star-icon"
               xlink:href="#icon-full-star"
             />
           </svg>
@@ -177,6 +181,7 @@ Object {
             width="17"
           >
             <use
+              data-testid="full-star-icon"
               xlink:href="#icon-full-star"
             />
           </svg>
@@ -186,6 +191,7 @@ Object {
             width="17"
           >
             <use
+              data-testid="full-star-icon"
               xlink:href="#icon-full-star"
             />
           </svg>

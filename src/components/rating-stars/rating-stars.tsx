@@ -15,7 +15,7 @@ const RatingStars = ({ rating = 0 }: IRatingStarsProps): JSX.Element => {
         return (
           <svg key={key} width="17" height="16" aria-hidden="true">
             {star
-              ? <use xlinkHref="#icon-full-star"></use>
+              ? <use xlinkHref="#icon-full-star" data-testid='full-star-icon'></use>
               : <use xlinkHref="#icon-star"></use>}
           </svg>
         );

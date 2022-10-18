@@ -33,7 +33,7 @@ const SimilarProducts = (): JSX.Element | null => {
     similarProducts && similarProducts.length
       ?
       <div className="page-content__section">
-        <section className="product-similar">
+        <section className="product-similar" data-testid='similar-products'>
           <div className="container">
             <h2 className="title title--h3">Похожие товары</h2>
             <div className="product-similar__slider">

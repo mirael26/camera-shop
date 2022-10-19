@@ -4,9 +4,9 @@ import { IProduct, IPromo, IReview, IReviewPost } from '../types/data.type';
 import { ActionCreator } from './action';
 import { TAppDispatch } from './store';
 
-const URL = 'https://camera-shop.accelerator.pages.academy';
+const URL = 'https://camera-shop.accelerator.pages.academy1';
 
-const StatusCode = {
+export const StatusCode = {
   BadRequest: 'ERR_BAD_REQUEST',
   NoNetwork: 'ERR_NETWORK',
 } as const;
@@ -17,6 +17,8 @@ export const loadPromo = () => (dispatch: TAppDispatch) => {
     .then((response) => dispatch(ActionCreator.LoadPromo(response.data as IPromo)))
     .catch((error: NodeJS.ErrnoException) => {
       if (error.code === StatusCode.NoNetwork) {
+        /* eslint-disable*/
+        console.log(error);
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       }
       throw(error);

@@ -2,7 +2,7 @@ import { TStateAction } from '../../types/actions.type';
 import { IStateReducer } from '../../types/reducers.type';
 import { ActionType } from '../action';
 
-const initialState: IStateReducer = {
+export const initialState: IStateReducer = {
   addToCartModalOpen: false,
   addingToCartItem: null,
   reviewModalOpen: false,

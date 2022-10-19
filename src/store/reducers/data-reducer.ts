@@ -2,7 +2,7 @@ import { TDataAction } from '../../types/actions.type';
 import { IDataReducer } from '../../types/reducers.type';
 import { ActionType } from '../action';
 
-const initialState: IDataReducer = {
+export const initialState: IDataReducer = {
   promo: null,
   products: null,
   currentProduct: null,

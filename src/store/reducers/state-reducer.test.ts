@@ -1,7 +1,6 @@
 import { Modal } from '../../consts';
-import { productMock, productsMock, promoMock, reviewsMock } from '../../test/mocks';
+import { productMock } from '../../test/mocks';
 import { ActionCreator } from '../action';
-import { dataReducer } from './data-reducer';
 import { stateReducer } from './state-reducer';
 
 describe('stateReducer', () => {

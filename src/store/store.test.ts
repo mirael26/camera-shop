@@ -2,7 +2,6 @@ import { productsMock } from '../test/mocks';
 import { createReduxStore } from './store';
 import { initialState as dataInitialState } from './reducers/data-reducer';
 import { initialState as stateInitialState } from './reducers/state-reducer';
-import { screen } from '@testing-library/react';
 
 describe('Store', () => {
   test('configures store with initial state correctly', () => {

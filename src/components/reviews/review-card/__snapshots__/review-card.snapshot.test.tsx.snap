@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewCard renders correctly 1`] = `
+<DocumentFragment>
+  <li
+    class="review-card"
+    data-testid="review-card"
+  >
+    <div
+      class="review-card__head"
+    >
+      <p
+        class="title title--h4"
+      >
+        Александр
+      </p>
+      <time
+        class="review-card__data"
+        data-testid="review-date"
+        datetime="2022-10-17"
+      >
+        17 октября
+      </time>
+    </div>
+    <div
+      class="rate review-card__rate"
+    >
+      <svg
+        aria-hidden="true"
+        height="16"
+        width="17"
+      >
+        <use
+          data-testid="full-star-icon"
+          xlink:href="#icon-full-star"
+        />
+      </svg>
+      <svg
+        aria-hidden="true"
+        height="16"
+        width="17"
+      >
+        <use
+          data-testid="full-star-icon"
+          xlink:href="#icon-full-star"
+        />
+      </svg>
+      <svg
+        aria-hidden="true"
+        height="16"
+        width="17"
+      >
+        <use
+          data-testid="full-star-icon"
+          xlink:href="#icon-full-star"
+        />
+      </svg>
+      <svg
+        aria-hidden="true"
+        height="16"
+        width="17"
+      >
+        <use
+          data-testid="full-star-icon"
+          xlink:href="#icon-full-star"
+        />
+      </svg>
+      <svg
+        aria-hidden="true"
+        height="16"
+        width="17"
+      >
+        <use
+          data-testid="full-star-icon"
+          xlink:href="#icon-full-star"
+        />
+      </svg>
+      <p
+        class="visually-hidden"
+      >
+        Оценка: 5
+      </p>
+    </div>
+    <ul
+      class="review-card__list"
+    >
+      <li
+        class="item-list"
+      >
+        <span
+          class="item-list__title"
+        >
+          Достоинства:
+        </span>
+        <p
+          class="item-list__text"
+          data-testid="review-advantage"
+        >
+          Покупали недавно. Пока нареканий нет.
+        </p>
+      </li>
+      <li
+        class="item-list"
+      >
+        <span
+          class="item-list__title"
+        >
+          Недостатки:
+        </span>
+        <p
+          class="item-list__text"
+          data-testid="review-disadvantage"
+        >
+          Нет.
+        </p>
+      </li>
+      <li
+        class="item-list"
+      >
+        <span
+          class="item-list__title"
+        >
+          Комментарий:
+        </span>
+        <p
+          class="item-list__text"
+          data-testid="review-review"
+        >
+          Приобрела камеру ориентируясь на отзывы, но выявила множество несоответствий. Цена не оправдала ожидания
+        </p>
+      </li>
+    </ul>
+  </li>
+</DocumentFragment>
+`;

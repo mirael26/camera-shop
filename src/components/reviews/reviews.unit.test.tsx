@@ -1,21 +1,18 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { AppUrl } from '../../consts';
-import { renderTestApp } from '../../test/helpers/render-test-app';
+import { Modal } from '../../consts';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { ActionCreator } from '../../store/action';
 import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
 import { bigReviewsMock, reviewsMock } from '../../test/mocks';
 import Reviews from './reviews';
 
-describe('Reviews', () => {
-  test('Render correctly', () => {
-    const reviews = renderWithReduxAndRouter(<Reviews/>, {
-      initialState: {
-        data: { reviews: reviewsMock }
-      }
-    });
-    expect(reviews).toMatchSnapshot();
-  });
+const spyDispatch =  jest.fn();
 
-  test('Render correct reviews count', () => {
+jest.mock('../../hooks/use-app-dispatch');
+jest.mock('./review-card/review-card', () => () => (<div data-testid='review-card'></div>));
+
+describe('Reviews', () => {
+  test('renders correct reviews count', () => {
     renderWithReduxAndRouter(<Reviews/>, {
       initialState: {
         data: { reviews: reviewsMock }
@@ -61,15 +58,17 @@ describe('Reviews', () => {
   });
 
   test('Open review-modal when click on new-review button', () => {
-    renderTestApp(null, {
-      route: `${AppUrl.Catalog}${AppUrl.Product}/1`,
+    jest.mocked(useAppDispatch).mockReturnValue(spyDispatch);
+
+    renderWithReduxAndRouter(<Reviews/>, {
       initialState: {
         data: { reviews: [] }
       }
     });
-    const newReview = screen.getByText<HTMLButtonElement>(/Оставить свой отзыв/i);
-    fireEvent.click(newReview);
 
-    expect(screen.getByTestId('review-modal')).toBeInTheDocument();
+    const newReviewButton = screen.getByText(/Оставить свой отзыв/i);
+    fireEvent.click(newReviewButton);
+
+    expect(spyDispatch).toHaveBeenCalledWith(ActionCreator.OpenModal(Modal.Review));
   });
 });

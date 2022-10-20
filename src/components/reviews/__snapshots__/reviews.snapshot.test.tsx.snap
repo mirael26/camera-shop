@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reviews renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="page-content__section"
+  >
+    <section
+      class="review-block"
+      data-testid="reviews"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="page-content__headed"
+        >
+          <h2
+            class="title title--h3"
+          >
+            Отзывы
+          </h2>
+          <button
+            class="btn"
+            type="button"
+          >
+            Оставить свой отзыв
+          </button>
+        </div>
+        <ul
+          class="review-block__list"
+        >
+          <reviewcard
+            review="[object Object]"
+          />
+          <reviewcard
+            review="[object Object]"
+          />
+        </ul>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;

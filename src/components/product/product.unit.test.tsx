@@ -21,6 +21,8 @@ jest.mock('react-router-dom', () => {
 });
 jest.mock('../../hooks/use-app-dispatch');
 
+jest.mock('../rating-stars/rating-stars', () => 'RatingStars');
+
 describe('Product', () => {
   beforeEach(() => {
     jest.mocked(useParams).mockReturnValue({ id: '4' });

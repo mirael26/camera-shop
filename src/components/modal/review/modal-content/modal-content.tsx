@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal } from '../../../../consts';
-import { useModalClose } from '../../../../hooks/useModalClose';
+import { useModalClose } from '../../../../hooks/use-modal-close';
 import ReviewForm from '../form/form';
 import ReviewSuccess from '../success/success';
 

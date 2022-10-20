@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { useAppSelector } from '../../hooks/use-app-selector';
 import { loadProducts } from '../../store/api-action';
 import Filters from './filters/filters';
 import Pagination from './pagination/pagination';

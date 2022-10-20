@@ -1,6 +1,6 @@
 import { Modal } from '../../../../consts';
-import { useAppDispatch } from '../../../../hooks/useAppDispatch';
-import { useModalClose } from '../../../../hooks/useModalClose';
+import { useAppDispatch } from '../../../../hooks/use-app-dispatch';
+import { useModalClose } from '../../../../hooks/use-modal-close';
 import { ActionCreator } from '../../../../store/action';
 import { IProduct } from '../../../../types/data.type';
 import { addPriceSeparators } from '../../../../utils';

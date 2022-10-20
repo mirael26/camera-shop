@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../../../hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../hooks/use-app-dispatch';
 import { postReview } from '../../../../store/api-action';
 
 interface IReviewFormProps {

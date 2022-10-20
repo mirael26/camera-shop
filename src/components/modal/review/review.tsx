@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useAppSelector } from '../../../hooks/use-app-selector';
 import ReviewModalContent from './modal-content/modal-content';
 
 const ReviewModal = (): JSX.Element | null => {

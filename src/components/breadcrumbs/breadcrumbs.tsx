@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { AppUrl } from '../../consts';
-import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppSelector } from '../../hooks/use-app-selector';
 
 const BreadcrumbsProperties = {
   Main: {

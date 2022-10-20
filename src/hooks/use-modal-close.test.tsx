@@ -3,10 +3,10 @@ import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { Modal } from '../consts';
 import { createReduxStore } from '../store/store';
-import { useAppDispatch } from './useAppDispatch';
-import { useModalClose } from './useModalClose';
+import { useAppDispatch } from './use-app-dispatch';
+import { useModalClose } from './use-modal-close';
 
-jest.mock('./useAppDispatch', () => ({ useAppDispatch: jest.fn() }));
+jest.mock('./use-app-dispatch', () => ({ useAppDispatch: jest.fn() }));
 let spyDispatch: () => any;
 
 describe('useModalClose', () => {

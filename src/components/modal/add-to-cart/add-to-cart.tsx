@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useAppSelector } from '../../../hooks/use-app-selector';
 import AddToCartModalContent from './modal-content/modal-content';
 
 const AddToCartModal = (): JSX.Element | null => {

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Modal } from '../../../../consts';
 import { useModalClose } from '../../../../hooks/use-modal-close';
-import ReviewForm from '../form/form';
-import ReviewSuccess from '../success/success';
+import ReviewForm from '../review-form/review-form';
+import ReviewSuccess from '../review-success/review-success';
 
 const ReviewModalContent = () => {
   const [mode, setMode] = useState<'reviewForm' | 'success'>('reviewForm');

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
 import { productMock } from '../../../test/mocks';
-import AddToCartModal from './add-to-cart';
+import AddToCartModal from './add-to-cart-modal';
 
 
 describe('AddToCart', () => {

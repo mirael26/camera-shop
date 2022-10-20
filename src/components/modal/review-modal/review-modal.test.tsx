@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
-import ReviewModal from './review';
+import ReviewModal from './review-modal';
 
 describe('ReviewModal', () => {
   test('Render correctly', () => {

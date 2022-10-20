@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithReduxAndRouter } from '../../../../test/helpers/render-with-redux-and-router';
-import ReviewSuccess from './success';
+import ReviewSuccess from './review-success';
 
 const onModalCloseMock = jest.fn();
 

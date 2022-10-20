@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '../../../../test/helpers/render-test-app';
 import { renderWithReduxAndRouter } from '../../../../test/helpers/render-with-redux-and-router';
 import { productMock } from '../../../../test/mocks';
-import AddToCartModalContent from './modal-content';
+import AddToCartModalContent from './add-to-cart-modal-content';
 
 describe('AddToCartModalContent', () => {
   test('Render correctly', () => {

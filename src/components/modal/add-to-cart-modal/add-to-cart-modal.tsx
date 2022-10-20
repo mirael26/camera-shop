@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../../hooks/use-app-selector';
-import AddToCartModalContent from './modal-content/modal-content';
+import AddToCartModalContent from './add-to-cart-modal-content/add-to-cart-modal-content';
 
 const AddToCartModal = (): JSX.Element | null => {
   const isOpen = useAppSelector((state) => state.state.addToCartModalOpen);

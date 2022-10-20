@@ -5,7 +5,7 @@ import { AppUrl } from '../../../../consts';
 import { renderTestApp } from '../../../../test/helpers/render-test-app';
 import { renderWithReduxAndRouter } from '../../../../test/helpers/render-with-redux-and-router';
 import { productMock } from '../../../../test/mocks';
-import ReviewForm from './form';
+import ReviewForm from './review-form';
 
 const noop = () => {};
 const onSuccessMock = jest.fn();

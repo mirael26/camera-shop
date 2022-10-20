@@ -2,6 +2,6 @@ import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-a
 import UpButton from './up-button';
 
 test('UpButton render correctly', () => {
-  const upButton = renderWithReduxAndRouter(<UpButton/>);
-  expect(upButton).toMatchSnapshot();
+  const { asFragment } = renderWithReduxAndRouter(<UpButton/>);
+  expect(asFragment).toMatchSnapshot();
 });

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewSuccess renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="modal__content"
+    data-testid="review-success"
+  >
+    <p
+      class="title title--h4"
+    >
+      Спасибо за отзыв
+    </p>
+    <svg
+      aria-hidden="true"
+      class="modal__icon"
+      height="78"
+      width="80"
+    >
+      <use
+        xlink:href="#icon-review-success"
+      />
+    </svg>
+    <div
+      class="modal__buttons"
+    >
+      <button
+        class="btn btn--purple modal__btn modal__btn--fit-width"
+        type="button"
+      >
+        Вернуться к покупкам
+      </button>
+    </div>
+    <button
+      aria-label="Закрыть попап"
+      class="cross-btn"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        height="10"
+        width="10"
+      >
+        <use
+          xlink:href="#icon-close"
+        />
+      </svg>
+    </button>
+  </div>
+</DocumentFragment>
+`;

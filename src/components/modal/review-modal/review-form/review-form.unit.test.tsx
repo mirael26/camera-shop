@@ -1,14 +1,14 @@
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
-import { AppUrl } from '../../../../consts';
-import { renderTestApp } from '../../../../test/helpers/render-test-app';
 import { renderWithReduxAndRouter } from '../../../../test/helpers/render-with-redux-and-router';
 import { productMock } from '../../../../test/mocks';
 import ReviewForm from './review-form';
 
 const noop = () => {};
-const onSuccessMock = jest.fn();
+const onSuccessSpy = jest.fn();
+const onModalCloseSpy = jest.fn();
+
 jest.mock('axios');
 jest.mock('react-router-dom', () => {
   return {
@@ -18,29 +18,11 @@ jest.mock('react-router-dom', () => {
 });
 
 describe('ReviewForm', () => {
-  test('Render correctly', () => {
-    const reviewForm = renderWithReduxAndRouter(<ReviewForm onSuccess={noop} onModalClose={noop}/>);
-    expect(reviewForm).toMatchSnapshot();
-  });
+  test('Should close by click on close-button', () => {
+    renderWithReduxAndRouter(<ReviewForm onSuccess={noop} onModalClose={ onModalCloseSpy }/>);
 
-  test('Close correctly by click on close-button', () => {
-    jest.mocked(axios).get.mockResolvedValue({});
-
-    renderTestApp(null, {
-      initialState: {
-        state: {
-          reviewModalOpen: true,
-        }
-      },
-      route: `${AppUrl.Catalog}${AppUrl.Product}/1` 
-    });
-
-    const reviewModalContent = screen.getByTestId('review-modal');
-    expect(reviewModalContent).toBeInTheDocument();
-
-    const closeButton = screen.getByLabelText<HTMLButtonElement>('Закрыть попап');
-    fireEvent.click(closeButton);
-    expect(reviewModalContent).not.toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText('Закрыть попап'));
+    expect(onModalCloseSpy).toBeCalledTimes(1);
   });
 
   test('Ratining works correctly', () => {
@@ -79,11 +61,11 @@ describe('ReviewForm', () => {
     expect(inputBlock).not.toHaveClass('is-invalid');
   });
 
-  test('Send review correctly', async() => {
+  test('Sends review', async() => {
     jest.mocked(axios).get.mockResolvedValue({});
     jest.mocked(axios).post.mockResolvedValue({});
 
-    renderTestApp(<ReviewForm onSuccess={onSuccessMock} onModalClose={noop}/>, { initialState: {
+    renderWithReduxAndRouter(<ReviewForm onSuccess={onSuccessSpy} onModalClose={noop}/>, { initialState: {
       data: {
         currentProduct: productMock,
       }
@@ -92,7 +74,7 @@ describe('ReviewForm', () => {
     const submitButton = screen.getByText<HTMLButtonElement>(/Отправить отзыв/i);
     fireEvent.click(submitButton);
     expect(axios.post).toBeCalledTimes(0);
-    expect(onSuccessMock).toBeCalledTimes(0);
+    expect(onSuccessSpy).toBeCalledTimes(0);
 
     fireEvent.click(screen.getByTitle(/Нормально/i));
     await userEvent.type(screen.getByPlaceholderText(/Введите ваше имя/i), 'Иван');
@@ -108,6 +90,6 @@ describe('ReviewForm', () => {
     
     fireEvent.click(screen.getByText<HTMLButtonElement>(/Отправить отзыв/i));
     expect(axios.post).toBeCalledTimes(1);
-    expect(onSuccessMock).toBeCalledTimes(1);
+    expect(onSuccessSpy).toBeCalledTimes(1);
   });
 });

@@ -5,12 +5,7 @@ import ReviewSuccess from './review-success';
 const onModalCloseMock = jest.fn();
 
 describe('ReviewSuccess', () => {
-  test('Render correctly', () => {
-    const reviewSuccess = renderWithReduxAndRouter(<ReviewSuccess onModalClose={onModalCloseMock}/>);
-    expect(reviewSuccess).toMatchSnapshot();
-  });
-
-  test('Close button work correctly', () => {
+  test('Should be closed on button-close click', () => {
     renderWithReduxAndRouter(<ReviewSuccess onModalClose={onModalCloseMock}/>);
     const closeButton = screen.getByLabelText('Закрыть попап');
     fireEvent.click(closeButton);

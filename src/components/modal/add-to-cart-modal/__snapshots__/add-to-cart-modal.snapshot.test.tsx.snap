@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddToCartModal renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="modal is-active"
+    data-testid="add-to-cart-modal"
+  >
+    <addtocartmodalcontent
+      product="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;

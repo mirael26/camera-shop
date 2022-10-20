@@ -2,20 +2,14 @@ import { screen } from '@testing-library/react';
 import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
 import ReviewModal from './review-modal';
 
-describe('ReviewModal', () => {
-  test('Render correctly', () => {
-    const reviewModal = renderWithReduxAndRouter(<ReviewModal/>);
-    expect(reviewModal).toMatchSnapshot();
-  });
+jest.mock('./review-modal-content/review-modal-content', () => () => (<div data-testid='review-modal-content'></div>));
 
-  test('Display modal-content correctly', () => {
-    renderWithReduxAndRouter(<ReviewModal/>, { initialState: {
-      state: {
-        reviewModalOpen: true,
-      }
-    }});
+test('ReviewModal displays modal-content correctly', () => {
+  renderWithReduxAndRouter(<ReviewModal/>, { initialState: {
+    state: {
+      reviewModalOpen: true,
+    }
+  }});
 
-    const reviewModalContent = screen.getByTestId('review-modal');
-    expect(reviewModalContent).toBeInTheDocument();
-  });
+  expect(screen.getByTestId('review-modal-content')).toBeInTheDocument();
 });

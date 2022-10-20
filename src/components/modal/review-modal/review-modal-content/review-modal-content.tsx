@@ -4,8 +4,13 @@ import { useModalClose } from '../../../../hooks/use-modal-close';
 import ReviewForm from '../review-form/review-form';
 import ReviewSuccess from '../review-success/review-success';
 
+export const ReviewMode = {
+  Form: 'reviewForm',
+  Success: 'success',
+} as const;
+
 const ReviewModalContent = () => {
-  const [mode, setMode] = useState<'reviewForm' | 'success'>('reviewForm');
+  const [mode, setMode] = useState<typeof ReviewMode.Form | typeof ReviewMode.Success>(ReviewMode.Form);
 
   const { onModalClose } = useModalClose({ modalName: Modal.Review });
 

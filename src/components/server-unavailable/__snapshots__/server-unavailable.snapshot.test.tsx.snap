@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ServerUnavailable renders correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="server-unavailable"
+  >
+    <div
+      class="container"
+    >
+      <h1
+        class="title title--h2 server-unavailable__title"
+      >
+        Сервер недоступен 😥
+      </h1>
+      <h1
+        class="server-unavailable__text"
+      >
+        Пожалуйста, попробуйте позднее
+      </h1>
+      <a
+        class="btn btn--purple"
+        href="/"
+      >
+        Перезагрузить
+      </a>
+    </div>
+  </section>
+</DocumentFragment>
+`;

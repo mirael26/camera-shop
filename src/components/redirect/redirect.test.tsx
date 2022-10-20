@@ -1,14 +1,32 @@
-import { screen } from '@testing-library/react';
+import { useNavigate } from 'react-router-dom';
 import { AppUrl } from '../../consts';
-import { renderTestApp } from '../../test/helpers/render-test-app';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { ActionCreator } from '../../store/action';
+import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
 import Redirect from './redirect';
 
+const spyDispatch =  jest.fn();
+const spyNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => {
+  return {
+    ...jest.requireActual('react-router-dom'),
+    useParams: jest.fn(),
+    useNavigate: jest.fn(),
+  }
+});
+jest.mock('../../hooks/use-app-dispatch');
+
 test('Redirect works correctly', () => {
-  renderTestApp(<Redirect/>, {
-    route: AppUrl.Catalog,
+  jest.mocked(useNavigate).mockReturnValue(spyNavigate);
+  jest.mocked(useAppDispatch).mockReturnValue(spyDispatch);
+
+  renderWithReduxAndRouter(<Redirect/>, {
     initialState: {
       state: { redirect: AppUrl.NotFound }
     }
   })
-  expect(screen.getByTestId('not-found-page')).toBeInTheDocument();
+
+  expect(spyDispatch).toHaveBeenCalledWith(ActionCreator.Redirect(null));
+  expect(spyNavigate).toHaveBeenCalledWith(AppUrl.NotFound);
 });

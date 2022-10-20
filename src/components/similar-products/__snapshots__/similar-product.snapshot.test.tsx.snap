@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimilarProducts renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="page-content__section"
+  >
+    <section
+      class="product-similar"
+      data-testid="similar-products"
+    >
+      <div
+        class="container"
+      >
+        <h2
+          class="title title--h3"
+        >
+          Похожие товары
+        </h2>
+        <div
+          class="product-similar__slider"
+        >
+          <div
+            class="product-similar__slider-list"
+          >
+            <productcard
+              product="[object Object]"
+            />
+            <productcard
+              product="[object Object]"
+            />
+            <productcard
+              product="[object Object]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;

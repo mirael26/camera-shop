@@ -12,21 +12,14 @@ jest.mock('react-router-dom', () => {
   }
 });
 
+jest.mock('../product-card/product-card', () => () => (<div data-testid='product-card'></div>));
+
 describe('SimilarProducts', () => {
   beforeEach(() => {
     jest.mocked(axios).get.mockResolvedValue(productsMock);
   });
   
-  test('Render correctly', () => {
-    const similarProducts = renderWithReduxAndRouter(<SimilarProducts/>, {
-      initialState: {
-        data: { similarProducts: productsMock }
-      }
-    });
-    expect(similarProducts).toMatchSnapshot();
-  });
-
-  test('Make one get-query', () => {
+  test('Makes one get-query on initial', () => {
     renderWithReduxAndRouter(<SimilarProducts/>, {
       initialState: {
         data: { similarProducts: productsMock }
@@ -36,7 +29,7 @@ describe('SimilarProducts', () => {
     expect(jest.mocked(axios).get).toHaveBeenCalledTimes(1);
   });
 
-  test('Render right cards count when 1 similar', () => {
+  test('Renders right cards count when 1 similar', () => {
     renderWithReduxAndRouter(<SimilarProducts/>, {
       initialState: {
         data: { similarProducts: [productMock] }
@@ -47,7 +40,7 @@ describe('SimilarProducts', () => {
     expect(cards).toHaveLength(1);
   });
 
-  test('Render right cards count when 5 similar', () => {
+  test('Renders right cards count when 5 similar', () => {
     renderWithReduxAndRouter(<SimilarProducts/>, {
       initialState: {
         data: { similarProducts: bigProductsMock }
@@ -58,22 +51,6 @@ describe('SimilarProducts', () => {
     expect(cards).toHaveLength(5);
     expect(screen.getByLabelText('Предыдущий слайд')).toBeInTheDocument();
     expect(screen.getByLabelText('Следующий слайд')).toBeInTheDocument();
-  });
-
-  test('Render right visible cards count', () => {
-    renderWithReduxAndRouter(<SimilarProducts/>, {
-      initialState: {
-        data: { similarProducts: bigProductsMock }
-      }
-    });
-
-    const cards = screen.getAllByTestId('product-card');
-    expect(cards).toHaveLength(5);
-    expect(cards[0]).toHaveClass('is-active');
-    expect(cards[1]).toHaveClass('is-active');
-    expect(cards[2]).toHaveClass('is-active');
-    expect(cards[3]).not.toHaveClass('is-active');
-    expect(cards[4]).not.toHaveClass('is-active');
   });
 
   test('Dont render component when no similar products', () => {

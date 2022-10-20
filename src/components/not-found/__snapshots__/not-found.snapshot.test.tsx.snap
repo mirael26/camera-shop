@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound renders correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="not-found"
+    data-testid="not-found"
+  >
+    <div
+      class="container"
+    >
+      <h1
+        class="title title--h2 not-found__title"
+      >
+        404 Not Found
+      </h1>
+      <a
+        class="btn btn--purple"
+        href="/"
+      >
+        Вернутся на главную
+      </a>
+    </div>
+  </section>
+</DocumentFragment>
+`;

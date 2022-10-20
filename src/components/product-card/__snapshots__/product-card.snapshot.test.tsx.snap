@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="product-card"
+    data-testid="product-card"
+  >
+    <div
+      class="product-card__img"
+    >
+      <picture>
+        <source
+          srcset="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+          type="image/webp"
+        />
+        <img
+          alt="Орлёнок"
+          height="240"
+          src="img/content/orlenok.jpg"
+          srcset="img/content/orlenok@2x.jpg 2x"
+          width="280"
+        />
+      </picture>
+    </div>
+    <div
+      class="product-card__info"
+    >
+      <div
+        class="rate product-card__rate"
+      >
+        <svg
+          aria-hidden="true"
+          height="16"
+          width="17"
+        >
+          <use
+            data-testid="full-star-icon"
+            xlink:href="#icon-full-star"
+          />
+        </svg>
+        <svg
+          aria-hidden="true"
+          height="16"
+          width="17"
+        >
+          <use
+            data-testid="full-star-icon"
+            xlink:href="#icon-full-star"
+          />
+        </svg>
+        <svg
+          aria-hidden="true"
+          height="16"
+          width="17"
+        >
+          <use
+            data-testid="full-star-icon"
+            xlink:href="#icon-full-star"
+          />
+        </svg>
+        <svg
+          aria-hidden="true"
+          height="16"
+          width="17"
+        >
+          <use
+            xlink:href="#icon-star"
+          />
+        </svg>
+        <svg
+          aria-hidden="true"
+          height="16"
+          width="17"
+        >
+          <use
+            xlink:href="#icon-star"
+          />
+        </svg>
+        <p
+          class="visually-hidden"
+          data-testid="rating"
+        >
+          Рейтинг: 3
+        </p>
+        <p
+          class="rate__count"
+          data-testid="rate-count"
+        >
+          <span
+            class="visually-hidden"
+          >
+            Всего оценок:
+          </span>
+          17
+        </p>
+      </div>
+      <p
+        class="product-card__title"
+        data-testid="name"
+      >
+        Орлёнок
+      </p>
+      <p
+        class="product-card__price"
+        data-testid="price"
+      >
+        <span
+          class="visually-hidden"
+        >
+          Цена:
+        </span>
+        19 970 ₽
+      </p>
+    </div>
+    <div
+      class="product-card__buttons"
+    >
+      <button
+        class="btn btn--purple product-card__btn"
+        type="button"
+      >
+        Купить
+      </button>
+      <a
+        class="btn btn--transparent"
+        href="/catalog/product/4"
+      >
+        Подробнее
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

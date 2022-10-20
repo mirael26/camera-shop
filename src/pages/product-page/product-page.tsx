@@ -20,8 +20,8 @@ const ProductPage = ():JSX.Element => (
         <SimilarProducts />
         <Reviews />
       </div>
+      <UpButton />
     </main>
-    <UpButton />
     <Footer />
   </div>
 );

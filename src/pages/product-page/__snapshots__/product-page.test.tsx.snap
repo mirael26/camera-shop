@@ -230,21 +230,21 @@ Object {
               class="page-content__section"
             />
           </div>
-        </main>
-        <a
-          class="up-btn"
-          href="/#header"
-        >
-          <svg
-            aria-hidden="true"
-            height="18"
-            width="12"
+          <a
+            class="up-btn"
+            href="/#header"
           >
-            <use
-              xlink:href="#icon-arrow2"
-            />
-          </svg>
-        </a>
+            <svg
+              aria-hidden="true"
+              height="18"
+              width="12"
+            >
+              <use
+                xlink:href="#icon-arrow2"
+              />
+            </svg>
+          </a>
+        </main>
         <footer
           class="footer"
           data-testid="footer"
@@ -701,21 +701,21 @@ Object {
             class="page-content__section"
           />
         </div>
-      </main>
-      <a
-        class="up-btn"
-        href="/#header"
-      >
-        <svg
-          aria-hidden="true"
-          height="18"
-          width="12"
+        <a
+          class="up-btn"
+          href="/#header"
         >
-          <use
-            xlink:href="#icon-arrow2"
-          />
-        </svg>
-      </a>
+          <svg
+            aria-hidden="true"
+            height="18"
+            width="12"
+          >
+            <use
+              xlink:href="#icon-arrow2"
+            />
+          </svg>
+        </a>
+      </main>
       <footer
         class="footer"
         data-testid="footer"

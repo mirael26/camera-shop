@@ -27,55 +27,7 @@ exports[`Header renders correctly 1`] = `
       <div
         class="header__main-nav"
       >
-        <nav
-          class="main-nav"
-          data-testid="main-nav"
-        >
-          <ul
-            class="main-nav__list"
-          >
-            <li
-              class="main-nav__item"
-            >
-              <a
-                class="main-nav__link"
-                href="/catalog"
-              >
-                Каталог
-              </a>
-            </li>
-            <li
-              class="main-nav__item"
-            >
-              <a
-                class="main-nav__link"
-                href="#"
-              >
-                Гарантии
-              </a>
-            </li>
-            <li
-              class="main-nav__item"
-            >
-              <a
-                class="main-nav__link"
-                href="#"
-              >
-                Доставка
-              </a>
-            </li>
-            <li
-              class="main-nav__item"
-            >
-              <a
-                class="main-nav__link"
-                href="#"
-              >
-                О компании
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <mainnav />
       </div>
       <div
         class="form-search"

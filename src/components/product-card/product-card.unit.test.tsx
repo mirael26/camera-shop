@@ -9,6 +9,8 @@ import ProductCard from './product-card';
 const spyDispatch =  jest.fn();
 jest.mock('../../hooks/use-app-dispatch');
 
+jest.mock('../rating-stars/rating-stars', () => 'RatingStars');
+
 describe('ProductCard', () => {
   beforeEach(() => {
     jest.mocked(useAppDispatch).mockReturnValue(spyDispatch);

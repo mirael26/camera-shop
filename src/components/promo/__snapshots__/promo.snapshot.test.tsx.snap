@@ -1,54 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Promo Promo renders correctly 1`] = `
-<DocumentFragment>
-  <div
-    class="banner"
-    data-testid="banner"
-  >
-    <picture>
-      <source
-        srcset="img/content/promo.webp, img/content/promo.webp 2x"
-        type="image/webp"
-      />
-      <img
-        alt="баннер"
-        height="280"
-        src="img/content/promo.jpg"
-        srcset="img/content/promo@2x.jpg 2x"
-        width="1280"
-      />
-    </picture>
-    <p
-      class="banner__info"
-    >
-      <span
-        class="banner__message"
-      >
-        Новинка!
-      </span>
-      <span
-        class="title title--h1"
-        data-testid="promo-title"
-      >
-        Look 54
-      </span>
-      <span
-        class="banner__text"
-      >
-        Профессиональная камера от известного производителя
-      </span>
-      <a
-        class="btn"
-        href="/catalog/product/7"
-      >
-        Подробнее
-      </a>
-    </p>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`Promo renders correctly 1`] = `
 <DocumentFragment>
   <div

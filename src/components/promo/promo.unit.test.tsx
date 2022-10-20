@@ -1,7 +1,6 @@
-import { fireEvent, getByText, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import axios from 'axios';
 import { AppUrl } from '../../consts';
-import { renderTestApp } from '../../test/helpers/render-test-app';
 import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
 import { promoMock } from '../../test/mocks';
 import Promo from './promo';
@@ -11,13 +10,6 @@ jest.mock('axios');
 describe('Promo', () => {
   beforeEach(() => {
     jest.mocked(axios).get.mockResolvedValue(promoMock);
-  });
-
-  test('Renders correctly', () => {
-    const promo = renderWithReduxAndRouter(<Promo/>, { initialState: { 
-      data: { promo: promoMock }
-    }});
-    expect(promo).toMatchSnapshot();
   });
 
   test('Makes one get-query after render', () => {
@@ -34,17 +26,14 @@ describe('Promo', () => {
     expect(title).toHaveTextContent(/Look 54/i);
   });
 
-  test('Redirect to product', () => {
-    renderTestApp(null, { route: AppUrl.Catalog,
+  test('Render correct link to product', () => {
+    renderWithReduxAndRouter(<Promo/>, { route: AppUrl.Catalog,
       initialState: { 
         data: { promo: promoMock }
       }
     });
-    const bunner = screen.getByTestId('banner');
-    const productLink = getByText<HTMLLinkElement>(bunner, /Подробнее/i);
-
-    expect(screen.queryByTestId('product-page')).not.toBeInTheDocument();
-    fireEvent.click(productLink);
-    expect(screen.getByTestId('product-page')).toBeInTheDocument();
+    
+    const productLink = screen.getByText(/Подробнее/i);
+    expect(productLink).toHaveAttribute('href', `${AppUrl.Catalog}${AppUrl.Product}/${promoMock.id}`);
   });
 });

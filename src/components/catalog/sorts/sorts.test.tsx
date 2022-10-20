@@ -2,6 +2,6 @@ import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redu
 import Sorts from './sorts';
 
 test('Sorts render correctly', () => {
-  const sorts = renderWithReduxAndRouter(<Sorts/>);
-  expect(sorts).toMatchSnapshot();
+  const { asFragment } = renderWithReduxAndRouter(<Sorts/>);
+  expect(asFragment()).toMatchSnapshot();
 });

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Catalog renders correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="catalog"
+  >
+    <div
+      class="container"
+    >
+      <h1
+        class="title title--h2"
+      >
+        Каталог фото- и видеотехники
+      </h1>
+      <div
+        class="page-content__columns"
+      >
+        <div
+          class="catalog__aside"
+        >
+          <filters />
+        </div>
+        <div
+          class="catalog__content"
+        >
+          <sorts />
+          <div
+            class="cards catalog__cards"
+          >
+            <productcard
+              product="[object Object]"
+            />
+            <productcard
+              product="[object Object]"
+            />
+            <productcard
+              product="[object Object]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

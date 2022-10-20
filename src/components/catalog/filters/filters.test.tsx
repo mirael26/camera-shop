@@ -2,6 +2,6 @@ import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redu
 import Filters from './filters';
 
 test('Filters render correctly', () => {
-  const filters = renderWithReduxAndRouter(<Filters/>);
-  expect(filters).toMatchSnapshot();
+  const { asFragment } = renderWithReduxAndRouter(<Filters/>);
+  expect(asFragment()).toMatchSnapshot();
 });

@@ -21,7 +21,7 @@ const Pagination = ({ pageCount, changeCurrentPage }: IPaginationProps): JSX.Ele
   }, []);
 
   useEffect(() => {
-    if (page && +page > pageCount) {
+    if ((page && +page > pageCount) || (page && isNaN(+page))) {
       navigate(AppUrl.NotFound);
     } else
     if (page && +page !== currentPage) {

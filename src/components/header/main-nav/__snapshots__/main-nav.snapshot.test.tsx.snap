@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainNav renders correctly 1`] = `
+<DocumentFragment>
+  <nav
+    class="main-nav"
+    data-testid="main-nav"
+  >
+    <ul
+      class="main-nav__list"
+    >
+      <li
+        class="main-nav__item"
+      >
+        <a
+          class="main-nav__link"
+          href="/catalog"
+        >
+          Каталог
+        </a>
+      </li>
+      <li
+        class="main-nav__item"
+      >
+        <a
+          class="main-nav__link"
+          href="#"
+        >
+          Гарантии
+        </a>
+      </li>
+      <li
+        class="main-nav__item"
+      >
+        <a
+          class="main-nav__link"
+          href="#"
+        >
+          Доставка
+        </a>
+      </li>
+      <li
+        class="main-nav__item"
+      >
+        <a
+          class="main-nav__link"
+          href="#"
+        >
+          О компании
+        </a>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;

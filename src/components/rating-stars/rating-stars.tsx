@@ -9,11 +9,7 @@ const RatingStars = ({ rating = 0 }: IRatingStarsProps): JSX.Element => {
 
   useEffect(() => {
     setStars((prev) => prev.map((star, i) => (i + 1 <= rating) ? 1 : 0));
-<<<<<<< HEAD
   }, [rating]);
-=======
-  }, []);
->>>>>>> dd95b2837f600a683e448302bc8a5274461698ea
 
   return (
     <>

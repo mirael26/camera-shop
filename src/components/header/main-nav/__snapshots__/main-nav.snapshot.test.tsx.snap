@@ -24,7 +24,7 @@ exports[`MainNav renders correctly 1`] = `
       >
         <a
           class="main-nav__link"
-          href="example.com"
+          href="https://example.com"
         >
           Гарантии
         </a>
@@ -34,7 +34,7 @@ exports[`MainNav renders correctly 1`] = `
       >
         <a
           class="main-nav__link"
-          href="example.com"
+          href="https://example.com"
         >
           Доставка
         </a>
@@ -44,7 +44,7 @@ exports[`MainNav renders correctly 1`] = `
       >
         <a
           class="main-nav__link"
-          href="example.com"
+          href="https://example.com"
         >
           О компании
         </a>

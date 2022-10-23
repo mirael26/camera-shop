@@ -18,7 +18,7 @@ const Pagination = ({ pageCount, changeCurrentPage }: IPaginationProps): JSX.Ele
     if (pathname === AppUrl.Catalog) {
       navigate(`${AppUrl.Catalog}${AppUrl.Page}${currentPage}`, {replace: true});
     }
-  }, [currentPage]);
+  }, [currentPage, navigate, pathname]);
 
   useEffect(() => {
     if ((page && +page > pageCount) || (page && isNaN(+page))) {
@@ -28,7 +28,7 @@ const Pagination = ({ pageCount, changeCurrentPage }: IPaginationProps): JSX.Ele
       changeCurrentPage(+page);
       setCurrentPage(+page);
     }
-  }, [page]);
+  }, [page, navigate, currentPage, changeCurrentPage, pageCount]);
 
   const pages = new Array(pageCount).fill(1);
 

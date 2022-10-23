@@ -30,16 +30,17 @@ const Product = (): JSX.Element => {
     if (!tab && id) {
       navigate(`${AppUrl.Catalog}${AppUrl.Product}/${id}/${currentTab}`, {replace: true});
     }
-  }, []);
 
-  useEffect(() => {
     if (tab && tab !== currentTab) {
-      if (!Object.values(Tab).some((el) => el === tab)) {
+      const existingTabs: Array<string> = Object.values(Tab);
+      const isNewTabExisting = existingTabs.includes(tab);
+
+      if (!isNewTabExisting) {
         navigate(AppUrl.NotFound);
       }
       setCurrentTab(tab as TTab);
     }
-  }, [tab]);
+  }, [tab, id, navigate, currentTab]);
 
   const handleAddToCartButtonClick = () => {
     dispatch(ActionCreator.OpenModal(Modal.AddToCart));

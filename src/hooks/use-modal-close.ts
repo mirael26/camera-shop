@@ -1,26 +1,36 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { ActionCreator } from '../store/action';
 import { TModal } from '../types/app.type';
 import { useAppDispatch } from './use-app-dispatch';
 
 interface IuseModalCloseProps {
   modalName: TModal;
-  cleanCallback?: () => any;
+  cleanCallback?: () => void;
 }
 
 export const useModalClose = ({ modalName, cleanCallback }: IuseModalCloseProps) => {
   const dispatch = useAppDispatch();
 
-  const handleEscClick = (evt: KeyboardEvent) => {
+  const onModalClose = useCallback(() => {
+    dispatch(ActionCreator.CloseModal(modalName));
+    if (cleanCallback) {
+      cleanCallback();
+    }
+    document.querySelector('header')?.removeAttribute('inert');
+    document.querySelector('main')?.removeAttribute('inert');
+    document.querySelector('footer')?.removeAttribute('inert');
+  }, [dispatch, cleanCallback, modalName]);
+
+  const handleEscClick = useCallback((evt: KeyboardEvent) => {
     if (evt.key === 'Escape') {
       onModalClose();
     }
-  };
+  }, [onModalClose]);
 
-  const handleBackButtonClick = (evt: PopStateEvent) => {
+  const handleBackButtonClick = useCallback((evt: PopStateEvent) => {
     evt.preventDefault();
     onModalClose();
-  };
+  }, [onModalClose]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscClick);
@@ -35,17 +45,7 @@ export const useModalClose = ({ modalName, cleanCallback }: IuseModalCloseProps)
       window.removeEventListener('popstate', handleBackButtonClick);
       document.body.style.overflow = 'visible';
     };
-  }, []);
-
-  const onModalClose = () => {
-    dispatch(ActionCreator.CloseModal(modalName));
-    if (cleanCallback) {
-      cleanCallback();
-    }
-    document.querySelector('header')?.removeAttribute('inert');
-    document.querySelector('main')?.removeAttribute('inert');
-    document.querySelector('footer')?.removeAttribute('inert');
-  };
+  }, [handleEscClick, handleBackButtonClick]);
 
   return { onModalClose };
 };

@@ -14,7 +14,7 @@ const Redirect = () => {
       dispatch(ActionCreator.Redirect(null));
       navigate(redirectPath);
     }
-  }, [redirectPath]);
+  }, [redirectPath, dispatch, navigate]);
 
   return null;
 };

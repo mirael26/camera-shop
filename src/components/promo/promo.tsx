@@ -11,7 +11,7 @@ const Promo = (): JSX.Element | null => {
 
   useEffect(() => {
     dispatch(loadPromo());
-  }, []);
+  }, [dispatch]);
 
   return (
     promo &&

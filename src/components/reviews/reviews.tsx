@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
@@ -21,16 +21,11 @@ const Reviews = (): JSX.Element | null => {
     if (id) {
       dispatch(loadReviews(+id));
     }
-  }, [id]);
-
-  useEffect(() => {
-    window.addEventListener('scroll', checkPosition);
-    return () => window.removeEventListener('scroll', checkPosition);
-  }, []);
+  }, [id, dispatch]);
 
   const changeDisplayedCountDebounced = useDebounce(() => setDisplayedCount(displayedCount + DISPLAYED_COUNT_STEP), 500, { leading: true });
 
-  const checkPosition = () => {
+  const checkPosition = useCallback(() => {
     const height = document.body.offsetHeight;
     const screenHeight = window.innerHeight;
     const scrolled = window.scrollY;
@@ -39,7 +34,12 @@ const Reviews = (): JSX.Element | null => {
     if (position === height) {
       changeDisplayedCountDebounced();
     }
-  };
+  }, [changeDisplayedCountDebounced]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', checkPosition);
+    return () => window.removeEventListener('scroll', checkPosition);
+  }, [checkPosition]);
 
   const sortedReviews = reviews ? reviews.slice().sort((a, b) => new Date(a.createAt) > new Date(b.createAt) ? -1 : 1) : null;
   const displayedReviews = sortedReviews ? sortedReviews.slice(0, displayedCount) : null;

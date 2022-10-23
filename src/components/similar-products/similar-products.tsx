@@ -16,7 +16,7 @@ const SimilarProducts = (): JSX.Element | null => {
     if (id) {
       dispatch(loadSimilarProducts(+id));
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   const handlePrevButtonClick = () => {
     setVisibleRange((prevState) => ({min: prevState.min - 1, max: prevState.max - 1}));

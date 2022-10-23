@@ -108,7 +108,7 @@ exports[`Header renders correctly 1`] = `
       </div>
       <a
         class="header__basket-link"
-        href="#"
+        href="example.com"
       >
         <svg
           aria-hidden="true"

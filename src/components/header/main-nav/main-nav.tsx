@@ -12,11 +12,11 @@ const MainNav = ():JSX.Element => {
             ? <span className="main-nav__link main-nav__link--disabled">Каталог</span>
             : <Link className="main-nav__link" to={AppUrl.Catalog}>Каталог</Link>}
         </li>
-        <li className="main-nav__item"><a className="main-nav__link" href="#">Гарантии</a>
+        <li className="main-nav__item"><a className="main-nav__link" href="example.com">Гарантии</a>
         </li>
-        <li className="main-nav__item"><a className="main-nav__link" href="#">Доставка</a>
+        <li className="main-nav__item"><a className="main-nav__link" href="example.com">Доставка</a>
         </li>
-        <li className="main-nav__item"><a className="main-nav__link" href="#">О компании</a>
+        <li className="main-nav__item"><a className="main-nav__link" href="example.com">О компании</a>
         </li>
       </ul>
     </nav>

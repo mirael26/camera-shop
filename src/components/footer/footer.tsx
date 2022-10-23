@@ -16,21 +16,21 @@ const Footer = (): JSX.Element => {
           <p className="footer__description">Интернет-магазин фото- и видеотехники</p>
           <ul className="social">
             <li className="social__item">
-              <a className="link" href="#" aria-label="Переход на страницу вконтатке">
+              <a className="link" href="example.com" aria-label="Переход на страницу вконтакте">
                 <svg width="20" height="20" aria-hidden="true">
                   <use xlinkHref="#icon-vk"></use>
                 </svg>
               </a>
             </li>
             <li className="social__item">
-              <a className="link" href="#" aria-label="Переход на страницу pinterest">
+              <a className="link" href="example.com" aria-label="Переход на страницу pinterest">
                 <svg width="20" height="20" aria-hidden="true">
                   <use xlinkHref="#icon-pinterest"></use>
                 </svg>
               </a>
             </li>
             <li className="social__item">
-              <a className="link" href="#" aria-label="Переход на страницу reddit">
+              <a className="link" href="example.com" aria-label="Переход на страницу reddit">
                 <svg width="20" height="20" aria-hidden="true">
                   <use xlinkHref="#icon-reddit"></use>
                 </svg>
@@ -48,15 +48,15 @@ const Footer = (): JSX.Element => {
                   : <Link className="link" to={AppUrl.Catalog}>Каталог</Link>}
               </li>
               <li className="footer__item">
-                <a className="link" href="#">Гарантии
+                <a className="link" href="example.com">Гарантии
                 </a>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">Доставка
+                <a className="link" href="example.com">Доставка
                 </a>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">О компании
+                <a className="link" href="example.com">О компании
                 </a>
               </li>
             </ul>
@@ -65,15 +65,15 @@ const Footer = (): JSX.Element => {
             <p className="footer__title">Ресурсы</p>
             <ul className="footer__list">
               <li className="footer__item">
-                <a className="link" href="#">Курсы операторов
+                <a className="link" href="example.com">Курсы операторов
                 </a>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">Блог
+                <a className="link" href="example.com">Блог
                 </a>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">Сообщество
+                <a className="link" href="example.com">Сообщество
                 </a>
               </li>
             </ul>
@@ -82,11 +82,11 @@ const Footer = (): JSX.Element => {
             <p className="footer__title">Поддержка</p>
             <ul className="footer__list">
               <li className="footer__item">
-                <a className="link" href="#">FAQ
+                <a className="link" href="example.com">FAQ
                 </a>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">Задать вопрос
+                <a className="link" href="example.com">Задать вопрос
                 </a>
               </li>
             </ul>

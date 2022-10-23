@@ -10,21 +10,21 @@ describe('Breacrumbs', () => {
     expect(catalogLink).toBeInTheDocument();
 
     const mainLinkActive = screen.getByText(/Главная/i);
-    expect(mainLinkActive).toBeInTheDocument(); 
+    expect(mainLinkActive).toBeInTheDocument();
   });
 
-  test('Renders active link correctly', async() => {
+  test('Renders active link correctly', () => {
     renderWithReduxAndRouter(<Breadcrumbs/>, { route: `${AppUrl.Catalog}` });
 
     expect(screen.getByText<HTMLSpanElement>(/Каталог/i)).toBeInTheDocument();
     expect(screen.getByText<HTMLSpanElement>(/Каталог/i)).toHaveClass('breadcrumbs__link--active');
   });
 
-  test('Renders inactive link correctly', async() => {
+  test('Renders inactive link correctly', () => {
     renderWithReduxAndRouter(<Breadcrumbs/>, { route: `${AppUrl.Catalog}${AppUrl.Product}/1` });
 
     expect(screen.getByText(/Каталог/i)).toBeInTheDocument();
     expect(screen.getByText(/Каталог/i)).not.toHaveClass('breadcrumbs__link--active');
-    expect(screen.getByText(/Каталог/i)).toHaveAttribute(`href`, AppUrl.Catalog);
+    expect(screen.getByText(/Каталог/i)).toHaveAttribute('href', AppUrl.Catalog);
   });
 });

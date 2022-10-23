@@ -25,7 +25,7 @@ describe('Catalog', () => {
 
   test('Don\'t render if no products', () => {
     renderWithReduxAndRouter(<Catalog/>, {initialState: { data: { products: []}}});
-    
+  
     const cards = screen.queryAllByTestId('product-card');
     expect(cards).toHaveLength(0);
   });

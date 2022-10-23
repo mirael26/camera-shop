@@ -13,7 +13,7 @@ describe('Test AppRouter routers', () => {
     renderWithReduxAndRouter(<AppRouter/>, { route: AppUrl.Catalog });
     const catalogPage = screen.getByTestId('catalog-page');
     expect(catalogPage).toBeInTheDocument();
-  
+
     renderTestApp(null, { route: `${AppUrl.Catalog}${AppUrl.Page}3` });
     expect(catalogPage).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe('Test AppRouter routers', () => {
     const notFoundPage = screen.getByTestId('not-found-page');
     expect(notFoundPage).toBeInTheDocument();
 
-    renderWithReduxAndRouter(<AppRouter/>, { route: `/sdf57sdfsdf58` });
+    renderWithReduxAndRouter(<AppRouter/>, { route: '/sdf57sdfsdf58' });
     expect(notFoundPage).toBeInTheDocument();
   });
 });

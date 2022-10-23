@@ -17,7 +17,7 @@ const Catalog = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(loadProducts());
-  }, []);
+  }, [dispatch]);
 
   const pageCount = products ? Math.ceil(products.length / DISPLAYED_PRODUCTS_COUNT) : null;
   const displayedProducts = products?.slice((DISPLAYED_PRODUCTS_COUNT * currentPage - DISPLAYED_PRODUCTS_COUNT), (DISPLAYED_PRODUCTS_COUNT * currentPage));

@@ -3,48 +3,48 @@ import { TModal } from './app.type';
 import { IProduct, IPromo, IReview } from './data.type';
 
 export interface ILoadPromo {
-  type: typeof ActionType.LoadPromo,
-  payload: IPromo,
+  type: typeof ActionType.LoadPromo;
+  payload: IPromo;
 }
 
 export interface ILoadProducts {
-  type: typeof ActionType.LoadProducts,
-  payload: Array<IProduct>,
+  type: typeof ActionType.LoadProducts;
+  payload: Array<IProduct>;
 }
 
 export interface ILoadCurrentProduct {
-  type: typeof ActionType.LoadCurrentProduct,
-  payload: IProduct,
+  type: typeof ActionType.LoadCurrentProduct;
+  payload: IProduct;
 }
 
 export interface ILoadSimilarProducts {
-  type: typeof ActionType.LoadSimilarProducts,
-  payload: Array<IProduct>,
+  type: typeof ActionType.LoadSimilarProducts;
+  payload: Array<IProduct>;
 }
 
 export interface ILoadReviews {
-  type: typeof ActionType.LoadReviews,
-  payload: Array<IReview> | null,
+  type: typeof ActionType.LoadReviews;
+  payload: Array<IReview> | null;
 }
 
 export interface IOpenModal {
-  type: typeof ActionType.OpenModal,
-  payload: TModal,
+  type: typeof ActionType.OpenModal;
+  payload: TModal;
 }
 
 export interface ICloseModal {
-  type: typeof ActionType.CloseModal,
-  payload: TModal,
+  type: typeof ActionType.CloseModal;
+  payload: TModal;
 }
 
 export interface IChangeAddingToCartItem {
-  type: typeof ActionType.ChangeAddingToCartItem,
-  payload: IProduct | null,
+  type: typeof ActionType.ChangeAddingToCartItem;
+  payload: IProduct | null;
 }
 
 export interface IRedirect {
-  type: typeof ActionType.Redirect,
-  payload: string | null,
+  type: typeof ActionType.Redirect;
+  payload: string | null;
 }
 
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;

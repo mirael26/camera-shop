@@ -1,10 +1,10 @@
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { createReduxStore } from '../../store/store';
 import { MemoryRouter } from 'react-router-dom';
 
-export const renderWithReduxAndRouter = (component: ReactNode, options?: {initialState?: any, route?: string }) => {
+export const renderWithReduxAndRouter = (component: ReactNode, options?: {initialState?: {[key: string]: unknown}; route?: string }) => {
   const store = createReduxStore(options?.initialState);
 
   return render (

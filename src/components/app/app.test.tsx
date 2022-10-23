@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { createReduxStore } from '../../store/store';
 import App from './app';
 
-jest.mock('../scroll-to-top/scroll-to-top', () => 'ScrollToTop');
 jest.mock('../redirect/redirect', () => 'Redirect');
 jest.mock('./app-router/app-router', () => 'AppRouter');
 

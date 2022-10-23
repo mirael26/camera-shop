@@ -2,7 +2,6 @@
 
 exports[`Render App 1`] = `
 <DocumentFragment>
-  <scrolltotop />
   <redirect />
   <approuter />
 </DocumentFragment>

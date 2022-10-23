@@ -1,12 +1,15 @@
+import { useEffect, useState } from 'react';
+
 interface IRatingStarsProps {
   rating?: number;
 }
 
-const RATING_LENGTH = 5;
-
 const RatingStars = ({ rating = 0 }: IRatingStarsProps): JSX.Element => {
-  let stars = new Array(RATING_LENGTH).fill(0);
-  stars = stars.map((star, i) => (i + 1 <= rating) ? 1 : 0);
+  const [stars, setStars] = useState([0, 0, 0, 0, 0]);
+
+  useEffect(() => {
+    setStars((prev) => prev.map((star, i) => (i + 1 <= rating) ? 1 : 0));
+  }, [rating]);
 
   return (
     <>

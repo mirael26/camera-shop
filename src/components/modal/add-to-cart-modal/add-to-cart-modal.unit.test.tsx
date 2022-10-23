@@ -7,7 +7,7 @@ jest.mock('./add-to-cart-modal-content/add-to-cart-modal-content', () => () => (
 
 test('AddToCartModal opens modal-content correctly', () => {
   renderWithReduxAndRouter(<AddToCartModal/>, { initialState: {
-    state: {
+    view: {
       addToCartModalOpen: true,
       addingToCartItem: productMock,
     }

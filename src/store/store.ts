@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { dataReducer } from './reducers/data-reducer';
-import { stateReducer } from './reducers/state-reducer';
+import { viewReducer } from './reducers/view-reducer';
 
 export const createReduxStore = (initialState = {}) => (
   configureStore({
@@ -9,7 +9,7 @@ export const createReduxStore = (initialState = {}) => (
   })
 );
 
-const rootReducer = combineReducers({data: dataReducer, state: stateReducer});
+const rootReducer = combineReducers({data: dataReducer, view: viewReducer});
 
 const store = createReduxStore();
 

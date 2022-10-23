@@ -5,7 +5,7 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 import { ActionCreator } from '../../store/action';
 
 const Redirect = () => {
-  const redirectPath = useAppSelector((state) => state.state.redirect);
+  const redirectPath = useAppSelector((state) => state.view.redirect);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

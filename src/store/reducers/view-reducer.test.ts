@@ -1,11 +1,11 @@
 import { Modal } from '../../consts';
 import { productMock } from '../../test/mocks';
 import { ActionCreator } from '../action';
-import { stateReducer } from './state-reducer';
+import { viewReducer } from './view-reducer';
 
-describe('stateReducer', () => {
+describe('viewReducer', () => {
   test('opens modal correctly', () => {
-    const newState = stateReducer(undefined, ActionCreator.OpenModal(Modal.AddToCart));
+    const newState = viewReducer(undefined, ActionCreator.OpenModal(Modal.AddToCart));
     expect(newState.addToCartModalOpen).toBe(true);
   });
 
@@ -17,17 +17,17 @@ describe('stateReducer', () => {
       redirect: null,
     };
 
-    const newState = stateReducer(state, ActionCreator.CloseModal(Modal.AddToCart));
+    const newState = viewReducer(state, ActionCreator.CloseModal(Modal.AddToCart));
     expect(newState.addToCartModalOpen).toBe(false);
   });
 
   test('changes adding to cart item correctly', () => {
-    const newState = stateReducer(undefined, ActionCreator.ChangeAddingToCartItem(productMock));
+    const newState = viewReducer(undefined, ActionCreator.ChangeAddingToCartItem(productMock));
     expect(newState.addingToCartItem).toEqual(productMock);
   });
 
   test('changes adding to cart item correctly', () => {
-    const newState = stateReducer(undefined, ActionCreator.Redirect('/'));
+    const newState = viewReducer(undefined, ActionCreator.Redirect('/'));
     expect(newState.redirect).toBe('/');
   });
 });

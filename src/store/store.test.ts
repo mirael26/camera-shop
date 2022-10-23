@@ -1,7 +1,7 @@
 import { productsMock } from '../test/mocks';
 import { createReduxStore } from './store';
 import { initialState as dataInitialState } from './reducers/data-reducer';
-import { initialState as stateInitialState } from './reducers/state-reducer';
+import { initialState as viewInitialState } from './reducers/view-reducer';
 
 describe('Store', () => {
   test('configures store with initial state correctly', () => {
@@ -13,7 +13,7 @@ describe('Store', () => {
       data: {
         products: productsMock,
       },
-      state: stateInitialState,
+      view: viewInitialState,
     });
   });
 
@@ -23,7 +23,7 @@ describe('Store', () => {
 
     expect(resultState).toEqual({
       data: dataInitialState,
-      state: stateInitialState,
+      view: viewInitialState,
     });
   });
 });

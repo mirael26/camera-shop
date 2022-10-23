@@ -8,7 +8,7 @@ export interface IDataReducer {
   reviews: Array<IReview> | null;
 }
 
-export interface IStateReducer {
+export interface IViewReducer {
   addToCartModalOpen: boolean;
   addingToCartItem: IProduct | null;
   reviewModalOpen: boolean;

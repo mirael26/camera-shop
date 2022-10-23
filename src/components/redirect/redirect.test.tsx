@@ -23,7 +23,7 @@ test('Redirect works correctly', () => {
 
   renderWithReduxAndRouter(<Redirect/>, {
     initialState: {
-      state: { redirect: AppUrl.NotFound }
+      view: { redirect: AppUrl.NotFound }
     }
   })
 

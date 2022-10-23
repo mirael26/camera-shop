@@ -48,4 +48,4 @@ export interface IRedirect {
 }
 
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
-export type TStateAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect;
+export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect;

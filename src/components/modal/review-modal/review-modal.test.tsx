@@ -6,7 +6,7 @@ jest.mock('./review-modal-content/review-modal-content', () => () => (<div data-
 
 test('ReviewModal displays modal-content correctly', () => {
   renderWithReduxAndRouter(<ReviewModal/>, { initialState: {
-    state: {
+    view: {
       reviewModalOpen: true,
     }
   }});

@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
 import { loadProducts } from '../../store/api-action';
 import Filters from './filters/filters';
 import Pagination from './pagination/pagination';
 import ProductCard from '../product-card/product-card';
 import Sorts from './sorts/sorts';
+import { useSelector } from 'react-redux';
+import { getAllProducts } from '../../store/selectors';
 
 const DISPLAYED_PRODUCTS_COUNT = 9;
 
 const Catalog = (): JSX.Element => {
-  const products = useAppSelector((state) => state.data.products);
+  const products = useSelector(getAllProducts);
   const dispatch = useAppDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);

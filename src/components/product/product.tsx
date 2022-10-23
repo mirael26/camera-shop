@@ -4,16 +4,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import RatingStars from '../rating-stars/rating-stars';
 import { AppUrl, Modal, Tab } from '../../consts';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
 import { ActionCreator } from '../../store/action';
 import { loadCurrentProduct } from '../../store/api-action';
 import { TTab } from '../../types/app.type';
 import { addPriceSeparators } from '../../utils';
+import { getCurrentProduct } from '../../store/selectors';
+import { useSelector } from 'react-redux';
 
 const DEFAULT_TAB = Tab.Description;
 
 const Product = (): JSX.Element => {
-  const product = useAppSelector((state) => state.data.currentProduct);
+  const product = useSelector(getCurrentProduct);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id, tab } = useParams();

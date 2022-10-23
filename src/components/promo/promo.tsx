@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppUrl } from '../../consts';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
 import { loadPromo } from '../../store/api-action';
+import { getPromo } from '../../store/selectors';
 
 const Promo = (): JSX.Element | null => {
-  const promo = useAppSelector((state) => state.data.promo);
+  const promo = useSelector(getPromo);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

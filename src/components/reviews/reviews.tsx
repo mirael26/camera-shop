@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
 import { loadReviews } from '../../store/api-action';
 import { useDebouncedCallback as useDebounce } from 'use-debounce';
 import ReviewCard from './review-card/review-card';
 import { ActionCreator } from '../../store/action';
 import { Modal } from '../../consts';
+import { getReviews } from '../../store/selectors';
+import { useSelector } from 'react-redux';
 
 const DISPLAYED_COUNT_STEP = 3;
 
 const Reviews = (): JSX.Element | null => {
-  const reviews = useAppSelector((state) => state.data.reviews);
+  const reviews = useSelector(getReviews);
   const dispatch = useAppDispatch();
   const { id } = useParams();
 

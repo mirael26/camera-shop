@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { AppUrl } from '../../consts';
-import { useAppSelector } from '../../hooks/use-app-selector';
+import { getCurrentProduct } from '../../store/selectors';
 
 const BreadcrumbsProperties = {
   Main: {
@@ -18,7 +19,7 @@ const BreadcrumbsProperties = {
 } as const;
 
 const Breadcrumbs = (): JSX.Element => {
-  const product = useAppSelector((state) => state.data.currentProduct);
+  const product = useSelector(getCurrentProduct);
   const { pathname } = useLocation();
 
   const getCrumbs = (url: string) => {

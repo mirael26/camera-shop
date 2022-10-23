@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
 import { loadSimilarProducts } from '../../store/api-action';
+import { getSimilarProducts } from '../../store/selectors';
 import ProductCard from '../product-card/product-card';
 
 const SimilarProducts = (): JSX.Element | null => {
-  const similarProducts = useAppSelector((state) => state.data.similarProducts);
+  const similarProducts = useSelector(getSimilarProducts);
   const dispatch = useAppDispatch();
   const { id } = useParams();
 

@@ -1,8 +1,9 @@
-import { useAppSelector } from '../../../hooks/use-app-selector';
+import { useSelector } from 'react-redux';
+import { getReviewModalStatus } from '../../../store/selectors';
 import ReviewModalContent from './review-modal-content/review-modal-content';
 
 const ReviewModal = (): JSX.Element | null => {
-  const isOpen = useAppSelector((state) => state.view.reviewModalOpen);
+  const isOpen = useSelector(getReviewModalStatus);
 
   return (
     isOpen

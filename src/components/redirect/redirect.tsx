@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
 import { ActionCreator } from '../../store/action';
+import { getRedirectPath } from '../../store/selectors';
 
 const Redirect = () => {
-  const redirectPath = useAppSelector((state) => state.view.redirect);
+  const redirectPath = useSelector(getRedirectPath);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

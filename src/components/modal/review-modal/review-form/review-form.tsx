@@ -82,7 +82,7 @@ const ReviewForm = ({ onSuccess, onModalClose }: IReviewFormProps) => {
                     <use xlinkHref="#icon-snowflake"></use>
                   </svg>
                 </span>
-                <input type="text" name="user-name" placeholder="Введите ваше имя" value={inputValue.userName} onChange={(evt) => handleInputChange(evt, 'userName')}/>
+                <input type="text" name="user-name" placeholder="Введите ваше имя" value={inputValue.userName} onChange={(evt) => handleInputChange(evt, 'userName')} autoFocus/>
               </label>
               <p className="custom-input__error">Нужно указать имя</p>
             </div>

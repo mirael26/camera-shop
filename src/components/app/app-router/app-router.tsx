@@ -12,8 +12,10 @@ const Params = {
   Tab: '/:tab',
 } as const;
 
+const SCROLL_TO_TOP_CATALOG_EXCEPTION = `${AppUrl.Catalog}${AppUrl.Page}`;
+
 const AppRouter = () => {
-  useScrollToTop();
+  useScrollToTop([SCROLL_TO_TOP_CATALOG_EXCEPTION]);
 
   return (
     <Routes>

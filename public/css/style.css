@@ -1684,9 +1684,14 @@ button,
 .form-search.list-opened .form-search__select-list {
   visibility: visible;
   opacity: 1;
+  overflow: hidden;
 }
 
-.form-search.list-opened .form-search__reset {
+.form-search.list-opened .form-search__select-list.with-scroll {
+  overflow: auto;
+}
+
+.form-search__reset.visible {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

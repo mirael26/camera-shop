@@ -43,3 +43,8 @@ export interface IReviewPost {
   rating: number;
   cameraId: number;
 }
+
+export interface ISearchedProduct {
+  name: string;
+  id: number;
+};

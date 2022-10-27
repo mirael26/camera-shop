@@ -12,7 +12,7 @@ const Search = () => {
   const [searchedProducts, setSearchedProducts] = useState<Array<ISearchedProduct>>([]);
 
   useEffect(() => {
-    if (inputValue !== '') {
+    if (inputValue.trim() !== '') {
       searchProducts(); // если введено какое-то значение, ищем товары
     } else {
       setSearchedProducts([]); // иначе устанавливаем в найденные товары пустой массив
@@ -64,7 +64,7 @@ const Search = () => {
   };
 
   const handleInputFocus = () => {
-    if (!isListOpened && inputValue !== '' && searchedProducts.length) { // если поле ввода попало в фокус, было введено значение, найдены товары и список спрятан - снова показываем список
+    if (!isListOpened && inputValue.trim() !== '' && searchedProducts.length) { // если поле ввода попало в фокус, было введено значение, найдены товары и список спрятан - снова показываем список
       setListOpened(true);
     }
   };

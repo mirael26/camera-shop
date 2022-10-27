@@ -1,15 +1,30 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { loadProducts } from '../../store/api-action';
 import { getAllProducts } from '../../store/selectors';
 import { ISearchedProduct } from '../../types/data.type';
 import SearchList from './search-list/search-list';
 
 const Search = () => {
   const products = useSelector(getAllProducts);
+  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
 
   const [isListOpened, setListOpened] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [searchedProducts, setSearchedProducts] = useState<Array<ISearchedProduct>>([]);
+
+  useEffect(() => {
+    if (!products) {
+      dispatch(loadProducts()); // если не загружены товары - отправляем запрос на сервер
+    }
+  }, [dispatch, products]);
+
+  useEffect(() => {
+    setInputValue(''); // сбрасываем поиск припереходе на другую страницу
+  }, [pathname]);
 
   useEffect(() => {
     if (inputValue.trim() !== '') {

@@ -1635,7 +1635,6 @@ button,
 }
 
 .form-search__select-item {
-  padding: 8px 16px;
   font-weight: 600;
   color: #333333;
   border-radius: 8px;
@@ -1647,6 +1646,13 @@ button,
 
 .form-search__select-item:hover {
   background-color: #f4f4fc;
+}
+
+.form-search__link {
+  display: block;
+  margin-right: 4px;
+  padding: 8px 16px;
+  border-radius: 8px;
 }
 
 .form-search__reset {

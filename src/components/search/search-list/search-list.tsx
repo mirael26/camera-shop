@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppUrl } from '../../../consts';
 import { ISearchedProduct } from '../../../types/data.type';
 
 interface ISearchListProps {
@@ -11,7 +13,11 @@ const SearchList = ({ searchedProducts }: ISearchListProps) => {
     <ul className={`form-search__select-list${withScroll ? ' with-scroll' : ''}`}>
       {searchedProducts.map((product, i) => {
         const key = `searched-product-${i}`;
-        return <li key={key} className="form-search__select-item" tabIndex={0}>{product.name}</li>;
+        return (
+          <li key={key} className="form-search__select-item">
+            <Link to={`${AppUrl.Catalog}${AppUrl.Product}/${product.id}`} className="form-search__link">{product.name}</Link>
+          </li>
+        );
       })}
     </ul>
   );

@@ -10,7 +10,7 @@ const useScrollToTop = (exceptions: Array<string>) => {
     if (!isException) {
       window.scrollTo(0, 0);
     }
-  }, [pathname]);
+  }, [pathname, exceptions]);
 };
 
 export default useScrollToTop;

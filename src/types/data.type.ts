@@ -47,4 +47,4 @@ export interface IReviewPost {
 export interface ISearchedProduct {
   name: string;
   id: number;
-};
+}

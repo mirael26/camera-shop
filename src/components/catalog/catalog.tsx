@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { loadProducts } from '../../store/api-action';
 import Filters from './filters/filters';
@@ -7,21 +7,28 @@ import ProductCard from '../product-card/product-card';
 import Sorts from './sorts/sorts';
 import { useSelector } from 'react-redux';
 import { getAllProducts } from '../../store/selectors';
+import { useSearchParams } from 'react-router-dom';
 
 const DISPLAYED_PRODUCTS_COUNT = 9;
+const DEFAULT_PAGE = '1';
 
 const Catalog = (): JSX.Element => {
   const products = useSelector(getAllProducts);
   const dispatch = useAppDispatch();
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentPage = searchParams.get('page');
 
   useEffect(() => {
     dispatch(loadProducts());
-  }, [dispatch]);
+    if (!searchParams.has('page')) {
+      setSearchParams({page: DEFAULT_PAGE});
+    }
+  }, [dispatch, searchParams, setSearchParams]);
 
   const pageCount = products ? Math.ceil(products.length / DISPLAYED_PRODUCTS_COUNT) : null;
-  const displayedProducts = products?.slice((DISPLAYED_PRODUCTS_COUNT * currentPage - DISPLAYED_PRODUCTS_COUNT), (DISPLAYED_PRODUCTS_COUNT * currentPage));
+  const displayedProducts = currentPage ? products?.slice((DISPLAYED_PRODUCTS_COUNT * +currentPage - DISPLAYED_PRODUCTS_COUNT), (DISPLAYED_PRODUCTS_COUNT * +currentPage)) : null;
 
   return (
     <section className="catalog">
@@ -40,7 +47,7 @@ const Catalog = (): JSX.Element => {
                   return <ProductCard key={key} product={product} />;
                 })}
               </div>
-              {pageCount && (pageCount > 1) && <Pagination pageCount={pageCount} changeCurrentPage={setCurrentPage} />}
+              {pageCount && (pageCount > 1) && <Pagination pageCount={pageCount}/>}
             </div>
           </div>}
       </div>

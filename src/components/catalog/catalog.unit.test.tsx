@@ -20,7 +20,7 @@ describe('Catalog', () => {
 
     const cards = screen.getAllByTestId('product-card');
     expect(cards).toHaveLength(3);
-    expect(axios.get).toBeCalledTimes(1);
+    expect(axios.get).toBeCalledTimes(2);
   });
 
   test('Don\'t render if no products', () => {

@@ -5,54 +5,6 @@ exports[`Pagination renders correctly 1`] = `
   <div
     class="pagination"
     data-testid="pagination"
-  >
-    <ul
-      class="pagination__list"
-    >
-      <li
-        class="pagination__item"
-        data-testid="pagination-item"
-      >
-        <a
-          class="pagination__link pagination__link--active"
-          href="/catalog/page_1"
-        >
-          1
-        </a>
-      </li>
-      <li
-        class="pagination__item"
-        data-testid="pagination-item"
-      >
-        <a
-          class="pagination__link"
-          href="/catalog/page_2"
-        >
-          2
-        </a>
-      </li>
-      <li
-        class="pagination__item"
-        data-testid="pagination-item"
-      >
-        <a
-          class="pagination__link"
-          href="/catalog/page_3"
-        >
-          3
-        </a>
-      </li>
-      <li
-        class="pagination__item"
-      >
-        <a
-          class="pagination__link pagination__link--text"
-          href="/catalog/page_2"
-        >
-          Далее
-        </a>
-      </li>
-    </ul>
-  </div>
+  />
 </DocumentFragment>
 `;

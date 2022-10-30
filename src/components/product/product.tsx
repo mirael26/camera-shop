@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import RatingStars from '../rating-stars/rating-stars';
 import { AppUrl, Modal, Tab } from '../../consts';
@@ -17,9 +17,10 @@ const Product = (): JSX.Element => {
   const product = useSelector(getCurrentProduct);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { id, tab } = useParams();
+  const { id } = useParams();
 
-  const [currentTab, setCurrentTab] = useState<TTab>(DEFAULT_TAB);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab = searchParams.get('tab');
 
   useEffect(() => {
     if (id) {
@@ -29,23 +30,25 @@ const Product = (): JSX.Element => {
 
   useEffect(() => {
     if (!tab && id) {
-      navigate(`${AppUrl.Catalog}${AppUrl.Product}/${id}/${currentTab}`, {replace: true});
+      setSearchParams({tab: DEFAULT_TAB}); // если таб не установлен - установить таб по умолчанию
+      return;
     }
 
-    if (tab && tab !== currentTab) {
-      const existingTabs: Array<string> = Object.values(Tab);
-      const isNewTabExisting = existingTabs.includes(tab);
+    const existingTabs: Array<string> = Object.values(Tab); // если таб есть, находим список существующих табов
+    const isTabExisting = tab ? existingTabs.includes(tab) : false; // проверяем, есть ли таб в списке существующих
 
-      if (!isNewTabExisting) {
-        navigate(AppUrl.NotFound);
-      }
-      setCurrentTab(tab as TTab);
+    if (!isTabExisting) {
+      navigate(AppUrl.NotFound); // если таб не существует, делаем редирект на страницу 404
     }
-  }, [tab, id, navigate, currentTab]);
+  }, [tab, id, navigate, setSearchParams]);
 
   const handleAddToCartButtonClick = () => {
     dispatch(ActionCreator.OpenModal(Modal.AddToCart));
     dispatch(ActionCreator.ChangeAddingToCartItem(product));
+  };
+
+  const handleTabControlButtonClick = (newTab: TTab) => {
+    setSearchParams({tab: newTab});
   };
 
   const adaptedPrice = product ? addPriceSeparators(product?.price) : null;
@@ -76,15 +79,15 @@ const Product = (): JSX.Element => {
             </button>
             <div className="tabs product__tabs">
               <div className="tabs__controls product__tabs-controls">
-                <Link className={`tabs__control${currentTab === Tab.Features ? ' is-active' : ''}`} to={`${AppUrl.Catalog}${AppUrl.Product}/${id}/${Tab.Features}`}>
+                <button className={`tabs__control${tab === Tab.Features ? ' is-active' : ''}`} onClick={() => handleTabControlButtonClick(Tab.Features)}>
                   Характеристики
-                </Link>
-                <Link className={`tabs__control${currentTab === Tab.Description ? ' is-active' : ''}`} to={`${AppUrl.Catalog}${AppUrl.Product}/${id}/${Tab.Description}`}>
+                </button>
+                <button className={`tabs__control${tab === Tab.Description ? ' is-active' : ''}`} onClick={() => handleTabControlButtonClick(Tab.Description)}>
                   Описание
-                </Link>
+                </button>
               </div>
               <div className="tabs__content">
-                <div className={`tabs__element${currentTab === Tab.Features ? ' is-active' : ''}`} data-testid='features-content'>
+                <div className={`tabs__element${tab === Tab.Features ? ' is-active' : ''}`} data-testid='features-content'>
                   <ul className="product__tabs-list">
                     <li className="item-list"><span className="item-list__title">Артикул:</span>
                       <p className="item-list__text"> {product.vendorCode}</p>
@@ -100,7 +103,7 @@ const Product = (): JSX.Element => {
                     </li>
                   </ul>
                 </div>
-                <div className={`tabs__element${currentTab === Tab.Description ? ' is-active' : ''}`} data-testid='description-content'>
+                <div className={`tabs__element${tab === Tab.Description ? ' is-active' : ''}`} data-testid='description-content'>
                   <div className="product__tabs-text">
                     {product.description}
                   </div>

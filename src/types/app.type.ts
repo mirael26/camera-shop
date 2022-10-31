@@ -1,5 +1,6 @@
 import { Modal, Tab } from '../consts';
+import { valueof } from './util.type';
 
-export type TModal = typeof Modal[keyof typeof Modal];
+export type TModal = valueof<typeof Modal>;
 
-export type TTab = typeof Tab[keyof typeof Tab];
+export type TTab = valueof<typeof Tab>;

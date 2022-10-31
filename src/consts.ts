@@ -38,3 +38,13 @@ export const Month = {
   10: 'ноября',
   11: 'декабря',
 } as const;
+
+export const SortType = {
+  Price: 'price',
+  Rating: 'rating',
+} as const;
+
+export const SortOrder = {
+  Asc: 'asc',
+  Desc: 'desc',
+} as const;

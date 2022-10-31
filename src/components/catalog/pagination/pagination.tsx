@@ -9,20 +9,22 @@ interface IPaginationProps {
 const Pagination = ({ pageCount }: IPaginationProps): JSX.Element => {
   const navigate = useNavigate();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get('page');
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
+    const page = params.get('page');
     if (page && (+page > pageCount || isNaN(+page))) {
       navigate(AppUrl.NotFound);
     }
-  }, [page, pageCount, navigate]);
+  }, [params, pageCount, navigate]);
 
   const handlePaginationButtonCLick = (pageNumber: number) => {
-    setSearchParams({page: (pageNumber).toString()});
+    params.set('page', (pageNumber).toString());
+    setParams(params);
   };
 
   const pages = new Array(pageCount).fill(1);
+  const page = params.get('page');
 
   return (
     <div className="pagination" data-testid='pagination'>

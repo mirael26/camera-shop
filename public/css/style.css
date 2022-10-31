@@ -2056,8 +2056,9 @@ button,
 }
 
 .catalog-sort__btn-text input[type="radio"]:focus + label {
-  color: #7575e2;
-  background-color: #e8e8fa;
+  /* color: #7575e2;
+  background-color: #e8e8fa; */
+  border: 2px solid black;
 }
 
 .catalog-sort__btn {
@@ -2133,8 +2134,9 @@ button,
 }
 
 .catalog-sort__btn input[type="radio"]:focus + label {
-  color: #7575e2;
-  background-color: #e8e8fa;
+  /* color: #7575e2;
+  background-color: #e8e8fa; */
+  border: 2px solid black;
 }
 
 .form-checkbox {

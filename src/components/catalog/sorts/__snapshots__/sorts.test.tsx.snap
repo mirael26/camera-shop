@@ -23,7 +23,6 @@ exports[`Sorts render correctly 1`] = `
             class="catalog-sort__btn-text"
           >
             <input
-              checked=""
               id="sortPrice"
               name="sort"
               type="radio"
@@ -57,7 +56,6 @@ exports[`Sorts render correctly 1`] = `
           >
             <input
               aria-label="По возрастанию"
-              checked=""
               id="up"
               name="sort-icon"
               type="radio"

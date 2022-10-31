@@ -67,6 +67,7 @@ describe('Pagination', () => {
     
     fireEvent.click(screen.getByText(/2/i));
 
-    expect(spySetSearchParams).toHaveBeenCalledWith({page: '2'});
+    const searchParams = new URLSearchParams({page: '2'});
+    expect(spySetSearchParams).toHaveBeenCalledWith(searchParams);
   });
 });

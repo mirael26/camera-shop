@@ -17,30 +17,29 @@ const Catalog = (): JSX.Element => {
   const displayedProducts = useSelector(getDisplayedProducts);
   const dispatch = useAppDispatch();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const page = searchParams.get('page');
-  const sort = searchParams.get('sort');
-  const order = searchParams.get('order');
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
     dispatch(loadProducts()); // загружаем все товары один раз
   }, [dispatch]);
 
   useEffect(() => {
-    if (!page) {
-      setSearchParams({page: DEFAULT_PAGE});
+    if (!params.has('page')) {
+      params.set('page', DEFAULT_PAGE);
+      setParams(params);
     }
 
+    const page = params.get('page');
+
     const queryParams: {[key: string]: string | null} = { // подготавливаем параметры для запроса списка товаров
-      _sort: sort,
-      _order: order,
+      _sort: params.get('sort'),
+      _order: params.get('order'),
       _start: page ? (DISPLAYED_PRODUCTS_COUNT * +page - DISPLAYED_PRODUCTS_COUNT).toString() : null, // если есть страница, вычисляем начало и конец диапазона товаров, либо возвращаем null
       _end: page ? (DISPLAYED_PRODUCTS_COUNT * +page).toString() : null,
     };
 
     dispatch(loadDisplayedProducts(queryParams)); // загружаем товары, которые нужно вывести на страницу
-  }, [dispatch, page, sort, order, searchParams, setSearchParams]);
+  }, [dispatch, params, setParams]);
 
   const pageCount = productsCount ? Math.ceil(productsCount / DISPLAYED_PRODUCTS_COUNT) : null;
 

@@ -18,7 +18,7 @@ const Promo = (): JSX.Element | null => {
     promo &&
     <div className="banner" data-testid='banner'>
       <picture>
-        <source type="image/webp" srcSet={`${promo?.previewImgWebp}, ${promo?.previewImgWebp} 2x`}/>
+        <source type="image/webp" srcSet={`${promo.previewImgWebp}, ${promo.previewImgWebp} 2x`}/>
         <img src={promo.previewImg} srcSet={`${promo.previewImg2x} 2x`} width="1280" height="280" alt="баннер"/>
       </picture>
       <p className="banner__info">

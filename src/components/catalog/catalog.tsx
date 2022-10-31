@@ -1,34 +1,48 @@
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { loadProducts } from '../../store/api-action';
+import { loadDisplayedProducts, loadProducts } from '../../store/api-action';
 import Filters from './filters/filters';
 import Pagination from './pagination/pagination';
 import ProductCard from '../product-card/product-card';
 import Sorts from './sorts/sorts';
 import { useSelector } from 'react-redux';
-import { getAllProducts } from '../../store/selectors';
+import { getAllProductsCount, getDisplayedProducts } from '../../store/selectors';
 import { useSearchParams } from 'react-router-dom';
 
 const DISPLAYED_PRODUCTS_COUNT = 9;
 const DEFAULT_PAGE = '1';
 
 const Catalog = (): JSX.Element => {
-  const products = useSelector(getAllProducts);
+  const productsCount = useSelector(getAllProductsCount);
+  const displayedProducts = useSelector(getDisplayedProducts);
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentPage = searchParams.get('page');
+  const page = searchParams.get('page');
+  const sort = searchParams.get('sort');
+  const order = searchParams.get('order');
 
   useEffect(() => {
-    dispatch(loadProducts());
-    if (!searchParams.has('page')) {
+    dispatch(loadProducts()); // загружаем все товары один раз
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!page) {
       setSearchParams({page: DEFAULT_PAGE});
     }
-  }, [dispatch, searchParams, setSearchParams]);
 
-  const pageCount = products ? Math.ceil(products.length / DISPLAYED_PRODUCTS_COUNT) : null;
-  const displayedProducts = currentPage ? products?.slice((DISPLAYED_PRODUCTS_COUNT * +currentPage - DISPLAYED_PRODUCTS_COUNT), (DISPLAYED_PRODUCTS_COUNT * +currentPage)) : null;
+    const queryParams: {[key: string]: string | null} = { // подготавливаем параметры для запроса списка товаров
+      _sort: sort,
+      _order: order,
+      _start: page ? (DISPLAYED_PRODUCTS_COUNT * +page - DISPLAYED_PRODUCTS_COUNT).toString() : null, // если есть страница, вычисляем начало и конец диапазона товаров, либо возвращаем null
+      _end: page ? (DISPLAYED_PRODUCTS_COUNT * +page).toString() : null,
+    };
+
+    dispatch(loadDisplayedProducts(queryParams)); // загружаем товары, которые нужно вывести на страницу
+  }, [dispatch, page, sort, order, searchParams, setSearchParams]);
+
+  const pageCount = productsCount ? Math.ceil(productsCount / DISPLAYED_PRODUCTS_COUNT) : null;
 
   return (
     <section className="catalog">

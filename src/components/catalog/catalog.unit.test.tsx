@@ -16,15 +16,15 @@ describe('Catalog', () => {
   });
 
   test('Render correct products count', () => {
-    renderWithReduxAndRouter(<Catalog/>, {initialState: { data: { products: productsMock}}});
+    renderWithReduxAndRouter(<Catalog/>, {initialState: { data: { displayedProducts: productsMock}}});
 
     const cards = screen.getAllByTestId('product-card');
     expect(cards).toHaveLength(3);
-    expect(axios.get).toBeCalledTimes(2);
+    expect(axios.get).toBeCalledTimes(3);
   });
 
   test('Don\'t render if no products', () => {
-    renderWithReduxAndRouter(<Catalog/>, {initialState: { data: { products: []}}});
+    renderWithReduxAndRouter(<Catalog/>, {initialState: { data: { displayedProducts: []}}});
   
     const cards = screen.queryAllByTestId('product-card');
     expect(cards).toHaveLength(0);

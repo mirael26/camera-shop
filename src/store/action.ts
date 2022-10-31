@@ -1,10 +1,11 @@
-import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect } from '../types/actions.type';
+import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect } from '../types/actions.type';
 import { TModal } from '../types/app.type';
 import { IProduct, IPromo, IReview } from '../types/data.type';
 
 export const ActionType = {
   LoadPromo: 'promo/loadPromo',
   LoadProducts: 'cameras/loadProducts',
+  LoadDisplayedProducts: 'cameras/loadDisplayedProducts',
   LoadCurrentProduct: 'cameras/loadCurrentProduct',
   LoadSimilarProducts: 'cameras/loadSimilarProducts',
   LoadReviews: 'cameras/loadReviews',
@@ -22,6 +23,10 @@ export const ActionCreator = {
   LoadProducts: (products: Array<IProduct>): ILoadProducts => ({
     type: ActionType.LoadProducts,
     payload: products,
+  }),
+  LoadDisplayedProducts: (displayedProducts: Array<IProduct>): ILoadDisplayedProducts => ({
+    type: ActionType.LoadDisplayedProducts,
+    payload: displayedProducts,
   }),
   LoadCurrentProduct: (product: IProduct): ILoadCurrentProduct => ({
     type: ActionType.LoadCurrentProduct,

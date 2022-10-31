@@ -12,6 +12,11 @@ export interface ILoadProducts {
   payload: Array<IProduct>;
 }
 
+export interface ILoadDisplayedProducts {
+  type: typeof ActionType.LoadDisplayedProducts;
+  payload: Array<IProduct>;
+}
+
 export interface ILoadCurrentProduct {
   type: typeof ActionType.LoadCurrentProduct;
   payload: IProduct;
@@ -47,5 +52,5 @@ export interface IRedirect {
   payload: string | null;
 }
 
-export type TDataAction = ILoadPromo | ILoadProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
+export type TDataAction = ILoadPromo | ILoadProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
 export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect;

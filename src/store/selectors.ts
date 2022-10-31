@@ -1,6 +1,8 @@
 import { TRootReducer } from './store';
 
 export const getAllProducts = (state: TRootReducer) => state.data.products;
+export const getAllProductsCount = (state: TRootReducer) => state.data.products?.length;
+export const getDisplayedProducts = (state: TRootReducer) => state.data.displayedProducts;
 export const getCurrentProduct = (state: TRootReducer) => state.data.currentProduct;
 export const getSimilarProducts = (state: TRootReducer) => state.data.similarProducts;
 export const getReviews = (state: TRootReducer) => state.data.reviews;

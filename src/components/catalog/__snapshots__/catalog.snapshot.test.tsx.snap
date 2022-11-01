@@ -13,6 +13,23 @@ exports[`Catalog renders correctly 1`] = `
       >
         Каталог фото- и видеотехники
       </h1>
+      <div
+        class="page-content__columns"
+      >
+        <div
+          class="catalog__aside"
+        >
+          <filters />
+        </div>
+        <div
+          class="catalog__content"
+        >
+          <sorts />
+          <productlist
+            productscountonpage="9"
+          />
+        </div>
+      </div>
     </div>
   </section>
 </DocumentFragment>

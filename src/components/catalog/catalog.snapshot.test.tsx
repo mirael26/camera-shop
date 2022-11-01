@@ -3,7 +3,8 @@ import Catalog from './catalog';
 import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
 import { productsMock } from '../../test/mocks';
 
-jest.mock('./filters/filters', () => 'Filters');
+jest.mock('./product-list/product-list', () => 'ProductList');
+jest.mock('../filters/filters', () => 'Filters');
 jest.mock('./pagination/pagination', () => 'Pagination');
 jest.mock('./sorts/sorts', () => 'Sorts');
 jest.mock('../product-card/product-card', () => 'ProductCard');

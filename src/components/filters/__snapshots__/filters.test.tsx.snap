@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filters render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="catalog-filter"
+  >
+    <form
+      action="#"
+    >
+      <h2
+        class="visually-hidden"
+      >
+        Фильтр
+      </h2>
+      <pricefilter />
+      <categoryfilter />
+      <typefilter />
+      <levelfilter />
+      <button
+        class="btn catalog-filter__reset-btn"
+        type="reset"
+      >
+        Сбросить фильтры
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

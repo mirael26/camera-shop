@@ -22,7 +22,7 @@ export const deleteOneParam = (name: string, value: string, params: URLSearchPar
       if (existingValue !== value) { // если значение параметра не то, которое мы хотим удалить
         params.append(name, existingValue); // добавляем его в params
       }
-    })
+    });
   }
   return params;
 };

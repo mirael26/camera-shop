@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import { Param } from '../../../consts';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { loadProducts } from '../../../store/api-action';
 import { getMaxPriceInCatalog, getMaxPriceInDisplayed, getMinPriceInCatalog, getMinPriceInDisplayed } from '../../../store/selectors';
@@ -34,8 +35,8 @@ const PriceFilter = () => {
   }, []);
 
   useEffect(() => {
-    const min = params.get('price_min');
-    const max = params.get('price_max');
+    const min = params.get(Param.PriceMin);
+    const max = params.get(Param.PriceMax);
     if (displayedMinPrice && min && displayedMinPrice > +min) { // если введена мин.цена меньше, чем мин.цена с сервера, отображаем в поле мин.цену с сервера
       setInputValue((prev) => ({...prev, min: displayedMinPrice.toString()}));
     }
@@ -53,7 +54,7 @@ const PriceFilter = () => {
     }
 
     const setMin = () => {
-      const max = params.get('price_max') || maxPriceInCatalog;
+      const max = params.get(Param.PriceMax) || maxPriceInCatalog;
       let newMin: string;
 
       if (minPriceInCatalog && +value < minPriceInCatalog) {
@@ -63,7 +64,7 @@ const PriceFilter = () => {
       } else {
         newMin = value; // иначе устанавливаем введенную
       }
-      params.set('price_min', newMin);
+      params.set(Param.PriceMin, newMin);
       setParams(params);
       if (value !== newMin) {
         setInputValue((prev) => ({...prev, min: newMin})); // записываем новое значение в стейт, если значение изменилось
@@ -83,7 +84,7 @@ const PriceFilter = () => {
     }
 
     const setMax = () => {
-      const min = params.get('price_min') || minPriceInCatalog;
+      const min = params.get(Param.PriceMin) || minPriceInCatalog;
       let newMax: string;
 
       if (maxPriceInCatalog && +value > maxPriceInCatalog) {
@@ -93,7 +94,7 @@ const PriceFilter = () => {
       } else {
         newMax = value; // иначе устанавливаем введенную
       }
-      params.set('price_max', newMax);
+      params.set(Param.PriceMax, newMax);
       setParams(params); // записываем новое значение в параметры
       if (value !== newMax) {
         setInputValue((prev) => ({...prev, max: newMax})); // записываем новое значение в стейт, если значение изменилось
@@ -110,12 +111,12 @@ const PriceFilter = () => {
       <div className="catalog-filter__price-range">
         <div className="custom-input">
           <label>
-            <input type="number" name="price" placeholder={params.get('price_min') || minPriceInCatalog?.toString() || 'от'} value={inputValue.min || ''} onChange={handleMinInputChange}/>
+            <input type="number" name="price" placeholder={params.get(Param.PriceMin) || minPriceInCatalog?.toString() || 'от'} value={inputValue.min || ''} onChange={handleMinInputChange}/>
           </label>
         </div>
         <div className="custom-input">
           <label>
-            <input type="number" name="priceUp" placeholder={params.get('price_max') || maxPriceInCatalog?.toString() || 'до'} value={inputValue.max || ''} onChange={handleMaxInputChange}/>
+            <input type="number" name="priceUp" placeholder={params.get(Param.PriceMax) || maxPriceInCatalog?.toString() || 'до'} value={inputValue.max || ''} onChange={handleMaxInputChange}/>
           </label>
         </div>
       </div>

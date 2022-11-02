@@ -39,6 +39,17 @@ export const Month = {
   11: 'декабря',
 } as const;
 
+export const Param = {
+  Sort: 'sort',
+  Order: 'order',
+  Page: 'page',
+  PriceMin: 'price_min',
+  PriceMax: 'price_max',
+  Category: 'category',
+  Level: 'level',
+  Type: 'type',
+} as const;
+
 export const SortType = {
   Price: 'price',
   Rating: 'rating',
@@ -47,4 +58,22 @@ export const SortType = {
 export const SortOrder = {
   Asc: 'asc',
   Desc: 'desc',
+} as const;
+
+export const Category = {
+  Camera: 'Фотоаппарат',
+  VideoCamera: 'Видеокамера',
+} as const;
+
+export const Level = {
+  Beginner: 'Нулевой',
+  Amateur: 'Любительский',
+  Professional: 'Профессиональный',
+} as const;
+
+export const CameraType = {
+  Digital: 'Цифровая',
+  Film: 'Плёночная',
+  Instant: 'Моментальная',
+  Collectible: 'Коллекционная',
 } as const;

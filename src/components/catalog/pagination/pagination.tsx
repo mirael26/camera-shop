@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { AppUrl } from '../../../consts';
+import { AppUrl, Param } from '../../../consts';
 
 interface IPaginationProps {
   pageCount: number;
@@ -12,19 +12,19 @@ const Pagination = ({ pageCount }: IPaginationProps): JSX.Element => {
   const [params, setParams] = useSearchParams();
 
   useEffect(() => {
-    const page = params.get('page');
+    const page = params.get(Param.Page);
     if (page && (+page > pageCount || isNaN(+page))) {
       navigate(AppUrl.NotFound);
     }
   }, [params, pageCount, navigate]);
 
   const handlePaginationButtonCLick = (pageNumber: number) => {
-    params.set('page', (pageNumber).toString());
+    params.set(Param.Page, (pageNumber).toString());
     setParams(params);
   };
 
   const pages = new Array(pageCount).fill(1);
-  const page = params.get('page');
+  const page = params.get(Param.Page);
 
   return (
     <div className="pagination" data-testid='pagination'>

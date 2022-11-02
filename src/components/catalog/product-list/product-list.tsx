@@ -31,7 +31,7 @@ const ProductList = ({productsCountOnPage}: IProductListProps) => {
 
       dispatch(loadDisplayedProducts(queryParams)); // загружаем товары, которые нужно вывести на страницу
     }
-  }, [dispatch, params, setParams]);
+  }, [dispatch, params, setParams, productsCountOnPage]);
 
   return (
     <div className="cards catalog__cards">

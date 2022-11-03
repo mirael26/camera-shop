@@ -34,20 +34,20 @@ const PriceFilter = () => {
     }
   }, []); // зависимости не нужны, только для очищения при демонтаже
 
-  useEffect(() => {
+  useEffect(() => { // корректируем введенные значения в полях согласно пришедшим данным с сервера
     const min = params.get(Param.PriceMin);
     const max = params.get(Param.PriceMax);
     if (displayedMinPrice && min && displayedMinPrice > +min) { // если введена мин.цена меньше, чем мин.цена с сервера, отображаем в поле мин.цену с сервера
       setInputValue((prev) => ({...prev, min: displayedMinPrice.toString()}));
     }
-    if (displayedMaxPrice && max && displayedMaxPrice > +max) { // если введена макс.цена меньше, чем макс.цена с сервера, отображаем в поле макс.цену с сервера
+    if (displayedMaxPrice && max && displayedMaxPrice > +max) { // если введена макс.цена больше, чем макс.цена с сервера, отображаем в поле макс.цену с сервера
       setInputValue((prev) => ({...prev, min: displayedMaxPrice.toString()}));
     }
   }, [displayedMinPrice, displayedMaxPrice]); // должно срабатывать только при изменении приходящих данных с сервера! (eslint warning)
 
   const handleMinInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
-    setInputValue((prev) => ({...prev, min: value})); // устанавливаем введенное значение
+    setInputValue((prev) => ({...prev, min: value})); // устанавливаем введенное значение в стейт для отображения
 
     if (timer.min) {
       clearTimeout(timer.min); // debounce
@@ -55,20 +55,16 @@ const PriceFilter = () => {
 
     const setMin = () => {
       const max = params.get(Param.PriceMax) || maxPriceInCatalog;
-      let newMin: string;
+      let newMin = value;
 
       if (minPriceInCatalog && +value < minPriceInCatalog) {
         newMin = minPriceInCatalog.toString(); // если мин.цена ниже мин.цены всех товаров - устанавливаем мин.существующую цену
       } else if (max && +value > +max) {
         newMin = max.toString(); // если мин.цена выше макс.цены, устанавливаем макс.цену
-      } else {
-        newMin = value; // иначе устанавливаем введенную
       }
       params.set(Param.PriceMin, newMin);
       setParams(params);
-      if (value !== newMin) {
-        setInputValue((prev) => ({...prev, min: newMin})); // записываем новое значение в стейт, если значение изменилось
-      }
+      setInputValue((prev) => ({...prev, min: newMin})); // записываем новое значение в стейт
     };
 
     const timerMin = setTimeout(() => setMin(), INPUT_DELAY_MS); // устанавливаем таймер на смену значений
@@ -77,7 +73,7 @@ const PriceFilter = () => {
 
   const handleMaxInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
-    setInputValue((prev) => ({...prev, max: value})); // устанавливаем введенное значение
+    setInputValue((prev) => ({...prev, max: value})); // устанавливаем введенное значение в стейт для отображения
 
     if (timer.max) {
       clearTimeout(timer.max); // debounce
@@ -85,20 +81,16 @@ const PriceFilter = () => {
 
     const setMax = () => {
       const min = params.get(Param.PriceMin) || minPriceInCatalog;
-      let newMax: string;
+      let newMax = value;
 
       if (maxPriceInCatalog && +value > maxPriceInCatalog) {
         newMax = maxPriceInCatalog.toString(); // если макс.цена выше макс.цены всех товаров - устанавливаем макс.существующую цену
       } else if (min && +value < +min) {
         newMax = min.toString(); // если макс.цена ниже мин.цены, устанавливаем мин.цену
-      } else {
-        newMax = value; // иначе устанавливаем введенную
       }
       params.set(Param.PriceMax, newMax);
       setParams(params); // записываем новое значение в параметры
-      if (value !== newMax) {
-        setInputValue((prev) => ({...prev, max: newMax})); // записываем новое значение в стейт, если значение изменилось
-      }
+      setInputValue((prev) => ({...prev, max: newMax})); // записываем новое значение в стейт
     };
 
     const timerMax = setTimeout(() => setMax(), INPUT_DELAY_MS); // устанавливаем таймер на смену значений

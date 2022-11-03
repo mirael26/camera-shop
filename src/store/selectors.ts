@@ -16,12 +16,11 @@ export const getAddToCartModalStatus = (state: TRootReducer) => state.view.addTo
 export const getReviewModalStatus = (state: TRootReducer) => state.view.reviewModalOpen;
 export const getRedirectPath = (state: TRootReducer) => state.view.redirect;
 
-export const getMinPriceInCatalog = createSelector(
+export const getAllProductsAsc = createSelector(
   getAllProducts,
-  (products) => products?.reduce((a, b) => a.price < b.price ? a : b).price
-);
-
-export const getMaxPriceInCatalog = createSelector(
-  getAllProducts,
-  (products) => products?.reduce((a, b) => a.price > b.price ? a : b).price
+  (products) => {
+    const productsAsc = products?.slice();
+    productsAsc?.sort((a, b) => a.price - b.price);
+    return productsAsc;
+  }
 );

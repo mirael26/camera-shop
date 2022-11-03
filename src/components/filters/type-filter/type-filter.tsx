@@ -24,7 +24,7 @@ const TypeFilter = () => {
     if (!isVideoCameraParamOnly && isVideoCameraOnly) {
       setVideoCameraOnly(false);
     }
-  }, [params]);
+  }, [params, setParams, isVideoCameraOnly]);
 
   const handleFilterInputChange = useHandleFilterInputChange(Param.Type, params, setParams);
 

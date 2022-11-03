@@ -26,3 +26,8 @@ export const deleteOneParam = (name: string, value: string, params: URLSearchPar
   }
   return params;
 };
+
+export const checkFilter = (parameter: string, name: string, urlParams: URLSearchParams) => {
+  const allParams = urlParams.getAll(parameter);
+  return allParams.includes(name);
+};

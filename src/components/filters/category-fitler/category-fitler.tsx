@@ -1,23 +1,12 @@
-import { ChangeEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Category, Param } from '../../../consts';
-import { checkFilter, deleteOneParam } from '../../../utils';
+import { useHandleFilterInputChange } from '../../../hooks/use-handle-filter-input-change';
+import { checkFilter } from '../../../utils';
 
 const CategoryFilter = () => {
   const [params, setParams] = useSearchParams();
 
-  const handleFilterInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const isChecked = evt.target.checked;
-    const name = evt.target.name;
-
-    if (isChecked) {
-      params.append(Param.Category, name);
-      setParams(params);
-    } else {
-      const newParams = deleteOneParam(Param.Category, name, params);
-      setParams(newParams);
-    }
-  };
+  const handleFilterInputChange = useHandleFilterInputChange(Param.Category, params, setParams);
 
   return (
     <fieldset className="catalog-filter__block">

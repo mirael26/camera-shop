@@ -27,7 +27,16 @@ export const deleteOneParam = (name: string, value: string, params: URLSearchPar
   return params;
 };
 
-export const checkFilter = (parameter: string, name: string, urlParams: URLSearchParams) => {
-  const allParams = urlParams.getAll(parameter);
-  return allParams.includes(name);
+export const checkFilters = <T extends string>(params: URLSearchParams, filtersState: {[key in T]: boolean}, setFiltersState: React.Dispatch<React.SetStateAction<typeof filtersState>>, filterName: string) => {
+  const allActiveParams = params.getAll(filterName); // получаем все активные фильтры из параметров
+  const allFilters = Object.keys(filtersState) as Array<T>; // получаем список всех фильтров
+
+  allFilters.forEach((filter) => {
+    if (allActiveParams.includes(filter) && !filtersState[filter]) { // проверяем, если фильтр есть в параметрах, но не включен
+      setFiltersState((prev) => ({...prev, [filter]: true})); // включаем (чекаем)
+    }
+    if (!allActiveParams.includes(filter) && filtersState[filter]) { // проверяем, если фильтра нет в параметрах, но он включен
+      setFiltersState((prev) => ({...prev, [filter]: false})); // выключаем
+    }
+  });
 };

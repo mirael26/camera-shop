@@ -37,7 +37,7 @@ export const loadProducts = () => (dispatch: TAppDispatch) => {
     });
 };
 
-export const loadDisplayedProducts = (params: {[key: string]: string | null}) => (dispatch: TAppDispatch) => {
+export const loadDisplayedProducts = (params: {[key: string]: string | null} | URLSearchParams) => (dispatch: TAppDispatch) => {
   axios
     .get(`${URL}${ApiUrl.Products}`, { params })
     .then((response) => {

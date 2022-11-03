@@ -27,6 +27,11 @@ export const deleteOneParam = (name: string, value: string, params: URLSearchPar
   return params;
 };
 
+// export const checkFilter = (parameter: string, name: string, urlParams: URLSearchParams) => {
+//   const allParams = urlParams.getAll(parameter);
+//   return allParams.includes(name);
+// };
+
 export const checkFilters = <T extends string>(params: URLSearchParams, filtersState: {[key in T]: boolean}, setFiltersState: React.Dispatch<React.SetStateAction<typeof filtersState>>, filterName: string) => {
   const allActiveParams = params.getAll(filterName); // получаем все активные фильтры из параметров
   const allFilters = Object.keys(filtersState) as Array<T>; // получаем список всех фильтров

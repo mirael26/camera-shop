@@ -7,6 +7,7 @@ import { loadProducts } from '../../../store/api-action';
 import { getAllProductsAsc } from '../../../store/selectors';
 
 const INPUT_DELAY_MS = 1500;
+const DEFAULT_PAGE = '1';
 
 const PriceFilter = () => {
   const productsAsc = useSelector(getAllProductsAsc);
@@ -44,6 +45,7 @@ const PriceFilter = () => {
     const setMin = () => {
       if (value === '') { // если значение - пустая строка
         params.delete(Param.PriceMin);
+        params.set(Param.Page, DEFAULT_PAGE);
         setParams(params); // удаляем параметр
         setInputValue((prev) => ({...prev, min: ''}));
         return;
@@ -68,6 +70,7 @@ const PriceFilter = () => {
       }
 
       params.set(Param.PriceMin, newMin);
+      params.set(Param.Page, DEFAULT_PAGE);
       setParams(params);
       setInputValue((prev) => ({...prev, min: newMin})); // записываем новое значение в стейт
     };
@@ -86,8 +89,9 @@ const PriceFilter = () => {
 
     const setMax = () => {
       if (value === '') { // если значение - пустая строка
-        params.delete(Param.PriceMax);
-        setParams(params); // удаляем параметр
+        params.delete(Param.PriceMax); // удаляем параметр
+        params.set(Param.Page, DEFAULT_PAGE);
+        setParams(params);
         setInputValue((prev) => ({...prev, max: ''}));
         return;
       }
@@ -110,8 +114,9 @@ const PriceFilter = () => {
         newMax = nearestMinPrice ? nearestMinPrice.toString() : newMax; // записываем цену этого товара
       }
 
-      params.set(Param.PriceMax, newMax);
-      setParams(params); // записываем новое значение в параметры
+      params.set(Param.PriceMax, newMax); // записываем новое значение в параметры
+      params.set(Param.Page, DEFAULT_PAGE);
+      setParams(params);
       setInputValue((prev) => ({...prev, max: newMax})); // записываем новое значение в стейт
     };
 

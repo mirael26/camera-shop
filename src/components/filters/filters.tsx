@@ -1,5 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { Param } from '../../consts';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { ActionCreator } from '../../store/action';
 import CategoryFilter from './category-fitler/category-fitler';
 import LevelFilter from './level-filter/level-filter';
 import PriceFilter from './price-filter/price-filter';
@@ -8,6 +10,7 @@ import TypeFilter from './type-filter/type-filter';
 const DEFAULT_PAGE = '1';
 
 const Filters = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const [params, setParams] = useSearchParams();
 
   const handleResetButtonClick = () => {
@@ -18,6 +21,7 @@ const Filters = (): JSX.Element => {
     params.delete(Param.Type);
     params.set(Param.Page, DEFAULT_PAGE);
     setParams(params);
+    dispatch(ActionCreator.LoadFilteredProducts(null));
   };
 
   return (

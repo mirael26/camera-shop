@@ -26,7 +26,7 @@ export const ActionCreator = {
     type: ActionType.LoadProducts,
     payload: products,
   }),
-  LoadFilteredProducts: (filteredProducts: Array<IProduct>): ILoadFilteredProducts => ({
+  LoadFilteredProducts: (filteredProducts: Array<IProduct> | null): ILoadFilteredProducts => ({
     type: ActionType.LoadFilteredProducts,
     payload: filteredProducts,
   }),

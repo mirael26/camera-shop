@@ -14,7 +14,7 @@ export interface ILoadProducts {
 
 export interface ILoadFilteredProducts {
   type: typeof ActionType.LoadFilteredProducts;
-  payload: Array<IProduct>;
+  payload: Array<IProduct> | null;
 }
 
 export interface ILoadDisplayedProducts {

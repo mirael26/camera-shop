@@ -6,9 +6,9 @@ import Pagination from './pagination/pagination';
 import Sorts from './sorts/sorts';
 import { useSelector } from 'react-redux';
 import { getAllProductsCount, getDisplayedProducts, getFilteredProductsCount } from '../../store/selectors';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ProductList from './product-list/product-list';
-import { Param } from '../../consts';
+import { AppUrl, Param } from '../../consts';
 
 const PRODUCTS_COUNT_ON_PAGE = 9;
 const DEFAULT_PAGE = '1';
@@ -18,13 +18,15 @@ const Catalog = (): JSX.Element => {
   const allProductsCount = useSelector(getAllProductsCount);
   const filteredProductsCount = useSelector(getFilteredProductsCount);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [params, setParams] = useSearchParams();
 
   useEffect(() => {
     if (!params.has(Param.Page)) {
       params.set(Param.Page, DEFAULT_PAGE);
-      setParams(params);
+      navigate(`${AppUrl.Catalog}?${params.toString()}`, { replace: true });
+      return;
     }
 
     const page = params.get(Param.Page);

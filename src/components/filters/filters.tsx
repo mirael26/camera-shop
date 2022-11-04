@@ -5,6 +5,8 @@ import LevelFilter from './level-filter/level-filter';
 import PriceFilter from './price-filter/price-filter';
 import TypeFilter from './type-filter/type-filter';
 
+const DEFAULT_PAGE = '1';
+
 const Filters = (): JSX.Element => {
   const [params, setParams] = useSearchParams();
 
@@ -14,6 +16,7 @@ const Filters = (): JSX.Element => {
     params.delete(Param.Category);
     params.delete(Param.Level);
     params.delete(Param.Type);
+    params.set(Param.Page, DEFAULT_PAGE);
     setParams(params);
   };
 

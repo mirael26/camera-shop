@@ -71,9 +71,9 @@ const Catalog = (): JSX.Element => {
       }
       dispatch(loadDisplayedProducts(allQueryParams)); // отправляем запрос товаров, которые нужно вывести на страницу
     }
-  }, [dispatch, params, setParams]);
+  }, [dispatch, navigate, params, setParams]);
 
-  const productsCount = (filteredProductsCount === null) ? allProductsCount : filteredProductsCount;
+  const productsCount = (filteredProductsCount === undefined) ? allProductsCount : filteredProductsCount;
   const pageCount = productsCount ? Math.ceil(productsCount / PRODUCTS_COUNT_ON_PAGE) : null;
   const catalogIsReady = !!allProductsCount;
 

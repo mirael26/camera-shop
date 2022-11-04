@@ -676,6 +676,8 @@ button,
   margin-bottom: 0;
 }
 
+
+
 .header {
   background-color: #f4f4fc;
 }
@@ -1825,6 +1827,12 @@ button,
   -ms-grid-row-span: 2;
   -ms-grid-column: 3;
   grid-area: content;
+}
+
+.catalog__nothing-found-message {
+  margin-top: 100px;
+  font-size: 25px;
+  text-align: center;
 }
 
 .catalog-filter {

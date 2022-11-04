@@ -72,23 +72,29 @@ const Catalog = (): JSX.Element => {
     }
   }, [dispatch, params, setParams]);
 
-  const productsCount = filteredProductsCount || allProductsCount;
+  const productsCount = (filteredProductsCount === null) ? allProductsCount : filteredProductsCount;
   const pageCount = productsCount ? Math.ceil(productsCount / PRODUCTS_COUNT_ON_PAGE) : null;
+  const catalogIsReady = !!allProductsCount;
 
   return (
     <section className="catalog">
       <div className="container">
         <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
-        {displayedProducts &&
+        {catalogIsReady &&
           <div className="page-content__columns">
             <div className="catalog__aside">
               <Filters/>
             </div>
-            <div className="catalog__content">
-              <Sorts/>
-              {displayedProducts && <ProductList products={displayedProducts}/>}
-              {pageCount && (pageCount > 1) && <Pagination pageCount={pageCount}/>}
-            </div>
+
+            {displayedProducts &&
+              <div className="catalog__content">
+                <Sorts/>
+                {displayedProducts.length
+                  ? <ProductList products={displayedProducts}/>
+                  : <p className="title title--h2 catalog__nothing-found-message">Ничего не найдено</p>}
+
+                {pageCount && (pageCount > 1) && <Pagination pageCount={pageCount}/>}
+              </div>}
           </div>}
       </div>
     </section>

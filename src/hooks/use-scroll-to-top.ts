@@ -5,7 +5,7 @@ const useScrollToTop = (exceptions: Array<string>) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const isException = exceptions.some((exception) => pathname.includes(exception));
+    const isException = exceptions.some((exception) => pathname === exception);
 
     if (!isException) {
       window.scrollTo(0, 0);

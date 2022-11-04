@@ -130,12 +130,12 @@ const PriceFilter = () => {
       <div className="catalog-filter__price-range">
         <div className="custom-input">
           <label>
-            <input type="number" name="price" placeholder={minPriceInCatalog?.toString() || 'от'} value={inputValue.min || params.get(Param.PriceMin) || ''} onChange={handleMinInputChange}/>
+            <input type="number" name="price" placeholder={minPriceInCatalog?.toString() || 'от'} value={inputValue.min} onChange={handleMinInputChange}/>
           </label>
         </div>
         <div className="custom-input">
           <label>
-            <input type="number" name="priceUp" placeholder={maxPriceInCatalog?.toString() || 'до'} value={inputValue.max || params.get(Param.PriceMax) || ''} onChange={handleMaxInputChange}/>
+            <input type="number" name="priceUp" placeholder={maxPriceInCatalog?.toString() || 'до'} value={inputValue.max} onChange={handleMaxInputChange}/>
           </label>
         </div>
       </div>

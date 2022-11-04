@@ -5,6 +5,7 @@ import { ActionType } from '../action';
 export const initialState: IDataReducer = {
   promo: null,
   products: null,
+  filteredProducts: null,
   displayedProducts: null,
   currentProduct: null,
   similarProducts: null,
@@ -17,6 +18,8 @@ export const dataReducer = (state = initialState, action: TDataAction): IDataRed
       return {...state, promo: action.payload};
     case ActionType.LoadProducts:
       return {...state, products: action.payload};
+    case ActionType.LoadFilteredProducts:
+      return {...state, filteredProducts: action.payload};
     case ActionType.LoadDisplayedProducts:
       return {...state, displayedProducts: action.payload};
     case ActionType.LoadCurrentProduct:

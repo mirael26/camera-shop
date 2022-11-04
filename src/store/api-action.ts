@@ -37,6 +37,20 @@ export const loadProducts = () => (dispatch: TAppDispatch) => {
     });
 };
 
+export const loadFilteredProducts = (params: {[key: string]: string | null} | URLSearchParams) => (dispatch: TAppDispatch) => {
+  axios
+    .get(`${URL}${ApiUrl.Products}`, { params })
+    .then((response) => {
+      dispatch(ActionCreator.LoadFilteredProducts(response.data as Array<IProduct>));
+    })
+    .catch((error: NodeJS.ErrnoException) => {
+      if (error.code === StatusCode.NoNetwork) {
+        dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      }
+      throw(error);
+    });
+};
+
 export const loadDisplayedProducts = (params: {[key: string]: string | null} | URLSearchParams) => (dispatch: TAppDispatch) => {
   axios
     .get(`${URL}${ApiUrl.Products}`, { params })

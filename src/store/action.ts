@@ -1,10 +1,11 @@
-import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect } from '../types/actions.type';
+import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect } from '../types/actions.type';
 import { TModal } from '../types/app.type';
 import { IProduct, IPromo, IReview } from '../types/data.type';
 
 export const ActionType = {
   LoadPromo: 'promo/loadPromo',
   LoadProducts: 'cameras/loadProducts',
+  LoadFilteredProducts: 'cameras/loadFilteredProducts',
   LoadDisplayedProducts: 'cameras/loadDisplayedProducts',
   LoadCurrentProduct: 'cameras/loadCurrentProduct',
   LoadSimilarProducts: 'cameras/loadSimilarProducts',
@@ -23,6 +24,10 @@ export const ActionCreator = {
   LoadProducts: (products: Array<IProduct>): ILoadProducts => ({
     type: ActionType.LoadProducts,
     payload: products,
+  }),
+  LoadFilteredProducts: (filteredProducts: Array<IProduct>): ILoadFilteredProducts => ({
+    type: ActionType.LoadFilteredProducts,
+    payload: filteredProducts,
   }),
   LoadDisplayedProducts: (displayedProducts: Array<IProduct>): ILoadDisplayedProducts => ({
     type: ActionType.LoadDisplayedProducts,

@@ -16,6 +16,7 @@ export const getAddingToCartItem = (state: TRootReducer) => state.view.addingToC
 export const getAddToCartModalStatus = (state: TRootReducer) => state.view.addToCartModalOpen;
 export const getReviewModalStatus = (state: TRootReducer) => state.view.reviewModalOpen;
 export const getRedirectPath = (state: TRootReducer) => state.view.redirect;
+export const getProductsLoadingStatus = (state: TRootReducer) => state.view.productsIsLoading;
 
 export const getAllProductsAsc = createSelector(
   getAllProducts,

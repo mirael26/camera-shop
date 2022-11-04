@@ -57,5 +57,10 @@ export interface IRedirect {
   payload: string | null;
 }
 
+export interface ISetProdactsLoadingStatus {
+  type: typeof ActionType.SetProdactsLoadingStatus;
+  payload: boolean;
+}
+
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
-export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect;
+export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect | ISetProdactsLoadingStatus;

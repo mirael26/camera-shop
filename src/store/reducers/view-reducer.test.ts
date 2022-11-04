@@ -15,6 +15,7 @@ describe('viewReducer', () => {
       addingToCartItem: null,
       reviewModalOpen: false,
       redirect: null,
+      productsIsLoading: false,
     };
 
     const newState = viewReducer(state, ActionCreator.CloseModal(Modal.AddToCart));

@@ -52,15 +52,19 @@ export const loadFilteredProducts = (params: {[key: string]: string | null} | UR
 };
 
 export const loadDisplayedProducts = (params: {[key: string]: string | null} | URLSearchParams) => (dispatch: TAppDispatch) => {
+  dispatch(ActionCreator.SetProdactsLoadingStatus(true));
+
   axios
     .get(`${URL}${ApiUrl.Products}`, { params })
     .then((response) => {
       dispatch(ActionCreator.LoadDisplayedProducts(response.data as Array<IProduct>));
+      dispatch(ActionCreator.SetProdactsLoadingStatus(false));
     })
     .catch((error: NodeJS.ErrnoException) => {
       if (error.code === StatusCode.NoNetwork) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       }
+      dispatch(ActionCreator.SetProdactsLoadingStatus(false));
       throw(error);
     });
 };

@@ -7,6 +7,7 @@ export const initialState: IViewReducer = {
   addingToCartItem: null,
   reviewModalOpen: false,
   redirect: null,
+  productsIsLoading: false,
 };
 
 export const viewReducer = (state = initialState, action: TViewAction): IViewReducer => {
@@ -19,6 +20,8 @@ export const viewReducer = (state = initialState, action: TViewAction): IViewRed
       return {...state, addingToCartItem: action.payload};
     case ActionType.Redirect:
       return {...state, redirect: action.payload};
+    case ActionType.SetProdactsLoadingStatus:
+      return {...state, productsIsLoading: action.payload};
     default:
       return state;
   }

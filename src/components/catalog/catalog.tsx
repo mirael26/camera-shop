@@ -5,7 +5,7 @@ import Filters from '../filters/filters';
 import Pagination from './pagination/pagination';
 import Sorts from './sorts/sorts';
 import { useSelector } from 'react-redux';
-import { getAllProductsCount, getDisplayedProducts, getFilteredProductsCount } from '../../store/selectors';
+import { getAllProductsCount, getDisplayedProducts, getFilteredProductsCount, getProductsLoadingStatus } from '../../store/selectors';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ProductList from './product-list/product-list';
 import { AppUrl, Param } from '../../consts';
@@ -17,6 +17,7 @@ const Catalog = (): JSX.Element => {
   const displayedProducts = useSelector(getDisplayedProducts);
   const allProductsCount = useSelector(getAllProductsCount);
   const filteredProductsCount = useSelector(getFilteredProductsCount);
+  const productsIsLoading = useSelector(getProductsLoadingStatus);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -86,15 +87,17 @@ const Catalog = (): JSX.Element => {
               <Filters/>
             </div>
 
-            {displayedProducts &&
-              <div className="catalog__content">
-                <Sorts/>
-                {displayedProducts.length
-                  ? <ProductList products={displayedProducts}/>
-                  : <p className="title title--h2 catalog__nothing-found-message">Ничего не найдено</p>}
+            {productsIsLoading
+              ? <div className="catalog__loader"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+              : displayedProducts &&
+                <div className="catalog__content">
+                  <Sorts/>
+                  {displayedProducts.length
+                    ? <ProductList products={displayedProducts}/>
+                    : <p className="title title--h2 catalog__nothing-found-message">Ничего не найдено</p>}
 
-                {pageCount && (pageCount > 1) && <Pagination pageCount={pageCount}/>}
-              </div>}
+                  {pageCount && (pageCount > 1) && <Pagination pageCount={pageCount}/>}
+                </div>}
           </div>}
       </div>
     </section>

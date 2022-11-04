@@ -15,4 +15,5 @@ export interface IViewReducer {
   addingToCartItem: IProduct | null;
   reviewModalOpen: boolean;
   redirect: null | string;
+  productsIsLoading: boolean;
 }

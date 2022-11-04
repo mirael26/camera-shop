@@ -43,6 +43,7 @@ export const Param = {
   Sort: 'sort',
   Order: 'order',
   Page: 'page',
+  Tab: 'tab',
   PriceMin: 'price_min',
   PriceMax: 'price_max',
   Category: 'category',

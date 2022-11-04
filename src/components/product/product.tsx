@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import RatingStars from '../rating-stars/rating-stars';
-import { AppUrl, Modal, Tab } from '../../consts';
+import { AppUrl, Modal, Param, Tab } from '../../consts';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
 import { loadCurrentProduct } from '../../store/api-action';
@@ -19,8 +19,7 @@ const Product = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tab = searchParams.get('tab');
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
     if (id) {
@@ -29,18 +28,20 @@ const Product = (): JSX.Element => {
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (!tab && id) {
-      setSearchParams({tab: DEFAULT_TAB}); // если таб не установлен - установить таб по умолчанию
+    if (!params.has(Param.Tab) && id) { // если таб не установлен - установить таб по умолчанию
+      params.set(Param.Tab, DEFAULT_TAB);
+      navigate(`${AppUrl.Catalog}${AppUrl.Product}/${id}?${params.toString()}`, { replace: true });
       return;
     }
 
+    const tab = params.get(Param.Tab);
     const existingTabs: Array<string> = Object.values(Tab); // если таб есть, находим список существующих табов
     const isTabExisting = tab ? existingTabs.includes(tab) : false; // проверяем, есть ли таб в списке существующих
 
     if (!isTabExisting) {
       navigate(AppUrl.NotFound); // если таб не существует, делаем редирект на страницу 404
     }
-  }, [tab, id, navigate, setSearchParams]);
+  }, [id, navigate, params, setParams]);
 
   const handleAddToCartButtonClick = () => {
     dispatch(ActionCreator.OpenModal(Modal.AddToCart));
@@ -48,10 +49,11 @@ const Product = (): JSX.Element => {
   };
 
   const handleTabControlButtonClick = (newTab: TTab) => {
-    setSearchParams({tab: newTab});
+    setParams({tab: newTab});
   };
 
   const adaptedPrice = product ? addPriceSeparators(product?.price) : null;
+  const tab = params.get(Param.Tab);
 
   return (
     <div className="page-content__section">

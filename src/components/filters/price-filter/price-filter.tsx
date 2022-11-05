@@ -43,7 +43,7 @@ const PriceFilter = () => {
     if (maxParam !== inputValue.max) {
       setInputValue((prev) => ({...prev, max: maxParam}));
     }
-  }, [params, inputValue]);
+  }, [params]); // если добавить зависимости из eslint.warning, некорректно работает
 
   const handleMinInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;

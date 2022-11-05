@@ -19,7 +19,7 @@ const TypeFilter = () => {
     const allCategoryFilters = params.getAll(Param.Category);
     const isVideoCameraParamOnly = (allCategoryFilters?.length === 1) && (allCategoryFilters[0] === Category.VideoCamera);
 
-    if (isVideoCameraParamOnly && !isVideoCameraOnly) { // если в компоненте стояло обратное
+    if (isVideoCameraParamOnly && !isVideoCameraOnly) { // если включился флаг "только видеокамеры"
       if (params.has(Param.Type)) { // если уже был выбран фильтр типа камеры, убираем из него заблокированные
         const paramsWithoutFilm = deleteOneParam(Param.Type, CameraType.Film, params);
         const paramsWithoutFilmAndInstant = deleteOneParam(Param.Type, CameraType.Instant, paramsWithoutFilm);
@@ -28,7 +28,7 @@ const TypeFilter = () => {
       setVideoCameraOnly(true);
     }
 
-    if (!isVideoCameraParamOnly && isVideoCameraOnly) {
+    if (!isVideoCameraParamOnly && isVideoCameraOnly) { // если выключился флаг "только видеокамеры"
       setVideoCameraOnly(false);
     }
   }, [params, setParams, isVideoCameraOnly]);

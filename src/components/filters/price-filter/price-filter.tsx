@@ -32,7 +32,7 @@ const PriceFilter = () => {
     if (timer.max) {
       clearTimeout(timer.max);
     }
-  }, []); // зависимости не нужны, только для очищения при демонтаже
+  }, [timer]);
 
   useEffect(() => {
     const minParam = params.get(Param.PriceMin) || '';

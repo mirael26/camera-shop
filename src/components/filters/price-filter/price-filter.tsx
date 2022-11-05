@@ -34,6 +34,17 @@ const PriceFilter = () => {
     }
   }, []); // зависимости не нужны, только для очищения при демонтаже
 
+  useEffect(() => {
+    const minParam = params.get(Param.PriceMin) || '';
+    const maxParam = params.get(Param.PriceMax) || '';
+    if (minParam !== inputValue.min) {
+      setInputValue((prev) => ({...prev, min: minParam}));
+    }
+    if (maxParam !== inputValue.max) {
+      setInputValue((prev) => ({...prev, max: maxParam}));
+    }
+  }, [params, inputValue]);
+
   const handleMinInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
     setInputValue((prev) => ({...prev, min: value})); // устанавливаем введенное значение в стейт для отображения

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { AppUrl } from '../consts';
+import { ApiUrl, AppUrl } from '../consts';
 import { productMock, productsMock, promoMock, reviewsMock } from '../test/mocks';
 import { ActionCreator } from './action';
-import { loadCurrentProduct, loadProducts, loadPromo, loadReviews, loadSimilarProducts, postReview, StatusCode } from './api-action';
+import { loadCurrentProduct, loadDisplayedProducts, loadFilteredProducts, loadProducts, loadPromo, loadReviews, loadSimilarProducts, postReview, StatusCode, URL } from './api-action';
 
 jest.mock('axios');
 const dispatch = jest.fn();
@@ -105,6 +105,43 @@ describe('loadProducts api-action', () => {
       expect(error).toThrowError();
     }
   });
+});
+
+test('loadFilteredProduct api-action works correctly', async() => {
+  const params = new URLSearchParams('?category=Фотокамера&level=Нулевой');
+  const response = {
+    status: 200,
+    statusText: "OK",
+    data: productsMock,
+  };
+  jest.mocked(axios).get.mockResolvedValue(response);
+
+  await loadFilteredProducts(params)(dispatch);
+
+  expect(axios.get).toHaveBeenCalledTimes(1);
+  expect(axios.get).toHaveBeenCalledWith(`${URL}${ApiUrl.Products}`, { params });
+  expect(dispatch).toHaveBeenCalledTimes(1);
+  expect(dispatch).toHaveBeenCalledWith(ActionCreator.LoadFilteredProducts(response.data));
+});
+
+test('loadDisplayedProduct api-action works correctly', async() => {
+  const params = new URLSearchParams('?category=Фотокамера&level=Нулевой');
+  const response = {
+    status: 200,
+    statusText: "OK",
+    data: productsMock,
+  };
+  jest.mocked(axios).get.mockResolvedValue(response);
+
+  await loadDisplayedProducts(params)(dispatch);
+
+  expect(axios.get).toHaveBeenCalledTimes(1);
+  expect(axios.get).toHaveBeenCalledWith(`${URL}${ApiUrl.Products}`, { params });
+
+  expect(dispatch).toHaveBeenCalledTimes(3);
+  expect(dispatch).toHaveBeenNthCalledWith(1, ActionCreator.SetProdactsLoadingStatus(true));
+  expect(dispatch).toHaveBeenNthCalledWith(2, ActionCreator.LoadDisplayedProducts(response.data));
+  expect(dispatch).toHaveBeenNthCalledWith(3, ActionCreator.SetProdactsLoadingStatus(false));
 });
 
 describe('loadCurrentProduct api-action', () => {

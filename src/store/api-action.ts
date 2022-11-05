@@ -4,7 +4,7 @@ import { IProduct, IPromo, IReview, IReviewPost } from '../types/data.type';
 import { ActionCreator } from './action';
 import { TAppDispatch } from './store';
 
-const URL = 'https://camera-shop.accelerator.pages.academy';
+export const URL = 'https://camera-shop.accelerator.pages.academy';
 
 export const StatusCode = {
   BadRequest: 'ERR_BAD_REQUEST',

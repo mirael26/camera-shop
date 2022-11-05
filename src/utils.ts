@@ -15,9 +15,15 @@ export const addPriceSeparators = (price: number, separator = ' '): string | und
 
 export const deleteOneParam = (name: string, value: string, params: URLSearchParams) => {
   const allExistingValues = params.getAll(name); // получаем массив всех параметров с тем же именем
+
+  if (!allExistingValues.length) { // если такого параметра нет, возвращаем params без изменений
+    return params;
+  }
   params.delete(name); // удаляем все параметры с этим именем
 
-  if (allExistingValues.length > 1) { // если были какие-то еще параметры кроме удаляемого
+  const isOnlyDelitingParam = (allExistingValues.length === 1) && (allExistingValues[0] === value); // проверяем, есть ли еще какие-то параметры
+
+  if (!isOnlyDelitingParam) { // если были какие-то еще параметры кроме удаляемого
     allExistingValues.forEach((existingValue) => {
       if (existingValue !== value) { // если значение параметра не то, которое мы хотим удалить
         params.append(name, existingValue); // добавляем его в params
@@ -26,11 +32,6 @@ export const deleteOneParam = (name: string, value: string, params: URLSearchPar
   }
   return params;
 };
-
-// export const checkFilter = (parameter: string, name: string, urlParams: URLSearchParams) => {
-//   const allParams = urlParams.getAll(parameter);
-//   return allParams.includes(name);
-// };
 
 export const checkFilters = <T extends string>(params: URLSearchParams, filtersState: {[key in T]: boolean}, setFiltersState: React.Dispatch<React.SetStateAction<typeof filtersState>>, filterName: string) => {
   const allActiveParams = params.getAll(filterName); // получаем все активные фильтры из параметров

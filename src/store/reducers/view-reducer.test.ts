@@ -31,4 +31,9 @@ describe('viewReducer', () => {
     const newState = viewReducer(undefined, ActionCreator.Redirect('/'));
     expect(newState.redirect).toBe('/');
   });
+
+  test('sets products loading status correctly', () => {
+    const newState = viewReducer(undefined, ActionCreator.SetProdactsLoadingStatus(true));
+    expect(newState.productsIsLoading).toBe(true);
+  });
 });

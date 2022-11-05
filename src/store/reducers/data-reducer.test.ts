@@ -14,6 +14,18 @@ describe('dataReducer', () => {
     expect(newState.products).toEqual(productsMock);
   });
 
+  test('adds filtered products correctly', () => {
+    const newState = dataReducer(undefined, ActionCreator.LoadFilteredProducts(productsMock));
+    expect(newState.filteredProducts).toHaveLength(3);
+    expect(newState.filteredProducts).toEqual(productsMock);
+  });
+
+  test('adds displayed products correctly', () => {
+    const newState = dataReducer(undefined, ActionCreator.LoadDisplayedProducts(productsMock));
+    expect(newState.displayedProducts).toHaveLength(3);
+    expect(newState.displayedProducts).toEqual(productsMock);
+  });
+
   test('adds current product correctly', () => {
     const newState = dataReducer(undefined, ActionCreator.LoadCurrentProduct(productMock));
     expect(newState.currentProduct).toEqual(productMock);

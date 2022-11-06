@@ -15,6 +15,7 @@ exports[`Catalog renders correctly 1`] = `
       </h1>
       <div
         class="page-content__columns"
+        data-testid="catalog-content"
       >
         <div
           class="catalog__aside"
@@ -22,12 +23,17 @@ exports[`Catalog renders correctly 1`] = `
           <filters />
         </div>
         <div
-          class="catalog__content"
+          class="catalog__loader"
+          data-testid="catalog-loader"
         >
-          <sorts />
-          <productlist
-            productscountonpage="9"
-          />
+          <div
+            class="lds-ring"
+          >
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
         </div>
       </div>
     </div>

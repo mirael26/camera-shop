@@ -82,13 +82,13 @@ const Catalog = (): JSX.Element => {
       <div className="container">
         <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
         {catalogIsReady &&
-          <div className="page-content__columns">
+          <div className="page-content__columns" data-testid="catalog-content">
             <div className="catalog__aside">
               <Filters/>
             </div>
 
             {productsIsLoading
-              ? <div className="catalog__loader"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+              ? <div className="catalog__loader" data-testid="catalog-loader"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>
               : displayedProducts &&
                 <div className="catalog__content">
                   <Sorts/>

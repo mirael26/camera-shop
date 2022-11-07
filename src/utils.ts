@@ -46,3 +46,5 @@ export const checkFilters = <T extends string>(params: URLSearchParams, filtersS
     }
   });
 };
+
+export const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));

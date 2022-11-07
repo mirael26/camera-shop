@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Price-filter component renders correctly 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="catalog-filter__block"
+  >
+    <legend
+      class="title title--h5"
+    >
+      Цена, ₽
+    </legend>
+    <div
+      class="catalog-filter__price-range"
+    >
+      <div
+        class="custom-input"
+      >
+        <label>
+          <input
+            data-testid="price-input"
+            name="price"
+            placeholder="от"
+            type="number"
+            value=""
+          />
+        </label>
+      </div>
+      <div
+        class="custom-input"
+      >
+        <label>
+          <input
+            data-testid="price-input"
+            name="priceUp"
+            placeholder="до"
+            type="number"
+            value=""
+          />
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</DocumentFragment>
+`;

@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { loadProducts } from '../../../store/api-action';
 import { getAllProductsAsc } from '../../../store/selectors';
 
-const INPUT_DELAY_MS = 1500;
+export const INPUT_DELAY_MS = 1500;
 const DEFAULT_PAGE = '1';
 
 const PriceFilter = () => {
@@ -34,7 +34,7 @@ const PriceFilter = () => {
     }
   }, [timer]);
 
-  useEffect(() => {
+  useEffect(() => { // обвновление значений из params
     const minParam = params.get(Param.PriceMin) || '';
     const maxParam = params.get(Param.PriceMax) || '';
     if (minParam !== inputValue.min) {
@@ -141,12 +141,12 @@ const PriceFilter = () => {
       <div className="catalog-filter__price-range">
         <div className="custom-input">
           <label>
-            <input type="number" name="price" placeholder={minPriceInCatalog?.toString() || 'от'} value={inputValue.min} onChange={handleMinInputChange}/>
+            <input type="number" name="price" data-testid="price-input" placeholder={minPriceInCatalog?.toString() || 'от'} value={inputValue.min} onChange={handleMinInputChange}/>
           </label>
         </div>
         <div className="custom-input">
           <label>
-            <input type="number" name="priceUp" placeholder={maxPriceInCatalog?.toString() || 'до'} value={inputValue.max} onChange={handleMaxInputChange}/>
+            <input type="number" name="priceUp" data-testid="price-input" placeholder={maxPriceInCatalog?.toString() || 'до'} value={inputValue.max} onChange={handleMaxInputChange}/>
           </label>
         </div>
       </div>

@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CagetoryFilter component renders correctly 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="catalog-filter__block"
+  >
+    <legend
+      class="title title--h5"
+    >
+      Уровень
+    </legend>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Нулевой"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Нулевой
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Любительский"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Любительский
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Профессиональный"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Профессиональный
+        </span>
+      </label>
+    </div>
+  </fieldset>
+</DocumentFragment>
+`;
+
+exports[`LevelFilter component renders correctly 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="catalog-filter__block"
+  >
+    <legend
+      class="title title--h5"
+    >
+      Уровень
+    </legend>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Нулевой"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Нулевой
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Любительский"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Любительский
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Профессиональный"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Профессиональный
+        </span>
+      </label>
+    </div>
+  </fieldset>
+</DocumentFragment>
+`;

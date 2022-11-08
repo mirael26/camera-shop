@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="form-search"
+    data-testid="form-search"
+  >
+    <form>
+      <label>
+        <svg
+          aria-hidden="true"
+          class="form-search__icon"
+          height="16"
+          width="16"
+        >
+          <use
+            xlink:href="#icon-lens"
+          />
+        </svg>
+        <input
+          autocomplete="off"
+          class="form-search__input"
+          placeholder="Поиск по сайту"
+          type="text"
+          value=""
+        />
+      </label>
+    </form>
+    <button
+      class="form-search__reset"
+      type="reset"
+    >
+      <svg
+        aria-hidden="true"
+        height="10"
+        width="10"
+      >
+        <use
+          xlink:href="#icon-close"
+        />
+      </svg>
+      <span
+        class="visually-hidden"
+      >
+        Сбросить поиск
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -89,7 +89,7 @@ const Search = () => {
   };
 
   return (
-    <div className={`form-search${isListOpened ? ' list-opened' : ''}`}>
+    <div className={`form-search${isListOpened ? ' list-opened' : ''}`} data-testid='form-search'>
       <form onSubmit={(evt) => evt.preventDefault()}>
         <label>
           <svg className="form-search__icon" width="16" height="16" aria-hidden="true">

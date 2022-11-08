@@ -233,3 +233,18 @@ export const bigReviewsMock = [
     'cameraId': 1
   },
 ];
+
+export const searchedProductsMock = [
+  {
+    id: 4,
+    name: 'Орлёнок',
+  },
+  {
+    id: 5,
+    name: 'Van Shot',
+  },
+  {
+    id: 6,
+    name: 'Click Sap',
+  },
+];

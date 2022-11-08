@@ -11,7 +11,7 @@ const SearchList = ({ searchedProducts, onLinkClick }: ISearchListProps) => {
   const withScroll = searchedProducts.length > 4;
 
   return (
-    <ul className={`form-search__select-list${withScroll ? ' with-scroll' : ''}`}>
+    <ul className={`form-search__select-list${withScroll ? ' with-scroll' : ''}`} data-testid='search-list'>
       {searchedProducts.map((product, i) => {
         const key = `searched-product-${i}`;
         return (

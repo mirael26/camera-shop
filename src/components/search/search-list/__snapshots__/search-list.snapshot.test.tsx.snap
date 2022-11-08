@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchList component renders correctly 1`] = `
+<DocumentFragment>
+  <ul
+    class="form-search__select-list"
+    data-testid="search-list"
+  >
+    <li
+      class="form-search__select-item"
+    >
+      <a
+        class="form-search__link"
+        href="/catalog/product/4"
+      >
+        Орлёнок
+      </a>
+    </li>
+    <li
+      class="form-search__select-item"
+    >
+      <a
+        class="form-search__link"
+        href="/catalog/product/5"
+      >
+        Van Shot
+      </a>
+    </li>
+    <li
+      class="form-search__select-item"
+    >
+      <a
+        class="form-search__link"
+        href="/catalog/product/6"
+      >
+        Click Sap
+      </a>
+    </li>
+  </ul>
+</DocumentFragment>
+`;

@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Param } from '../../consts';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
-import CategoryFilter from './category-fitler/category-fitler';
+import CategoryFilter from './category-filter/category-filter';
 import LevelFilter from './level-filter/level-filter';
 import PriceFilter from './price-filter/price-filter';
 import TypeFilter from './type-filter/type-filter';

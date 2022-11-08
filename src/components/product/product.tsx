@@ -11,7 +11,7 @@ import { addPriceSeparators } from '../../utils';
 import { getCurrentProduct } from '../../store/selectors';
 import { useSelector } from 'react-redux';
 
-const DEFAULT_TAB = Tab.Description;
+export const DEFAULT_TAB = Tab.Description;
 
 const Product = (): JSX.Element => {
   const product = useSelector(getCurrentProduct);

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CagetoryFilter component renders correctly 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="catalog-filter__block"
+  >
+    <legend
+      class="title title--h5"
+    >
+      Категория
+    </legend>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Фотоаппарат"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Фотокамера
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Видеокамера"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Видеокамера
+        </span>
+      </label>
+    </div>
+  </fieldset>
+</DocumentFragment>
+`;

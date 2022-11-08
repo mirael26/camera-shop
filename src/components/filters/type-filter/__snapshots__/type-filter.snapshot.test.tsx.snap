@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TypeFilter component renders correctly 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="catalog-filter__block"
+  >
+    <legend
+      class="title title--h5"
+    >
+      Тип камеры
+    </legend>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Цифровая"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Цифровая
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Плёночная"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Плёночная
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Моментальная"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Моментальная
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-checkbox catalog-filter__item"
+    >
+      <label>
+        <input
+          name="Коллекционная"
+          type="checkbox"
+        />
+        <span
+          class="custom-checkbox__icon"
+        />
+        <span
+          class="custom-checkbox__label"
+        >
+          Коллекционная
+        </span>
+      </label>
+    </div>
+  </fieldset>
+</DocumentFragment>
+`;

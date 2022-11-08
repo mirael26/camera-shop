@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
 import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
 import { productMock } from '../../test/mocks';
-import Product from './product';
+import Product, { DEFAULT_TAB } from './product';
 
 const spyDispatch =  jest.fn();
 const spyNavigate = jest.fn();
@@ -91,7 +91,7 @@ describe('Product', () => {
       }
     });
 
-    expect(spySetSearchParams).toHaveBeenCalledWith({tab: Tab.Description});
+    expect(spyNavigate).toHaveBeenCalledWith(`${AppUrl.Catalog}${AppUrl.Product}/4?tab=${DEFAULT_TAB}`, {replace: true});
   });
 
   test('Should redirect to 404 when unknown tab', async() => {

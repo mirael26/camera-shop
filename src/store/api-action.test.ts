@@ -5,10 +5,11 @@ import { ActionCreator } from './action';
 import { loadCurrentProduct, loadDisplayedProducts, loadFilteredProducts, loadProducts, loadPromo, loadReviews, loadSimilarProducts, postReview, StatusCode, URL } from './api-action';
 
 jest.mock('axios');
-const dispatch = jest.fn();
+
+const dispatchSpy = jest.fn();
 
 describe('loadPromo api-action', () => {
-  test('load data correctly', async() => {
+  test('loads data correctly', async() => {
     const response = {
       status: 200,
       statusText: "OK",
@@ -16,11 +17,11 @@ describe('loadPromo api-action', () => {
     };
     jest.mocked(axios).get.mockResolvedValue(response);
 
-    await loadPromo()(dispatch);
+    await loadPromo()(dispatchSpy);
 
     expect(axios.get).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledTimes(1);    
-    await expect(dispatch).toHaveBeenCalledWith(ActionCreator.LoadPromo(response.data));
+    await expect(dispatchSpy).toHaveBeenCalledTimes(1);    
+    await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadPromo(response.data));
   });
 
   test('should throw error when network error', async() => {
@@ -32,10 +33,10 @@ describe('loadPromo api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadPromo()(dispatch);
+      await loadPromo()(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       expect(error).toThrowError();
     }
   });
@@ -49,16 +50,16 @@ describe('loadPromo api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadPromo()(dispatch);
+      await loadPromo()(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(0);
+      expect(dispatchSpy).toHaveBeenCalledTimes(0);
       expect(error).toThrowError();
     }
   });
 });
 
 describe('loadProducts api-action', () => {
-  test('load data correctly', async() => {
+  test('loads data correctly', async() => {
     const response = {
       status: 200,
       statusText: "OK",
@@ -66,11 +67,11 @@ describe('loadProducts api-action', () => {
     };
     jest.mocked(axios).get.mockResolvedValue(response);
 
-    await loadProducts()(dispatch);
+    await loadProducts()(dispatchSpy);
 
     expect(axios.get).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledWith(ActionCreator.LoadProducts(response.data));
+    await expect(dispatchSpy).toHaveBeenCalledTimes(1);
+    await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadProducts(response.data));
   });
 
   test('should throw error when network error', async() => {
@@ -82,10 +83,10 @@ describe('loadProducts api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadProducts()(dispatch);
+      await loadProducts()(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       expect(error).toThrowError();
     }
   });
@@ -99,9 +100,9 @@ describe('loadProducts api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadProducts()(dispatch);
+      await loadProducts()(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(0);
+      expect(dispatchSpy).toHaveBeenCalledTimes(0);
       expect(error).toThrowError();
     }
   });
@@ -116,12 +117,12 @@ test('loadFilteredProduct api-action works correctly', async() => {
   };
   jest.mocked(axios).get.mockResolvedValue(response);
 
-  await loadFilteredProducts(params)(dispatch);
+  await loadFilteredProducts(params)(dispatchSpy);
 
   expect(axios.get).toHaveBeenCalledTimes(1);
   expect(axios.get).toHaveBeenCalledWith(`${URL}${ApiUrl.Products}`, { params });
-  expect(dispatch).toHaveBeenCalledTimes(1);
-  expect(dispatch).toHaveBeenCalledWith(ActionCreator.LoadFilteredProducts(response.data));
+  expect(dispatchSpy).toHaveBeenCalledTimes(1);
+  expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadFilteredProducts(response.data));
 });
 
 test('loadDisplayedProduct api-action works correctly', async() => {
@@ -133,15 +134,15 @@ test('loadDisplayedProduct api-action works correctly', async() => {
   };
   jest.mocked(axios).get.mockResolvedValue(response);
 
-  await loadDisplayedProducts(params)(dispatch);
+  await loadDisplayedProducts(params)(dispatchSpy);
 
   expect(axios.get).toHaveBeenCalledTimes(1);
   expect(axios.get).toHaveBeenCalledWith(`${URL}${ApiUrl.Products}`, { params });
 
-  expect(dispatch).toHaveBeenCalledTimes(3);
-  expect(dispatch).toHaveBeenNthCalledWith(1, ActionCreator.SetProdactsLoadingStatus(true));
-  expect(dispatch).toHaveBeenNthCalledWith(2, ActionCreator.LoadDisplayedProducts(response.data));
-  expect(dispatch).toHaveBeenNthCalledWith(3, ActionCreator.SetProdactsLoadingStatus(false));
+  expect(dispatchSpy).toHaveBeenCalledTimes(3);
+  expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.SetProdactsLoadingStatus(true));
+  expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.LoadDisplayedProducts(response.data));
+  expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.SetProdactsLoadingStatus(false));
 });
 
 describe('loadCurrentProduct api-action', () => {
@@ -153,11 +154,11 @@ describe('loadCurrentProduct api-action', () => {
     };
     jest.mocked(axios).get.mockResolvedValue(response);
 
-    await loadCurrentProduct(2)(dispatch);
+    await loadCurrentProduct(2)(dispatchSpy);
 
     expect(axios.get).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledWith(ActionCreator.LoadCurrentProduct(response.data));
+    await expect(dispatchSpy).toHaveBeenCalledTimes(1);
+    await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadCurrentProduct(response.data));
   });
 
   test('should throw error when network error', async() => {
@@ -169,10 +170,10 @@ describe('loadCurrentProduct api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadCurrentProduct(2)(dispatch);
+      await loadCurrentProduct(2)(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       expect(error).toThrowError();
     }
   });
@@ -186,10 +187,10 @@ describe('loadCurrentProduct api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadCurrentProduct(2)(dispatch);
+      await loadCurrentProduct(2)(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
       expect(error).toThrowError();
     }
   });
@@ -204,11 +205,11 @@ describe('loadSimilarProducts api-action', () => {
     };
     jest.mocked(axios).get.mockResolvedValue(response);
 
-    await loadSimilarProducts(2)(dispatch);
+    await loadSimilarProducts(2)(dispatchSpy);
 
     expect(axios.get).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledWith(ActionCreator.LoadSimilarProducts(response.data));
+    await expect(dispatchSpy).toHaveBeenCalledTimes(1);
+    await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadSimilarProducts(response.data));
   });
 
   test('should throw error when network error', async() => {
@@ -220,10 +221,10 @@ describe('loadSimilarProducts api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadSimilarProducts(2)(dispatch);
+      await loadSimilarProducts(2)(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       expect(error).toThrowError();
     }
   });
@@ -237,10 +238,10 @@ describe('loadSimilarProducts api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadSimilarProducts(2)(dispatch);
+      await loadSimilarProducts(2)(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
       expect(error).toThrowError();
     }
   });
@@ -255,11 +256,11 @@ describe('loadReviews api-action', () => {
     };
     jest.mocked(axios).get.mockResolvedValue(response);
 
-    await loadReviews(2)(dispatch);
+    await loadReviews(2)(dispatchSpy);
 
     expect(axios.get).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledWith(ActionCreator.LoadReviews(response.data));
+    await expect(dispatchSpy).toHaveBeenCalledTimes(1);
+    await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadReviews(response.data));
   });
 
   test('should throw error when network error', async() => {
@@ -271,10 +272,10 @@ describe('loadReviews api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadReviews(2)(dispatch);
+      await loadReviews(2)(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       expect(error).toThrowError();
     }
   });
@@ -288,10 +289,10 @@ describe('loadReviews api-action', () => {
     jest.mocked(axios).get.mockResolvedValue(error);
 
     try {
-      await loadReviews(2)(dispatch);
+      await loadReviews(2)(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
       expect(error).toThrowError();
     }
   });
@@ -301,10 +302,10 @@ describe('postReview api-action', () => {
   test('post data correctly', async() => {
     jest.mocked(axios).post.mockResolvedValue(jest.fn());
 
-    await postReview(reviewsMock[0])(dispatch);
+    await postReview(reviewsMock[0])(dispatchSpy);
 
     expect(axios.post).toHaveBeenCalledTimes(1);
-    await expect(dispatch).toHaveBeenCalledTimes(0);
+    await expect(dispatchSpy).toHaveBeenCalledTimes(0);
   });
 
   test('should throw error when network error', async() => {
@@ -316,10 +317,10 @@ describe('postReview api-action', () => {
     jest.mocked(axios).post.mockResolvedValue(error);
 
     try {
-      await postReview(reviewsMock[0])(dispatch);
+      await postReview(reviewsMock[0])(dispatchSpy);
     } catch (error) {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       expect(error).toThrowError();
     }
   });

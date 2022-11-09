@@ -4,7 +4,7 @@ import App from './app';
 jest.mock('../redirect/redirect', () => 'Redirect');
 jest.mock('./app-router/app-router', () => 'AppRouter');
 
-test('Render App', () => {
+test('App component renders correctly', () => {
   const { asFragment } = renderWithReduxAndRouter(<App/>);
   expect(asFragment()).toMatchSnapshot();
 });

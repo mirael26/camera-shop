@@ -8,9 +8,7 @@ import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-a
 import { productMock } from '../../test/mocks';
 import Product, { DEFAULT_TAB } from './product';
 
-const spyDispatch =  jest.fn();
-const spyNavigate = jest.fn();
-const spySetSearchParams = jest.fn();
+jest.mock('../rating-stars/rating-stars', () => 'RatingStars');
 
 jest.mock('axios');
 jest.mock('react-router-dom', () => {
@@ -23,22 +21,24 @@ jest.mock('react-router-dom', () => {
 });
 jest.mock('../../hooks/use-app-dispatch');
 
-jest.mock('../rating-stars/rating-stars', () => 'RatingStars');
+const dispatchSpy =  jest.fn();
+const navigateSpy = jest.fn();
+const setSearchParamsSpy = jest.fn();
 
-describe('Product', () => {
+describe('Product component', () => {
   beforeEach(() => {
     jest.mocked(useParams).mockReturnValue({ id: '4' });
     const searchParams = new URLSearchParams({tab: Tab.Description});
-    jest.mocked(useSearchParams).mockReturnValue([searchParams, spySetSearchParams]);
-    jest.mocked(useNavigate).mockReturnValue(spyNavigate);
+    jest.mocked(useSearchParams).mockReturnValue([searchParams, setSearchParamsSpy]);
+    jest.mocked(useNavigate).mockReturnValue(navigateSpy);
     jest.mocked(axios).get.mockResolvedValue(productMock);
-    jest.mocked(useAppDispatch).mockReturnValue(spyDispatch);
+    jest.mocked(useAppDispatch).mockReturnValue(dispatchSpy);
   });
 
-  test('Features tab works correctly', () => {
+  test('manages features tab correct work', () => {
     jest.mocked(useParams).mockReturnValueOnce({ id: '4' });
     const searchParams = new URLSearchParams({tab: Tab.Features});
-    jest.mocked(useSearchParams).mockReturnValue([searchParams, spySetSearchParams]);
+    jest.mocked(useSearchParams).mockReturnValue([searchParams, setSearchParamsSpy]);
 
     renderWithReduxAndRouter(<Product/>, { initialState: { 
       data: { currentProduct: productMock }
@@ -50,7 +50,7 @@ describe('Product', () => {
     expect(screen.getByTestId('description-content')).not.toHaveClass('is-active');
   });
 
-  test('Description tab works correctly', () => {
+  test('manages description tab correct work', () => {
     jest.mocked(useParams).mockReturnValue({ id: '4' });
 
     renderWithReduxAndRouter(<Product/>, { initialState: { 
@@ -63,7 +63,7 @@ describe('Product', () => {
     expect(screen.getByTestId('description-content')).toHaveClass('is-active');
   });
 
-  test('AddToCart button invoke modal', async() => {
+  test('invokes modal by click on addToCart button', async() => {
     jest.mocked(useParams).mockReturnValue({ id: '4' });
     renderWithReduxAndRouter(<Product/>, {
       initialState: { 
@@ -71,18 +71,18 @@ describe('Product', () => {
       }
     });
 
-    expect(spyDispatch).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledTimes(1);
 
     const toCartButton = screen.getByText(/Добавить в корзину/i);
     fireEvent.click(toCartButton);
 
-    expect(spyDispatch).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.AddToCart));
-    expect(spyDispatch).toHaveBeenNthCalledWith(3, ActionCreator.ChangeAddingToCartItem(productMock));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.AddToCart));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.ChangeAddingToCartItem(productMock));
   });
 
-  test('Should add tab in url-params when no tab', async() => {
+  test('should add tab in url-params when no tab', async() => {
     const searchParams = new URLSearchParams({});
-    jest.mocked(useSearchParams).mockReturnValue([searchParams, spySetSearchParams]);
+    jest.mocked(useSearchParams).mockReturnValue([searchParams, setSearchParamsSpy]);
 
     jest.mocked(useParams).mockReturnValue({ id: '4' });
     renderWithReduxAndRouter(<Product/>, {
@@ -91,12 +91,12 @@ describe('Product', () => {
       }
     });
 
-    expect(spyNavigate).toHaveBeenCalledWith(`${AppUrl.Catalog}${AppUrl.Product}/4?tab=${DEFAULT_TAB}`, {replace: true});
+    expect(navigateSpy).toHaveBeenCalledWith(`${AppUrl.Catalog}${AppUrl.Product}/4?tab=${DEFAULT_TAB}`, {replace: true});
   });
 
-  test('Should redirect to 404 when unknown tab', async() => {
+  test('should redirect to 404 when unknown tab', async() => {
     const searchParams = new URLSearchParams({tab: 'unknown'});
-    jest.mocked(useSearchParams).mockReturnValue([searchParams, spySetSearchParams]);
+    jest.mocked(useSearchParams).mockReturnValue([searchParams, setSearchParamsSpy]);
 
     jest.mocked(useParams).mockReturnValue({ id: '4' });
     renderWithReduxAndRouter(<Product/>, {
@@ -105,6 +105,6 @@ describe('Product', () => {
       }
     });
 
-    expect(spyNavigate).toHaveBeenCalledWith(AppUrl.NotFound);
+    expect(navigateSpy).toHaveBeenCalledWith(AppUrl.NotFound);
   });
 });

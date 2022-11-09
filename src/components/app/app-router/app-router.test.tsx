@@ -8,7 +8,7 @@ jest.mock('../../../pages/product-page/product-page', () => () => (<div data-tes
 jest.mock('../../../pages/not-found-page/not-found-page', () => () => (<div data-testid='not-found-page'></div>));
 jest.mock('../../../pages/server-unavailable-page/server-unavailable-page', () => () => (<div data-testid='server-unavailable-page'></div>));
 
-describe('Test AppRouter routers', () => {
+describe('AppRouter component', () => {
   test('redirects from main to catalog page correctly', () => {
     renderWithReduxAndRouter(<AppRouter/>, { route: AppUrl.Main });
     const catalogPage = screen.getByTestId('catalog-page');

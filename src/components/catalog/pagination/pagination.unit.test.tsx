@@ -4,37 +4,35 @@ import { AppUrl } from '../../../consts';
 import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
 import Pagination from './pagination';
 
-const spyNavigate = jest.fn();
-const spySetSearchParams = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useSearchParams: jest.fn(),
+  useNavigate: jest.fn(),
+}));
 
-jest.mock('react-router-dom', () => {
-  return {
-    ...jest.requireActual('react-router-dom'),
-    useSearchParams: jest.fn(),
-    useNavigate: jest.fn(),
-  }
-});
+const navigateSpy = jest.fn();
+const setSearchParamsSpy = jest.fn();
 
-describe('Pagination', () => {
+describe('Pagination component', () => {
   beforeEach(() => {
     const searchParams = new URLSearchParams({page: '1'});
-    jest.mocked(useSearchParams).mockReturnValue([searchParams, spySetSearchParams]);
-    jest.mocked(useNavigate).mockReturnValue(spyNavigate);
+    jest.mocked(useSearchParams).mockReturnValue([searchParams, setSearchParamsSpy]);
+    jest.mocked(useNavigate).mockReturnValue(navigateSpy);
   });
 
-  test('Renders pages-buttons correctly', () => {
+  test('renders pages-buttons correctly', () => {
     renderWithReduxAndRouter(<Pagination pageCount={3}/>);
     const buttons = screen.getAllByTestId('pagination-page');
     expect(buttons).toHaveLength(3);
   });
 
-  test('Renders prev/next button correctly on first page', () => {
+  test('renders prev/next button correctly on first page', () => {
     renderWithReduxAndRouter(<Pagination pageCount={3}/>);
     expect(screen.queryByText(/Назад/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Далее/i)).toBeInTheDocument();
   });
 
-  test('Renders prev/next button correctly on last page', () => {
+  test('renders prev/next button correctly on last page', () => {
     const searchParams = new URLSearchParams({page: '3'});
     jest.mocked(useSearchParams).mockReturnValue([searchParams, jest.fn()]);
 
@@ -44,7 +42,7 @@ describe('Pagination', () => {
     expect(screen.queryByText(/Далее/i)).not.toBeInTheDocument();
   });
 
-  test('Renders active link correctly', () => {
+  test('renders active link correctly', () => {
     const searchParams = new URLSearchParams({page: '3'});
     jest.mocked(useSearchParams).mockReturnValue([searchParams, jest.fn()]);
 
@@ -54,20 +52,20 @@ describe('Pagination', () => {
     expect(getByText(pagination, /3/i)).toHaveClass('pagination__button--active');
   });
 
-  test('If page incorrect redirect to 404', () => {
+  test('redirects to 404 if page is incorrect', () => {
     const searchParams = new URLSearchParams({page: '4'});
     jest.mocked(useSearchParams).mockReturnValue([searchParams, jest.fn()]);
     renderWithReduxAndRouter(<Pagination pageCount={3}/>);
 
-    expect(spyNavigate).toHaveBeenCalledWith(AppUrl.NotFound);
+    expect(navigateSpy).toHaveBeenCalledWith(AppUrl.NotFound);
   });
 
-  test('Change page by click on page-button', () => {
+  test('changes page by click on page-button', () => {
     renderWithReduxAndRouter(<Pagination pageCount={3}/>);
     
     fireEvent.click(screen.getByText(/2/i));
 
     const searchParams = new URLSearchParams({page: '2'});
-    expect(spySetSearchParams).toHaveBeenCalledWith(searchParams);
+    expect(setSearchParamsSpy).toHaveBeenCalledWith(searchParams);
   });
 });

@@ -20,7 +20,7 @@ jest.mock('../../hooks/use-app-dispatch');
 const setParamsSpy = jest.fn();
 const dispatchSpy = jest.fn();
 
-test('Filter component resets params correctly and uploads products on reset-button click', () => {
+test('Filters component resets params correctly and uploads products on reset-button click', () => {
   const params = new URLSearchParams('?price_min=900&price_max=2000&category=Фотоаппарат&level=Нулевой&type=Моментальная&page=4');
   jest.mocked(useSearchParams).mockReturnValue([params, setParamsSpy]);
   jest.mocked(useAppDispatch).mockReturnValue(dispatchSpy);

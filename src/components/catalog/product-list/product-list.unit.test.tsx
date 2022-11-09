@@ -5,7 +5,7 @@ import ProductList from './product-list';
 
 jest.mock('../../product-card/product-card', () => () => <div data-testid='product-card'></div>);
 
-test('ProductList renders correct products count', () => {
+test('ProductList component renders correct products count', () => {
   renderWithReduxAndRouter(<ProductList products={productsMock}/>);
 
   const cards = screen.getAllByTestId('product-card');

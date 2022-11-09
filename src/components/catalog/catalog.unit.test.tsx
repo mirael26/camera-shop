@@ -8,12 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { loadDisplayedProducts, loadFilteredProducts } from '../../store/api-action';
 
-const spyNavigate = jest.fn();
-
 jest.mock('../filters/filters', () => 'Filters');
 jest.mock('./sorts/sorts', () => 'Sorts');
 jest.mock('./product-list/product-list', () => () => <div data-testid='product-list'></div>);
 jest.mock('./pagination/pagination', () => () => <div data-testid='pagination'></div>);
+
 jest.mock('axios');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -25,10 +24,12 @@ jest.mock('../../store/api-action', () => ({
   loadDisplayedProducts: jest.fn(),
 }));
 
-describe('Catalog', () => {
+const navigateSpy = jest.fn();
+
+describe('Catalog component', () => {
   beforeEach(() => {
     jest.mocked(axios).get.mockResolvedValue({});
-    jest.mocked(useNavigate).mockReturnValue(spyNavigate);
+    jest.mocked(useNavigate).mockReturnValue(navigateSpy);
     jest.mocked(useAppDispatch).mockReturnValue(jest.fn());
   });
  
@@ -88,8 +89,8 @@ describe('Catalog', () => {
   test('add param default page if no page', () => {
     renderWithReduxAndRouter(<Catalog/>, { route: `${AppUrl.Catalog}` });
 
-    expect(spyNavigate).toHaveBeenCalledTimes(1);
-    expect(spyNavigate).toHaveBeenCalledWith(`${AppUrl.Catalog}?page=1`, {replace: true});
+    expect(navigateSpy).toHaveBeenCalledTimes(1);
+    expect(navigateSpy).toHaveBeenCalledWith(`${AppUrl.Catalog}?page=1`, {replace: true});
   });
 
   test('send loadFilteredProducts query if some filter-prop exists', () => {

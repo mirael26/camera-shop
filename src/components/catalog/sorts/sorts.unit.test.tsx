@@ -9,7 +9,7 @@ describe('Sorts', () => {
 
     const radioInputs = screen.getAllByRole('radio');
     expect(radioInputs).toHaveLength(4);
-    radioInputs.forEach((input) => expect(input).not.toHaveAttribute('checked'));
+    radioInputs.forEach((input) => expect(input).not.toBeChecked());
   });
 
   test('checks checkboxes correctly from params', () => {

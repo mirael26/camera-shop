@@ -1,5 +1,4 @@
 import { fireEvent, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { loadProducts } from '../../../store/api-action';
@@ -16,6 +15,7 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useSearchParams: jest.fn(),
 }));
+
 const setParamsSpy = jest.fn();
 
 describe('PriceFilter component', () => {
@@ -64,7 +64,7 @@ describe('PriceFilter component', () => {
   });
 
   test('corrects min-value as max-value if min-value more then max-value', async () => {
-    renderWithReduxAndRouter(<PriceFilter/>, { route: '/any?price_max=19970', initialState: { data: { products: productsMock}}});
+    renderWithReduxAndRouter(<PriceFilter/>, { route: '/catalog?price_max=19970', initialState: { data: { products: productsMock}}});
 
     const minPriceInput = screen.getAllByTestId('price-input')[0];
 

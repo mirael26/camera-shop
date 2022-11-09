@@ -1,10 +1,11 @@
 import { ChangeEvent } from 'react';
 import { useHandleFilterInputChange } from './use-handle-filter-input-change';
 
+const setParamsSpy = jest.fn();
+
 describe('useHandleFilterInputChange hook', () => {
-  test('work correctly with checked button', () => {
+  test('works correctly with checked button', () => {
     const params = new URLSearchParams();
-    const setParamsSpy = jest.fn();
     const mockEvent = {
       target: {
         name: 'camera',
@@ -20,9 +21,8 @@ describe('useHandleFilterInputChange hook', () => {
   });
 
   
-  test('work correctly with unchecked button', () => {
+  test('works correctly with unchecked button', () => {
     const params = new URLSearchParams('?category=camera&category=video');
-    const setParamsSpy = jest.fn();
     const mockEvent = {
       target: {
         name: 'camera',
@@ -37,9 +37,8 @@ describe('useHandleFilterInputChange hook', () => {
     expect(setParamsSpy).toHaveBeenCalledWith(params);
   });
 
-  test('reset page correctly', () => {
+  test('resets page correctly', () => {
     const params = new URLSearchParams('?category=camera&page=5');
-    const setParamsSpy = jest.fn();
     const mockEvent = {
       target: {
         name: 'camera',

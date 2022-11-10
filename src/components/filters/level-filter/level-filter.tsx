@@ -5,12 +5,13 @@ import { useHandleFilterInputChange } from '../../../hooks/use-handle-filter-inp
 import { valueof } from '../../../types/util.type';
 import { checkFilters } from '../../../utils';
 
+type TLevelFilter = valueof<typeof Level>;
+
 const LevelFilter = () => {
   const [params, setParams] = useSearchParams();
   const [filtersChecked, setFiltersChecked] = useState({[Level.Beginner]: false, [Level.Amateur]: false, [Level.Professional]: false});
 
   useEffect(() => {
-    type TLevelFilter = valueof<typeof Level>;
     checkFilters<TLevelFilter>(params, filtersChecked, setFiltersChecked, Param.Level);
   }, [params, filtersChecked]);
 

@@ -5,13 +5,14 @@ import { useHandleFilterInputChange } from '../../../hooks/use-handle-filter-inp
 import { valueof } from '../../../types/util.type';
 import { checkFilters, deleteOneParam } from '../../../utils';
 
+type TTypeFilter = valueof<typeof CameraType>;
+
 const TypeFilter = () => {
   const [params, setParams] = useSearchParams();
   const [filtersChecked, setFiltersChecked] = useState({[CameraType.Digital]: false, [CameraType.Film]: false, [CameraType.Instant]: false, [CameraType.Collectible]: false});
   const [isVideoCameraOnly, setVideoCameraOnly] = useState(false);
 
   useEffect(() => {
-    type TTypeFilter = valueof<typeof CameraType>;
     checkFilters<TTypeFilter>(params, filtersChecked, setFiltersChecked, Param.Type);
   }, [params, filtersChecked]);
 

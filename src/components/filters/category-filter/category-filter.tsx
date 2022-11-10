@@ -5,13 +5,13 @@ import { useHandleFilterInputChange } from '../../../hooks/use-handle-filter-inp
 import { valueof } from '../../../types/util.type';
 import { checkFilters } from '../../../utils';
 
+type TCategoryFilter = valueof<typeof Category>;
 
 const CategoryFilter = () => {
   const [params, setParams] = useSearchParams();
   const [filtersChecked, setFiltersChecked] = useState({[Category.Camera]: false, [Category.VideoCamera]: false});
 
   useEffect(() => {
-    type TCategoryFilter = valueof<typeof Category>;
     checkFilters<TCategoryFilter>(params, filtersChecked, setFiltersChecked, Param.Category);
   }, [params, filtersChecked]);
 

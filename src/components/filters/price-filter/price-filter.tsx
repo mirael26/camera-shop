@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { Param } from '../../../consts';
@@ -6,7 +6,6 @@ import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { loadProducts } from '../../../store/api-action';
 import { getAllProductsAsc } from '../../../store/selectors';
 
-export const INPUT_DELAY_MS = 1500;
 const DEFAULT_PAGE = '1';
 
 const PriceFilter = () => {
@@ -17,22 +16,14 @@ const PriceFilter = () => {
 
   const [params, setParams] = useSearchParams();
   const [inputValue, setInputValue] = useState({ min: '', max: ''});
-  const [timer, setTimer] = useState<{[key: string]: null | NodeJS.Timeout}>({ min: null, max: null});
+  const refMinInput = useRef<HTMLInputElement>(null);
+  const refMaxInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!productsAsc) {
       dispatch(loadProducts());
     }
   }, [dispatch, productsAsc]);
-
-  useEffect(() => () => { // очищаем таймеры
-    if (timer.min) {
-      clearTimeout(timer.min);
-    }
-    if (timer.max) {
-      clearTimeout(timer.max);
-    }
-  }, [timer]);
 
   useEffect(() => { // обвновление значений из params
     const minParam = params.get(Param.PriceMin) || '';
@@ -48,10 +39,6 @@ const PriceFilter = () => {
   const handleMinInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
     setInputValue((prev) => ({...prev, min: value})); // устанавливаем введенное значение в стейт для отображения
-
-    if (timer.min) {
-      clearTimeout(timer.min); // debounce
-    }
 
     const setMin = () => {
       if (value === '') { // если значение - пустая строка
@@ -84,19 +71,24 @@ const PriceFilter = () => {
       params.set(Param.Page, DEFAULT_PAGE);
       setParams(params);
       setInputValue((prev) => ({...prev, min: newMin})); // записываем новое значение в стейт
+
+      refMinInput.current?.removeEventListener('blur', setMin);
+      document.removeEventListener('keydown', handleEnterKeydown);
     };
 
-    const timerMin = setTimeout(() => setMin(), INPUT_DELAY_MS); // устанавливаем таймер на смену значений
-    setTimer((prev) => ({...prev, min: timerMin})); // сохраняем таймер
+    const handleEnterKeydown = (keydownEvt: KeyboardEvent) => {
+      if (keydownEvt.key === 'Enter') {
+        setMin();
+      }
+    };
+
+    refMinInput.current?.addEventListener('blur', setMin);
+    document.addEventListener('keydown', handleEnterKeydown);
   };
 
   const handleMaxInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
     setInputValue((prev) => ({...prev, max: value})); // устанавливаем введенное значение в стейт для отображения
-
-    if (timer.max) {
-      clearTimeout(timer.max); // debounce
-    }
 
     const setMax = () => {
       if (value === '') { // если значение - пустая строка
@@ -129,10 +121,19 @@ const PriceFilter = () => {
       params.set(Param.Page, DEFAULT_PAGE);
       setParams(params);
       setInputValue((prev) => ({...prev, max: newMax})); // записываем новое значение в стейт
+
+      refMaxInput.current?.removeEventListener('blur', setMax);
+      document.removeEventListener('keydown', handleEnterKeydown);
     };
 
-    const timerMax = setTimeout(() => setMax(), INPUT_DELAY_MS); // устанавливаем таймер на смену значений
-    setTimer((prev) => ({...prev, max: timerMax})); // сохраняем таймер
+    const handleEnterKeydown = (keydownEvt: KeyboardEvent) => {
+      if (keydownEvt.key === 'Enter') {
+        setMax();
+      }
+    };
+
+    refMaxInput.current?.addEventListener('blur', setMax);
+    document.addEventListener('keydown', handleEnterKeydown);
   };
 
   return (
@@ -141,12 +142,12 @@ const PriceFilter = () => {
       <div className="catalog-filter__price-range">
         <div className="custom-input">
           <label>
-            <input type="number" name="price" data-testid="price-input" placeholder={minPriceInCatalog?.toString() || 'от'} value={inputValue.min} onChange={handleMinInputChange}/>
+            <input type="number" name="price" ref={refMinInput} data-testid="price-input" placeholder={minPriceInCatalog?.toString() || 'от'} value={inputValue.min} onChange={handleMinInputChange}/>
           </label>
         </div>
         <div className="custom-input">
           <label>
-            <input type="number" name="priceUp" data-testid="price-input" placeholder={maxPriceInCatalog?.toString() || 'до'} value={inputValue.max} onChange={handleMaxInputChange}/>
+            <input type="number" name="priceUp" ref={refMaxInput} data-testid="price-input" placeholder={maxPriceInCatalog?.toString() || 'до'} value={inputValue.max} onChange={handleMaxInputChange}/>
           </label>
         </div>
       </div>

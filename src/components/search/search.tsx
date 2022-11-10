@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { loadProducts } from '../../store/api-action';
@@ -14,9 +14,10 @@ const Search = () => {
   const [isListOpened, setListOpened] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [searchedProducts, setSearchedProducts] = useState<Array<ISearchedProduct>>([]);
+  const refFormSearch = useRef(null);
 
   const handleOverClick = useCallback((evt: MouseEvent) => { // слушатель для клика вне блока поиска
-    const searchBlock = document.querySelector('.form-search');
+    const searchBlock = refFormSearch.current;
     const isClickOver = searchBlock ? !evt.composedPath().includes(searchBlock) : true; // если блок существует, проверяем, был ли произведен клик на блоке или дочерних элементах
 
     if (isClickOver) {
@@ -75,7 +76,7 @@ const Search = () => {
   };
 
   return (
-    <div className={`form-search${isListOpened ? ' list-opened' : ''}`} data-testid='form-search'>
+    <div className={`form-search${isListOpened ? ' list-opened' : ''}`} ref={refFormSearch} data-testid='form-search'>
       <form onSubmit={(evt) => evt.preventDefault()}>
         <label>
           <svg className="form-search__icon" width="16" height="16" aria-hidden="true">

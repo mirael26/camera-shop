@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { loadProducts } from '../../store/api-action';
 import { getAllProducts } from '../../store/selectors';
 import { ISearchedProduct } from '../../types/data.type';
+import { searchProducts } from '../../utils';
 import SearchList from './search-list/search-list';
 
 const Search = () => {
@@ -13,21 +14,6 @@ const Search = () => {
   const [isListOpened, setListOpened] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [searchedProducts, setSearchedProducts] = useState<Array<ISearchedProduct>>([]);
-
-  const searchProducts = (value: string) => {
-    const newSearchedProducts: Array<ISearchedProduct> = [];
-
-    if (products !== null) {
-      const regExp = new RegExp(value, 'i'); // создаем регулярное выражение из введенного значения
-
-      products.forEach((product) => {
-        if (regExp.test(product.name)) { // из списка товаров отбираем те, чьи имена соответствуют регулярке
-          newSearchedProducts.push({name: product.name, id: product.id}); // добавляем в массив найденных товаров только имя и id
-        }
-      });
-    }
-    return newSearchedProducts;
-  };
 
   const handleOverClick = useCallback((evt: MouseEvent) => { // слушатель для клика вне блока поиска
     const searchBlock = document.querySelector('.form-search');
@@ -69,7 +55,7 @@ const Search = () => {
     let newSearchedProducts = null;
 
     if (newValue.trim() !== '') {
-      newSearchedProducts = searchProducts(newValue); // если введено какое-то значение, ищем товары
+      newSearchedProducts = searchProducts(newValue, products); // если введено какое-то значение, ищем товары
       setSearchedProducts(newSearchedProducts);
     } else {
       setSearchedProducts([]); // иначе устанавливаем в найденные товары пустой массив

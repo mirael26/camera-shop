@@ -1,3 +1,5 @@
+import { IProduct, ISearchedProduct } from './types/data.type';
+
 export const addPriceSeparators = (price: number, separator = ' '): string | undefined => {
   if (price < 0) {
     return undefined;
@@ -48,3 +50,18 @@ export const checkFilters = <T extends string>(params: URLSearchParams, filtersS
 };
 
 export const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+export const searchProducts = (value: string, products: Array<IProduct> | null) => {
+  const newSearchedProducts: Array<ISearchedProduct> = [];
+
+  if (products !== null) {
+    const regExp = new RegExp(value, 'i'); // создаем регулярное выражение из введенного значения
+
+    products.forEach((product) => {
+      if (regExp.test(product.name)) { // из списка товаров отбираем те, чьи имена соответствуют регулярке
+        newSearchedProducts.push({name: product.name, id: product.id}); // добавляем в массив найденных товаров только имя и id
+      }
+    });
+  }
+  return newSearchedProducts;
+};

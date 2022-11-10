@@ -73,17 +73,17 @@ const PriceFilter = () => {
       setInputValue((prev) => ({...prev, min: newMin})); // записываем новое значение в стейт
 
       refMinInput.current?.removeEventListener('blur', setMin);
-      document.removeEventListener('keydown', handleEnterKeydown);
+      document.removeEventListener('keydown', handleMinEnterKeydown);
     };
 
-    const handleEnterKeydown = (keydownEvt: KeyboardEvent) => {
+    const handleMinEnterKeydown = (keydownEvt: KeyboardEvent) => {
       if (keydownEvt.key === 'Enter') {
         setMin();
       }
     };
 
     refMinInput.current?.addEventListener('blur', setMin);
-    document.addEventListener('keydown', handleEnterKeydown);
+    document.addEventListener('keydown', handleMinEnterKeydown);
   };
 
   const handleMaxInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -123,17 +123,17 @@ const PriceFilter = () => {
       setInputValue((prev) => ({...prev, max: newMax})); // записываем новое значение в стейт
 
       refMaxInput.current?.removeEventListener('blur', setMax);
-      document.removeEventListener('keydown', handleEnterKeydown);
+      document.removeEventListener('keydown', handleMaxEnterKeydown);
     };
 
-    const handleEnterKeydown = (keydownEvt: KeyboardEvent) => {
+    const handleMaxEnterKeydown = (keydownEvt: KeyboardEvent) => {
       if (keydownEvt.key === 'Enter') {
         setMax();
       }
     };
 
     refMaxInput.current?.addEventListener('blur', setMax);
-    document.addEventListener('keydown', handleEnterKeydown);
+    document.addEventListener('keydown', handleMaxEnterKeydown);
   };
 
   return (

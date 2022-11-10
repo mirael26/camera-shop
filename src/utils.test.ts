@@ -1,5 +1,6 @@
 import { URLSearchParams } from 'url';
-import { addPriceSeparators, checkFilters, deleteOneParam } from './utils';
+import { productsMock } from './test/mocks';
+import { addPriceSeparators, checkFilters, deleteOneParam, searchProducts } from './utils';
 
 describe('addPriceSeparators function', () => {
   test('Return correct three-digit result', () => {
@@ -74,5 +75,17 @@ describe('checkFilters function', () => {
     checkFilters(params, mockState, setStateSpy ,'category');
 
     expect(setStateSpy).toBeCalledTimes(2);
+  });
+});
+
+describe('searchProducts function', () => {
+  test('returns empty array if no matchs are found', () => {
+    const searchedProducts = searchProducts('abcdef', productsMock);
+    expect(searchedProducts).toHaveLength(0);
+  });
+
+  test('returns correct array if some matchs are found', () => {
+    const searchedProducts = searchProducts('shot', productsMock);
+    expect(searchedProducts).toHaveLength(1);
   });
 });

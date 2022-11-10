@@ -4,8 +4,7 @@ import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { loadProducts } from '../../../store/api-action';
 import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
 import { productsMock } from '../../../test/mocks';
-import { pause } from '../../../utils';
-import PriceFilter, { INPUT_DELAY_MS } from './price-filter';
+import PriceFilter from './price-filter';
 
 jest.mock('../../../hooks/use-app-dispatch');
 jest.mock('../../../store/api-action', () => ({
@@ -69,7 +68,7 @@ describe('PriceFilter component', () => {
     const minPriceInput = screen.getAllByTestId('price-input')[0];
 
     fireEvent.change(minPriceInput, { target: { value: '149990'}});
-    await pause(INPUT_DELAY_MS + 100);
+    fireEvent.blur(minPriceInput);
     expect(minPriceInput).toHaveDisplayValue('19970');
   });
 
@@ -79,7 +78,7 @@ describe('PriceFilter component', () => {
     const minPriceInput = screen.getAllByTestId('price-input')[0];
 
     fireEvent.change(minPriceInput, { target: { value: '500'}});
-    await pause(INPUT_DELAY_MS + 100);
+    fireEvent.blur(minPriceInput);
     expect(minPriceInput).toHaveDisplayValue('9490');
   });
 
@@ -89,27 +88,22 @@ describe('PriceFilter component', () => {
     const maxPriceInput = screen.getAllByTestId('price-input')[1];
 
     fireEvent.change(maxPriceInput, { target: { value: '500000'}});
-    await pause(INPUT_DELAY_MS + 100);
+    fireEvent.blur(maxPriceInput);
     expect(maxPriceInput).toHaveDisplayValue('149990');
   });
 
-  test('corrects min-value to prices in catalog', async () => {
+  test('corrects min- and max-value to prices in catalog', async () => {
     renderWithReduxAndRouter(<PriceFilter/>, { initialState: { data: { products: productsMock}}});
 
     const minPriceInput = screen.getAllByTestId('price-input')[0];
-
     fireEvent.change(minPriceInput, { target: { value: '18000'}});
-    await pause(INPUT_DELAY_MS + 100);
-    expect(minPriceInput).toHaveDisplayValue('19970');
-  });
-
-  test('corrects max-value to prices in catalog', async () => {
-    renderWithReduxAndRouter(<PriceFilter/>, { initialState: { data: { products: productsMock}}});
+    fireEvent.blur(minPriceInput);
 
     const maxPriceInput = screen.getAllByTestId('price-input')[1];
-
     fireEvent.change(maxPriceInput, { target: { value: '150000'}});
-    await pause(INPUT_DELAY_MS + 100);
+    fireEvent.blur(maxPriceInput);
+
+    expect(minPriceInput).toHaveDisplayValue('19970');
     expect(maxPriceInput).toHaveDisplayValue('149990');
   });
 
@@ -121,22 +115,9 @@ describe('PriceFilter component', () => {
     expect(maxPriceInput).toHaveDisplayValue('149990');
 
     fireEvent.change(maxPriceInput, { target: { value: ''}});
-    await pause(INPUT_DELAY_MS + 100);
+    fireEvent.blur(maxPriceInput);
+  
     expect(maxPriceInput).toHaveDisplayValue('');
     expect(setParamsSpy).toHaveBeenCalledWith(new URLSearchParams('?page=1'));
-  });
-
-  test('triggers only one setParams call when three input-changes occur in sequence', async () => {
-    jest.mocked(useSearchParams).mockReturnValue([new URLSearchParams('?page=1'), setParamsSpy]);
-    renderWithReduxAndRouter(<PriceFilter/>, { initialState: { data: { products: productsMock}}});
-
-    const maxPriceInput = screen.getAllByTestId('price-input')[1];
-
-    fireEvent.change(maxPriceInput, { target: { value: '1'}});
-    fireEvent.change(maxPriceInput, { target: { value: '2'}});
-    fireEvent.change(maxPriceInput, { target: { value: '3'}});
-    await pause(INPUT_DELAY_MS + 100);
-
-    expect(setParamsSpy).toHaveBeenCalledTimes(1);
   });
 });

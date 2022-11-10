@@ -49,8 +49,6 @@ export const checkFilters = <T extends string>(params: URLSearchParams, filtersS
   });
 };
 
-export const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
 export const searchProducts = (value: string, products: Array<IProduct> | null) => {
   const newSearchedProducts: Array<ISearchedProduct> = [];
 

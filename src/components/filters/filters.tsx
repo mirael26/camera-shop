@@ -22,6 +22,7 @@ const Filters = (): JSX.Element => {
     params.set(Param.Page, DEFAULT_PAGE);
     setParams(params);
     dispatch(ActionCreator.LoadFilteredProducts(null));
+    dispatch(ActionCreator.LoadFilteredExcludingPriceProducts(null));
   };
 
   return (

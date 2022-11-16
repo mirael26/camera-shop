@@ -6,6 +6,7 @@ export const initialState: IDataReducer = {
   promo: null,
   products: null,
   filteredProducts: null,
+  filteredExcludingPriceProducts: null,
   displayedProducts: null,
   currentProduct: null,
   similarProducts: null,
@@ -20,6 +21,8 @@ export const dataReducer = (state = initialState, action: TDataAction): IDataRed
       return {...state, products: action.payload};
     case ActionType.LoadFilteredProducts:
       return {...state, filteredProducts: action.payload};
+    case ActionType.LoadFilteredExcludingPriceProducts:
+      return {...state, filteredExcludingPriceProducts: action.payload};
     case ActionType.LoadDisplayedProducts:
       return {...state, displayedProducts: action.payload};
     case ActionType.LoadCurrentProduct:

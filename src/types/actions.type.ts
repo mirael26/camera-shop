@@ -17,6 +17,11 @@ export interface ILoadFilteredProducts {
   payload: Array<IProduct> | null;
 }
 
+export interface ILoadFilteredExcludingPriceProducts {
+  type: typeof ActionType.LoadFilteredExcludingPriceProducts;
+  payload: Array<IProduct> | null;
+}
+
 export interface ILoadDisplayedProducts {
   type: typeof ActionType.LoadDisplayedProducts;
   payload: Array<IProduct>;
@@ -62,5 +67,5 @@ export interface ISetProdactsLoadingStatus {
   payload: boolean;
 }
 
-export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
+export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadFilteredExcludingPriceProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
 export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect | ISetProdactsLoadingStatus;

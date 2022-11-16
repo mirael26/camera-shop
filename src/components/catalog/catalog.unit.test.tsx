@@ -21,6 +21,7 @@ jest.mock('react-router-dom', () => ({
 jest.mock('../../hooks/use-app-dispatch');
 jest.mock('../../store/api-action', () => ({
   loadFilteredProducts: jest.fn(),
+  loadFilteredExcludingPriceProducts: jest.fn(),
   loadDisplayedProducts: jest.fn(),
 }));
 

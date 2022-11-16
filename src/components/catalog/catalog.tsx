@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { loadDisplayedProducts, loadFilteredProducts } from '../../store/api-action';
+import { loadDisplayedProducts, loadFilteredExcludingPriceProducts, loadFilteredProducts } from '../../store/api-action';
 import Filters from '../filters/filters';
 import Pagination from './pagination/pagination';
 import Sorts from './sorts/sorts';
@@ -9,6 +9,7 @@ import { getAllProductsCount, getDisplayedProducts, getFilteredProductsCount, ge
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ProductList from './product-list/product-list';
 import { AppUrl, Param } from '../../consts';
+import { ActionCreator } from '../../store/action';
 
 const PRODUCTS_COUNT_ON_PAGE = 9;
 const DEFAULT_PAGE = '1';
@@ -60,7 +61,7 @@ const Catalog = (): JSX.Element => {
       }
 
       const isFiltersActive = params.has(Param.PriceMin) || params.has(Param.PriceMax) || params.has(Param.Category) || params.has(Param.Type) || params.has(Param.Level);
-      if (isFiltersActive) { // если включены фильтры, нам нужно получить длину массива отфильтрованных товаров для пагинации
+      if (isFiltersActive) { // если включены фильтры, нам нужно получить массив отфильтрованных товаров (для пагинации и фильтра цены)
         const filterQueryParams = new URLSearchParams(allQueryParams); // создаем параметры только с фильтрами
         filterQueryParams.delete('_start'); // убираем ненужные параметры
         filterQueryParams.delete('_end');
@@ -68,7 +69,20 @@ const Catalog = (): JSX.Element => {
         filterQueryParams.delete('_order');
 
         dispatch(loadFilteredProducts(filterQueryParams)); // отправляем запрос отфильтрованных товаров
+
+        if (params.has(Param.Category) || params.has(Param.Type) || params.has(Param.Level)) { // если включены какие-то фильтры кроме цены, нужно получить массив продуктов с фильтрацией без цены
+          const filterExcludingPriceQueryParams = new URLSearchParams(filterQueryParams); // создаем параметры с фильтрами без цены
+          filterExcludingPriceQueryParams.delete('price_gte');
+          filterExcludingPriceQueryParams.delete('price_lte');
+
+          dispatch(loadFilteredExcludingPriceProducts(filterExcludingPriceQueryParams)); // отправляем запрос отфильтрованных кроме цены товаров
+        } else {
+          dispatch(ActionCreator.LoadFilteredExcludingPriceProducts(null));
+        }
+      } else {
+        dispatch(ActionCreator.LoadFilteredExcludingPriceProducts(null));
       }
+
       dispatch(loadDisplayedProducts(allQueryParams)); // отправляем запрос товаров, которые нужно вывести на страницу
     }
   }, [dispatch, navigate, params, setParams]);

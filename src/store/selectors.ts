@@ -4,9 +4,8 @@ import { TRootReducer } from './store';
 export const getAllProducts = (state: TRootReducer) => state.data.products;
 export const getAllProductsCount = (state: TRootReducer) => state.data.products?.length;
 export const getFilteredProductsCount = (state: TRootReducer) => state.data.filteredProducts?.length;
+export const getFilteredExcludingPriceProducts = (state: TRootReducer) => state.data.filteredExcludingPriceProducts;
 export const getDisplayedProducts = (state: TRootReducer) => state.data.displayedProducts;
-export const getMinPriceInDisplayed = (state: TRootReducer) => state.data.displayedProducts?.reduce((a, b) => a.price < b.price ? a : b).price;
-export const getMaxPriceInDisplayed = (state: TRootReducer) => state.data.displayedProducts?.reduce((a, b) => a.price > b.price ? a : b).price;
 export const getCurrentProduct = (state: TRootReducer) => state.data.currentProduct;
 export const getSimilarProducts = (state: TRootReducer) => state.data.similarProducts;
 export const getReviews = (state: TRootReducer) => state.data.reviews;
@@ -24,5 +23,14 @@ export const getAllProductsAsc = createSelector(
     const productsAsc = products?.slice();
     productsAsc?.sort((a, b) => a.price - b.price);
     return productsAsc;
+  }
+);
+
+export const getFilteredExcludingPriceProductsAsc = createSelector(
+  getFilteredExcludingPriceProducts,
+  (filteredExcludingPriceProducts) => {
+    const filteredExcludingPriceProductsAsc = filteredExcludingPriceProducts?.slice();
+    filteredExcludingPriceProductsAsc?.sort((a, b) => a.price - b.price);
+    return filteredExcludingPriceProductsAsc;
   }
 );

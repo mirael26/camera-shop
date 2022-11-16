@@ -28,6 +28,7 @@ test('Filters component resets params correctly and uploads products on reset-bu
 
   fireEvent.click(screen.getByText(/Сбросить фильтры/i));
   expect(setParamsSpy).toHaveBeenCalledWith(new URLSearchParams('?page=1'));
-  expect(dispatchSpy).toHaveBeenCalledTimes(1);
-  expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadFilteredProducts(null));
+  expect(dispatchSpy).toHaveBeenCalledTimes(2);
+  expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.LoadFilteredProducts(null));
+  expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.LoadFilteredExcludingPriceProducts(null));
 });

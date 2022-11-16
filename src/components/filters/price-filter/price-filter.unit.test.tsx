@@ -67,6 +67,7 @@ describe('PriceFilter component', () => {
 
     const minPriceInput = screen.getAllByTestId('price-input')[0];
 
+    fireEvent.focus(minPriceInput);
     fireEvent.change(minPriceInput, { target: { value: '149990'}});
     fireEvent.blur(minPriceInput);
     expect(minPriceInput).toHaveDisplayValue('19970');
@@ -77,6 +78,7 @@ describe('PriceFilter component', () => {
 
     const minPriceInput = screen.getAllByTestId('price-input')[0];
 
+    fireEvent.focus(minPriceInput);
     fireEvent.change(minPriceInput, { target: { value: '500'}});
     fireEvent.blur(minPriceInput);
     expect(minPriceInput).toHaveDisplayValue('9490');
@@ -87,6 +89,7 @@ describe('PriceFilter component', () => {
 
     const maxPriceInput = screen.getAllByTestId('price-input')[1];
 
+    fireEvent.focus(maxPriceInput);
     fireEvent.change(maxPriceInput, { target: { value: '500000'}});
     fireEvent.blur(maxPriceInput);
     expect(maxPriceInput).toHaveDisplayValue('149990');
@@ -96,10 +99,12 @@ describe('PriceFilter component', () => {
     renderWithReduxAndRouter(<PriceFilter/>, { initialState: { data: { products: productsMock}}});
 
     const minPriceInput = screen.getAllByTestId('price-input')[0];
+    fireEvent.focus(minPriceInput);
     fireEvent.change(minPriceInput, { target: { value: '18000'}});
     fireEvent.blur(minPriceInput);
 
     const maxPriceInput = screen.getAllByTestId('price-input')[1];
+    fireEvent.focus(maxPriceInput);
     fireEvent.change(maxPriceInput, { target: { value: '150000'}});
     fireEvent.blur(maxPriceInput);
 
@@ -114,6 +119,7 @@ describe('PriceFilter component', () => {
     const maxPriceInput = screen.getAllByTestId('price-input')[1];
     expect(maxPriceInput).toHaveDisplayValue('149990');
 
+    fireEvent.focus(maxPriceInput);
     fireEvent.change(maxPriceInput, { target: { value: ''}});
     fireEvent.blur(maxPriceInput);
   

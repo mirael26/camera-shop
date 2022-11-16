@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { Param } from '../../../consts';
@@ -41,8 +41,8 @@ const PriceFilter = () => {
 
   const setMin = (evt: FocusEvent) => {
     const value = (evt.target as HTMLInputElement).value;
-    console.log(value);
-    if (value === Param.PriceMin) { // если значение не изменилось
+
+    if (value === Param.PriceMin) { // если значение не изменилось, ничего не делаем
       return;
     }
 
@@ -78,29 +78,13 @@ const PriceFilter = () => {
     setInputValue((prev) => ({...prev, min: newMin})); // записываем новое значение в стейт
 
     refMinInput.current?.removeEventListener('blur', setMin);
-    document.removeEventListener('keydown', handleMinEnterKeydown);
-  };
-
-  const handleMinEnterKeydown = (keydownEvt: KeyboardEvent) => {
-    if (keydownEvt.key === 'Enter') {
-      refMinInput.current?.blur();
-    }
-  };
-
-  const handleMinInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const value = evt.target.value;
-    setInputValue((prev) => ({...prev, min: value})); // устанавливаем введенное значение в стейт для отображения
-
-    refMinInput.current?.removeEventListener('blur', setMin);
-    document.removeEventListener('keydown', handleMinEnterKeydown);
-    refMinInput.current?.addEventListener('blur', setMin);
-    document.addEventListener('keydown', handleMinEnterKeydown);
+    document.removeEventListener('keydown', handleMinInputEnterKeydown);
   };
 
   const setMax = (evt: FocusEvent) => {
     const value = (evt.target as HTMLInputElement).value;
-    console.log(value);
-    if (value === Param.PriceMax) { // если значение не изменилось
+
+    if (value === Param.PriceMax) { // если значение не изменилось, ничего не делаем
       return;
     }
 
@@ -136,23 +120,29 @@ const PriceFilter = () => {
     setInputValue((prev) => ({...prev, max: newMax})); // записываем новое значение в стейт
 
     refMaxInput.current?.removeEventListener('blur', setMax);
-    document.removeEventListener('keydown', handleMaxEnterKeydown);
+    document.removeEventListener('keydown', handleMaxInputEnterKeydown);
   };
 
-  const handleMaxEnterKeydown = (keydownEvt: KeyboardEvent) => {
+  const handleMinInputEnterKeydown = (keydownEvt: KeyboardEvent) => {
+    if (keydownEvt.key === 'Enter') {
+      refMinInput.current?.blur();
+    }
+  };
+
+  const handleMaxInputEnterKeydown = (keydownEvt: KeyboardEvent) => {
     if (keydownEvt.key === 'Enter') {
       refMaxInput.current?.blur();
     }
   };
 
-  const handleMaxInputChange = (evt: ChangeEvent<HTMLInputElement>) => {  
-    const value = evt.target.value;
-    setInputValue((prev) => ({...prev, max: value})); // устанавливаем введенное значение в стейт для отображения
+  const handleMinInputFocus = () => {
+    refMinInput.current?.addEventListener('blur', setMin);
+    document.addEventListener('keydown', handleMinInputEnterKeydown);
+  };
 
-    refMaxInput.current?.removeEventListener('blur', setMax); // обновляем обработчики событий
-    document.removeEventListener('keydown', handleMaxEnterKeydown);
+  const handleMaxInputFocus = () => {
     refMaxInput.current?.addEventListener('blur', setMax);
-    document.addEventListener('keydown', handleMaxEnterKeydown);
+    document.addEventListener('keydown', handleMaxInputEnterKeydown);
   };
 
   return (
@@ -161,12 +151,21 @@ const PriceFilter = () => {
       <div className="catalog-filter__price-range">
         <div className="custom-input">
           <label>
-            <input type="number" name="price" ref={refMinInput} data-testid="price-input" placeholder={catalogMin?.toString() || 'от'} value={inputValue.min} onChange={handleMinInputChange}/>
+            <input type="number" name="price" ref={refMinInput} data-testid="price-input"
+              placeholder={catalogMin?.toString() || 'от'} value={inputValue.min}
+              onChange={(evt) => setInputValue((prev) => ({...prev, min: evt.target.value}))}
+              onFocus={handleMinInputFocus}
+            />
           </label>
         </div>
         <div className="custom-input">
           <label>
-            <input type="number" name="priceUp" ref={refMaxInput} data-testid="price-input" placeholder={catalogMax?.toString() || 'до'} value={inputValue.max} onChange={handleMaxInputChange}/>
+            <input type="number" name="priceUp" ref={refMaxInput} data-testid="price-input"
+              placeholder={catalogMax?.toString() || 'до'}
+              value={inputValue.max}
+              onChange={(evt) => setInputValue((prev) => ({...prev, max: evt.target.value}))}
+              onFocus={handleMaxInputFocus}
+            />
           </label>
         </div>
       </div>

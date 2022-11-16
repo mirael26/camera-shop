@@ -15,13 +15,13 @@ describe('SearchList component', () => {
   test('renders scroll correctly if few links', () => {
     renderWithReduxAndRouter(<SearchList searchedProducts={searchedProductsMock} onLinkClick={jest.fn()}/>)
 
-    expect(screen.getByTestId('search-list')).not.toHaveClass('with-scroll');
+    expect(screen.getByTestId('search-list')).not.toHaveClass('scroller');
   });
 
   test('renders scroll correctly if many links', () => {
     renderWithReduxAndRouter(<SearchList searchedProducts={searchedProductsMock.concat(searchedProductsMock)} onLinkClick={jest.fn()}/>)
 
-    expect(screen.getByTestId('search-list')).toHaveClass('with-scroll');
+    expect(screen.getByTestId('search-list')).toHaveClass('scroller');
   });
 
   test('renders scroll correctly if many links', () => {

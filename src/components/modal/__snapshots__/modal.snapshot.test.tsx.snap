@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="modal is-active"
+  >
+    <div
+      class="modal__wrapper"
+    >
+      <div
+        class="modal__overlay"
+        data-testid="modal-overlay"
+      />
+      <div
+        class="modal__content"
+        data-testid="modal-content"
+      >
+        <addtocartmodalcontent />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

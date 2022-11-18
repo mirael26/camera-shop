@@ -12,8 +12,8 @@ export const getReviews = (state: TRootReducer) => state.data.reviews;
 export const getPromo = (state: TRootReducer) => state.data.promo;
 
 export const getAddingToCartItem = (state: TRootReducer) => state.view.addingToCartItem;
-export const getAddToCartModalStatus = (state: TRootReducer) => state.view.addToCartModalOpen;
-export const getReviewModalStatus = (state: TRootReducer) => state.view.reviewModalOpen;
+export const getModalStatus = (state: TRootReducer) => state.view.isModalOpen;
+export const getActiveModal = (state: TRootReducer) => state.view.activeModal;
 export const getRedirectPath = (state: TRootReducer) => state.view.redirect;
 export const getProductsLoadingStatus = (state: TRootReducer) => state.view.productsIsLoading;
 

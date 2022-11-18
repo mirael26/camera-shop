@@ -1,3 +1,4 @@
+import { TModal } from './app.type';
 import { IProduct, IPromo, IReview } from './data.type';
 
 export interface IDataReducer {
@@ -12,9 +13,9 @@ export interface IDataReducer {
 }
 
 export interface IViewReducer {
-  addToCartModalOpen: boolean;
+  isModalOpen: boolean;
+  activeModal: TModal | null;
   addingToCartItem: IProduct | null;
-  reviewModalOpen: boolean;
   redirect: null | string;
   productsIsLoading: boolean;
 }

@@ -55,9 +55,8 @@ export const ActionCreator = {
     type: ActionType.OpenModal,
     payload: modal,
   }),
-  CloseModal: (modal: TModal): ICloseModal => ({
+  CloseModal: (): ICloseModal => ({
     type: ActionType.CloseModal,
-    payload: modal,
   }),
   ChangeAddingToCartItem: (item: IProduct | null): IChangeAddingToCartItem => ({
     type: ActionType.ChangeAddingToCartItem,

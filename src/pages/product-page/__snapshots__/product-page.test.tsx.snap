@@ -7,8 +7,7 @@ exports[`ProductPage render correctly 1`] = `
     data-testid="product-page"
   >
     <header />
-    <addtocartmodal />
-    <reviewmodal />
+    <modal />
     <main>
       <div
         class="page-content"

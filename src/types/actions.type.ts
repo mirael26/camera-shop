@@ -49,7 +49,6 @@ export interface IOpenModal {
 
 export interface ICloseModal {
   type: typeof ActionType.CloseModal;
-  payload: TModal;
 }
 
 export interface IChangeAddingToCartItem {

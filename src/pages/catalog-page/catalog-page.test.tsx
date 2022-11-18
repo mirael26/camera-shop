@@ -6,7 +6,7 @@ jest.mock('../../components/promo/promo', () => 'Promo');
 jest.mock('../../components/breadcrumbs/breadcrumbs', () => 'Breadcrumbs');
 jest.mock('../../components/catalog/catalog', () => 'Catalog');
 jest.mock('../../components/footer/footer', () => 'Footer');
-jest.mock('../../components/modal/add-to-cart-modal/add-to-cart-modal', () => 'AddToCartModal');
+jest.mock('../../components/modal/modal', () => 'Modal');
 
 test('CatalogPage renders correctly', () => {
   const { asFragment } = renderWithReduxAndRouter(<CatalogPage/>);

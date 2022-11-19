@@ -30,20 +30,7 @@ exports[`Header renders correctly 1`] = `
         <mainnav />
       </div>
       <search />
-      <a
-        class="header__basket-link"
-        href="https://example.com"
-      >
-        <svg
-          aria-hidden="true"
-          height="16"
-          width="16"
-        >
-          <use
-            xlink:href="#icon-basket"
-          />
-        </svg>
-      </a>
+      <cartbutton />
     </div>
   </header>
 </DocumentFragment>

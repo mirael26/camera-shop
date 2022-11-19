@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppUrl } from '../../consts';
 import Search from '../search/search';
+import CartButton from './cart-button/cart-button';
 import MainNav from './main-nav/main-nav';
 
 const Header = ():JSX.Element => (
@@ -15,11 +16,7 @@ const Header = ():JSX.Element => (
         <MainNav/>
       </div>
       <Search/>
-      <a className="header__basket-link" href='https://example.com'>
-        <svg width="16" height="16" aria-hidden="true">
-          <use xlinkHref="#icon-basket"></use>
-        </svg>
-      </a>
+      <CartButton/>
     </div>
   </header>
 );

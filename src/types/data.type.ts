@@ -48,3 +48,7 @@ export interface ISearchedProduct {
   name: string;
   id: number;
 }
+
+export interface IProductInCart extends IProduct {
+  countInCart: number;
+}

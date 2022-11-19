@@ -42,6 +42,26 @@ export interface ILoadReviews {
   payload: Array<IReview> | null;
 }
 
+export interface IAddProductToCart {
+  type: typeof ActionType.AddProductToCart;
+  payload: IProduct;
+}
+
+export interface IDeleteProductFromCart {
+  type: typeof ActionType.DeleteProductFromCart;
+  payload: number;
+}
+
+export interface IIncreaseProductCountInCart {
+  type: typeof ActionType.IncreaseProductCountInCart;
+  payload: number;
+}
+
+export interface IDecreaseProductCountInCart {
+  type: typeof ActionType.DecreaseProductCountInCart;
+  payload: number;
+}
+
 export interface IOpenModal {
   type: typeof ActionType.OpenModal;
   payload: TModal;
@@ -67,4 +87,5 @@ export interface ISetProdactsLoadingStatus {
 }
 
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadFilteredExcludingPriceProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
+export type TCartAction = IAddProductToCart | IDeleteProductFromCart | IIncreaseProductCountInCart | IDecreaseProductCountInCart;
 export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect | ISetProdactsLoadingStatus;

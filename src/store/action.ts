@@ -1,4 +1,4 @@
-import { IChangeAddingToCartItem, ICloseModal, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetProdactsLoadingStatus } from '../types/actions.type';
+import { IAddProductToCart, IChangeAddingToCartItem, ICloseModal, IDecreaseProductCountInCart, IDeleteProductFromCart, IIncreaseProductCountInCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetProdactsLoadingStatus } from '../types/actions.type';
 import { TModal } from '../types/app.type';
 import { IProduct, IPromo, IReview } from '../types/data.type';
 
@@ -11,6 +11,12 @@ export const ActionType = {
   LoadCurrentProduct: 'cameras/loadCurrentProduct',
   LoadSimilarProducts: 'cameras/loadSimilarProducts',
   LoadReviews: 'cameras/loadReviews',
+
+  AddProductToCart: 'orders/addProductToCart',
+  DeleteProductFromCart: 'orders/deleteProductInCart',
+  IncreaseProductCountInCart: 'orders/increaseProductCountInCart',
+  DecreaseProductCountInCart: 'orders/decreaseProductCountInCart',
+
   OpenModal: 'state/openModal',
   CloseModal: 'state/closeModal',
   ChangeAddingToCartItem: 'state/changeAddingToCartItem',
@@ -51,6 +57,24 @@ export const ActionCreator = {
     type: ActionType.LoadReviews,
     payload: reviews,
   }),
+
+  AddProductToCart: (product: IProduct): IAddProductToCart => ({
+    type: ActionType.AddProductToCart,
+    payload: product,
+  }),
+  DeleteProductFromCart: (id: number): IDeleteProductFromCart => ({
+    type: ActionType.DeleteProductFromCart,
+    payload: id,
+  }),
+  IncreaseProductCountInCart: (id: number): IIncreaseProductCountInCart => ({
+    type: ActionType.IncreaseProductCountInCart,
+    payload: id,
+  }),
+  DecreaseProductCountInCart: (id: number): IDecreaseProductCountInCart => ({
+    type: ActionType.DecreaseProductCountInCart,
+    payload: id,
+  }),
+
   OpenModal: (modal: TModal): IOpenModal => ({
     type: ActionType.OpenModal,
     payload: modal,

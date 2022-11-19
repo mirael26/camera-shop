@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { cartReducer } from './reducers/cart-reducer';
 import { dataReducer } from './reducers/data-reducer';
 import { viewReducer } from './reducers/view-reducer';
 
@@ -9,7 +10,7 @@ export const createReduxStore = (initialState = {}) => (
   })
 );
 
-const rootReducer = combineReducers({data: dataReducer, view: viewReducer});
+const rootReducer = combineReducers({data: dataReducer, view: viewReducer, cart: cartReducer});
 
 const store = createReduxStore();
 

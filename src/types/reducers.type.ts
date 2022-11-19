@@ -1,5 +1,5 @@
 import { TModal } from './app.type';
-import { IProduct, IPromo, IReview } from './data.type';
+import { IProduct, IProductInCart, IPromo, IReview } from './data.type';
 
 export interface IDataReducer {
   promo: IPromo | null;
@@ -10,6 +10,11 @@ export interface IDataReducer {
   currentProduct: IProduct | null;
   similarProducts: Array<IProduct> | null;
   reviews: Array<IReview> | null;
+}
+
+export interface ICartReducer {
+  productsInCart: Array<IProductInCart> | null;
+  promocode: string | null;
 }
 
 export interface IViewReducer {

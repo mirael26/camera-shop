@@ -5,6 +5,7 @@ import AppRouter from './app-router';
 
 jest.mock('../../../pages/catalog-page/catalog-page', () => () => (<div data-testid='catalog-page'></div>));
 jest.mock('../../../pages/product-page/product-page', () => () => (<div data-testid='product-page'></div>));
+jest.mock('../../../pages/cart-page/cart-page', () => () => (<div data-testid='cart-page'></div>));
 jest.mock('../../../pages/not-found-page/not-found-page', () => () => (<div data-testid='not-found-page'></div>));
 jest.mock('../../../pages/server-unavailable-page/server-unavailable-page', () => () => (<div data-testid='server-unavailable-page'></div>));
 
@@ -24,6 +25,12 @@ describe('AppRouter component', () => {
   test('routes to product page', () => {
     renderWithReduxAndRouter(<AppRouter/>, { route: `${AppUrl.Catalog}${AppUrl.Product}/1` });
     const productPage = screen.getByTestId('product-page');
+    expect(productPage).toBeInTheDocument();
+  });
+
+  test('routes to cart page', () => {
+    renderWithReduxAndRouter(<AppRouter/>, { route: AppUrl.Cart });
+    const productPage = screen.getByTestId('cart-page');
     expect(productPage).toBeInTheDocument();
   });
 

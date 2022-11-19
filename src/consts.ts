@@ -3,6 +3,7 @@ export const AppUrl = {
   Catalog: '/catalog',
   Page: '/page_',
   Product: '/product',
+  Cart: '/cart',
   NotFound: '/404',
   ServerUnavailable: '/server_unavailable',
 } as const;

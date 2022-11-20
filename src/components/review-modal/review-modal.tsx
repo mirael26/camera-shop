@@ -12,8 +12,8 @@ const ReviewModal = (): JSX.Element | null => {
 
   return (
     <>
-      {mode === 'reviewForm' && <ReviewModalForm onSuccess={() => setMode('success')} />}
-      {mode === 'success' && <ReviewModalSuccess/>}
+      {mode === ReviewModalMode.Form && <ReviewModalForm onSuccess={() => setMode(ReviewModalMode.Success)} />}
+      {mode === ReviewModalMode.Success && <ReviewModalSuccess/>}
     </>
   );
 };

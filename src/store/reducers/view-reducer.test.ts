@@ -1,5 +1,4 @@
 import { Modal } from '../../consts';
-import { productMock } from '../../test/mocks';
 import { ActionCreator } from '../action';
 import { viewReducer } from './view-reducer';
 

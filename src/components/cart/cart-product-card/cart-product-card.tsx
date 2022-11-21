@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Modal } from '../../../consts';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../../store/action';
 import { IProductInCart } from '../../../types/data.type';
@@ -56,6 +57,11 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
     dispatch(ActionCreator.ChangeProductCountInCart(product.id, product.countInCart + 1));
   };
 
+  const handleDeleteButtonClick = () => {
+    dispatch(ActionCreator.SetDelitedFromCartItem(product));
+    dispatch(ActionCreator.OpenModal(Modal.DeleteFromCart));
+  };
+
   return (
     <li className="basket-item">
       <div className="basket-item__img">
@@ -100,7 +106,7 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
         </button>
       </div>
       <div className="basket-item__total-price"><span className="visually-hidden">Общая цена:</span>{addPriceSeparators(product.price * product.countInCart)} ₽</div>
-      <button className="cross-btn" type="button" aria-label="Удалить товар">
+      <button className="cross-btn" type="button" aria-label="Удалить товар" onClick={handleDeleteButtonClick}>
         <svg width="10" height="10" aria-hidden="true">
           <use xlinkHref="#icon-close"></use>
         </svg>

@@ -6,6 +6,7 @@ import { getActiveModal, getModalStatus } from '../../store/selectors';
 import { Modal as ModalType } from '../../consts';
 import AddToCartModal from '../add-to-cart-modal/add-to-cart-modal';
 import ReviewModal from '../review-modal/review-modal';
+import DeleteFromCartModal from '../delete-from-cart-modal/delete-from-cart-modal';
 
 const Modal = (): JSX.Element | null => {
   const isOpen = useSelector(getModalStatus);
@@ -66,6 +67,7 @@ const Modal = (): JSX.Element | null => {
           <div className="modal__overlay" data-testid='modal-overlay' onClick={handleOverlayClick}></div>
 
           {activeModal === ModalType.AddToCart && <AddToCartModal/>}
+          {activeModal === ModalType.DeleteFromCart && <DeleteFromCartModal/>}
           {activeModal === ModalType.Review && <ReviewModal/>}
         </div>
       </div>

@@ -962,6 +962,10 @@ button,
   box-shadow: 0 4px 16px rgba(56, 56, 117, 0.2);
 }
 
+.modal__content--narrow {
+  width: 320px;
+}
+
 .modal .cross-btn {
   position: absolute;
   top: 0;
@@ -1035,10 +1039,6 @@ button,
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
-}
-
-.modal--narrow .modal__content {
-  width: 320px;
 }
 
 .btn {

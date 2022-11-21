@@ -12,12 +12,7 @@ exports[`Modal renders correctly 1`] = `
         class="modal__overlay"
         data-testid="modal-overlay"
       />
-      <div
-        class="modal__content"
-        data-testid="modal-content"
-      >
-        <addtocartmodalcontent />
-      </div>
+      <addtocartmodalcontent />
     </div>
   </div>
 </DocumentFragment>

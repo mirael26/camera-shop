@@ -51,7 +51,7 @@ describe('Modal component', () => {
       }
     }});
     
-    const modalContent = screen.getByTestId('modal-content');
+    const modalContent = screen.getByTestId('add-to-cart-modal');
     fireEvent.click(modalContent);
 
     expect(spyDispatch).toBeCalledTimes(0);

@@ -2,6 +2,10 @@
 
 exports[`ReviewModal renders correctly 1`] = `
 <DocumentFragment>
-  <reviewmodalform />
+  <div
+    class="modal__content"
+  >
+    <reviewmodalform />
+  </div>
 </DocumentFragment>
 `;

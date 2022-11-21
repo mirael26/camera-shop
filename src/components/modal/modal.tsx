@@ -65,10 +65,8 @@ const Modal = (): JSX.Element | null => {
         <div className="modal__wrapper">
           <div className="modal__overlay" data-testid='modal-overlay' onClick={handleOverlayClick}></div>
 
-          <div className="modal__content" data-testid='modal-content'>
-            {activeModal === ModalType.AddToCart && <AddToCartModal/>}
-            {activeModal === ModalType.Review && <ReviewModal/>}
-          </div>
+          {activeModal === ModalType.AddToCart && <AddToCartModal/>}
+          {activeModal === ModalType.Review && <ReviewModal/>}
         </div>
       </div>
       : null

@@ -2781,6 +2781,12 @@ button,
   grid-row-gap: 32px;
 }
 
+.basket__empty-message {
+  margin-top: 30px;
+  font-size: 25px;
+  text-align: center;
+}
+
 .basket__summary {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -17,8 +17,8 @@ describe('AddToCartModal component', () => {
 
   test('should close by click on close-button', () => {
     renderWithReduxAndRouter(<AddToCartModal/>, { initialState: {
-      view: {
-        addingToCartItem: productMock,
+      cart: {
+        addedToCartItem: productMock,
       }
     }});
 

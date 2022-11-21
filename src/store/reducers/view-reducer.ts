@@ -5,7 +5,6 @@ import { ActionType } from '../action';
 export const initialState: IViewReducer = {
   isModalOpen: false,
   activeModal: null,
-  addingToCartItem: null,
   redirect: null,
   productsIsLoading: false,
 };
@@ -20,8 +19,6 @@ export const viewReducer = (state = initialState, action: TViewAction): IViewRed
       return {...state,
         isModalOpen: false,
         activeModal: null};
-    case ActionType.ChangeAddingToCartItem:
-      return {...state, addingToCartItem: action.payload};
     case ActionType.Redirect:
       return {...state, redirect: action.payload};
     case ActionType.SetProdactsLoadingStatus:

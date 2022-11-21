@@ -25,11 +25,6 @@ describe('viewReducer', () => {
   });
 
   test('changes adding to cart item correctly', () => {
-    const newState = viewReducer(undefined, ActionCreator.ChangeAddingToCartItem(productMock));
-    expect(newState.addingToCartItem).toEqual(productMock);
-  });
-
-  test('changes adding to cart item correctly', () => {
     const newState = viewReducer(undefined, ActionCreator.Redirect('/'));
     expect(newState.redirect).toBe('/');
   });

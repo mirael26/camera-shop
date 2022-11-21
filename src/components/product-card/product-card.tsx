@@ -19,7 +19,7 @@ const ProductCard = ({ product, isActive = false }: IProductCardProps): JSX.Elem
 
   const handleAddToCartButtonClick = () => {
     dispatch(ActionCreator.OpenModal(Modal.AddToCart));
-    dispatch(ActionCreator.ChangeAddingToCartItem(product));
+    dispatch(ActionCreator.SetAddedToCartItem(product));
   };
 
   const isAddedToCart = productsInCart.some((productInCart) => productInCart.id === product.id);

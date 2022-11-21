@@ -4,8 +4,8 @@ import AddToCartModal from './add-to-cart-modal';
 
 test('AddToCartModal renders correctly', () => {
   const { asFragment } = renderWithReduxAndRouter(<AddToCartModal/>, { initialState: {
-    view: {
-      addingToCartItem: productMock,
+    cart: {
+      addedToCartItem: productMock,
     }
   }});
   expect(asFragment()).toMatchSnapshot();

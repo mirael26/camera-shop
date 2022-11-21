@@ -33,7 +33,7 @@ describe('ProductCard', () => {
 
     expect(spyDispatch).toHaveBeenCalledTimes(2);
     expect(spyDispatch).toHaveBeenNthCalledWith(1, ActionCreator.OpenModal(Modal.AddToCart));
-    expect(spyDispatch).toHaveBeenNthCalledWith(2, ActionCreator.ChangeAddingToCartItem(productMock));
+    expect(spyDispatch).toHaveBeenNthCalledWith(2, ActionCreator.SetAddedToCartItem(productMock));
   });
 
   test('Renders details-link correctly', () => {

@@ -1,6 +1,6 @@
 import { ActionType } from '../store/action';
 import { TModal } from './app.type';
-import { IProduct, IPromo, IReview } from './data.type';
+import { IProduct, IProductInCart, IPromo, IReview } from './data.type';
 
 export interface ILoadPromo {
   type: typeof ActionType.LoadPromo;
@@ -57,6 +57,16 @@ export interface IChangeProductCountInCart {
   payload: { id: number, count: number };
 }
 
+export interface ISetAddedToCartItem {
+  type: typeof ActionType.SetAddedToCartItem;
+  payload: IProduct | null;
+}
+
+export interface ISetDelitedFromCartItem {
+  type: typeof ActionType.SetDelitedFromCartItem;
+  payload: IProductInCart | null;
+}
+
 export interface IOpenModal {
   type: typeof ActionType.OpenModal;
   payload: TModal;
@@ -64,11 +74,6 @@ export interface IOpenModal {
 
 export interface ICloseModal {
   type: typeof ActionType.CloseModal;
-}
-
-export interface IChangeAddingToCartItem {
-  type: typeof ActionType.ChangeAddingToCartItem;
-  payload: IProduct | null;
 }
 
 export interface IRedirect {
@@ -82,5 +87,5 @@ export interface ISetProdactsLoadingStatus {
 }
 
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadFilteredExcludingPriceProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
-export type TCartAction = IAddProductToCart | IDeleteProductFromCart | IChangeProductCountInCart;
-export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect | ISetProdactsLoadingStatus;
+export type TCartAction = IAddProductToCart | IDeleteProductFromCart | IChangeProductCountInCart | ISetAddedToCartItem | ISetDelitedFromCartItem;
+export type TViewAction = IOpenModal | ICloseModal | IRedirect | ISetProdactsLoadingStatus;

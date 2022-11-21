@@ -1,6 +1,6 @@
-import { IAddProductToCart, IChangeAddingToCartItem, IChangeProductCountInCart, ICloseModal, IDeleteProductFromCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetProdactsLoadingStatus } from '../types/actions.type';
+import { IAddProductToCart, IChangeProductCountInCart, ICloseModal, IDeleteProductFromCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetAddedToCartItem, ISetDelitedFromCartItem, ISetProdactsLoadingStatus } from '../types/actions.type';
 import { TModal } from '../types/app.type';
-import { IProduct, IPromo, IReview } from '../types/data.type';
+import { IProduct, IProductInCart, IPromo, IReview } from '../types/data.type';
 
 export const ActionType = {
   LoadPromo: 'promo/loadPromo',
@@ -15,10 +15,11 @@ export const ActionType = {
   AddProductToCart: 'orders/addProductToCart',
   DeleteProductFromCart: 'orders/deleteProductInCart',
   ChangeProductCountInCart: 'orders/changeProductCountInCart',
+  SetAddedToCartItem: 'state/setAddedToCartItem',
+  SetDelitedFromCartItem: 'state/setDelitedFromCartItem',
 
   OpenModal: 'state/openModal',
   CloseModal: 'state/closeModal',
-  ChangeAddingToCartItem: 'state/changeAddingToCartItem',
   Redirect: 'state/redirect',
   SetProdactsLoadingStatus:'state/setProdactsLoadingStatus',
 } as const;
@@ -69,6 +70,14 @@ export const ActionCreator = {
     type: ActionType.ChangeProductCountInCart,
     payload: { id, count},
   }),
+  SetAddedToCartItem: (item: IProduct | null): ISetAddedToCartItem => ({
+    type: ActionType.SetAddedToCartItem,
+    payload: item,
+  }),
+  SetDelitedFromCartItem: (item: IProductInCart | null): ISetDelitedFromCartItem => ({
+    type: ActionType.SetDelitedFromCartItem,
+    payload: item,
+  }),
 
   OpenModal: (modal: TModal): IOpenModal => ({
     type: ActionType.OpenModal,
@@ -76,10 +85,6 @@ export const ActionCreator = {
   }),
   CloseModal: (): ICloseModal => ({
     type: ActionType.CloseModal,
-  }),
-  ChangeAddingToCartItem: (item: IProduct | null): IChangeAddingToCartItem => ({
-    type: ActionType.ChangeAddingToCartItem,
-    payload: item,
   }),
   Redirect: (path: string | null): IRedirect => ({
     type: ActionType.Redirect,

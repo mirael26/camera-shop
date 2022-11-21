@@ -15,12 +15,13 @@ export interface IDataReducer {
 export interface ICartReducer {
   productsInCart: Array<IProductInCart>;
   promocode: string | null;
+  addedToCartItem: IProduct | null;
+  delitedFromCartItem: IProduct | null;
 }
 
 export interface IViewReducer {
   isModalOpen: boolean;
   activeModal: TModal | null;
-  addingToCartItem: IProduct | null;
   redirect: null | string;
   productsIsLoading: boolean;
 }

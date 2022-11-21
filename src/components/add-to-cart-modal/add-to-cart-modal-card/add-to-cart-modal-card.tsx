@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../../store/action';
-import { getAddingToCartItem } from '../../../store/selectors';
+import { getAddedToCartItem } from '../../../store/selectors';
 import { addPriceSeparators } from '../../../utils';
 
 interface IAddToCartModalCardProps {
@@ -9,7 +9,7 @@ interface IAddToCartModalCardProps {
 }
 
 const AddToCartModalCard = ({ onSuccess }: IAddToCartModalCardProps) => {
-  const product = useSelector(getAddingToCartItem);
+  const product = useSelector(getAddedToCartItem);
   const dispatch = useAppDispatch();
 
   const handleAddButtonClick = () => {

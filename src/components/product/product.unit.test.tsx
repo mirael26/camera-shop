@@ -77,7 +77,7 @@ describe('Product component', () => {
     fireEvent.click(toCartButton);
 
     expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.AddToCart));
-    expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.ChangeAddingToCartItem(productMock));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.SetAddedToCartItem(productMock));
   });
 
   test('should add tab in url-params when no tab', async() => {

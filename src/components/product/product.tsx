@@ -45,7 +45,7 @@ const Product = (): JSX.Element => {
 
   const handleAddToCartButtonClick = () => {
     dispatch(ActionCreator.OpenModal(Modal.AddToCart));
-    dispatch(ActionCreator.ChangeAddingToCartItem(product));
+    dispatch(ActionCreator.SetAddedToCartItem(product));
   };
 
   const handleTabControlButtonClick = (newTab: TTab) => {

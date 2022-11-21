@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { ActionCreator } from '../../store/action';
-import { getAddingToCartItem } from '../../store/selectors';
-import { addPriceSeparators } from '../../utils';
+import { useAppDispatch } from '../../../hooks/use-app-dispatch';
+import { ActionCreator } from '../../../store/action';
+import { getAddingToCartItem } from '../../../store/selectors';
+import { addPriceSeparators } from '../../../utils';
 
 interface IAddToCartModalCardProps {
   onSuccess: () => void;

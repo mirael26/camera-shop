@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import AddToCartModalCard from '../add-to-cart-modal-card/add-to-cart-modal-card';
+import AddToCartModalCard from './add-to-cart-modal-card/add-to-cart-modal-card';
 import AddToCartModalSuccess from './add-to-cart-modal-success/add-to-cart-modal-success';
 
 const AddToCartModalMode = {

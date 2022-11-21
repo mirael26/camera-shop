@@ -1,10 +1,19 @@
-const CartButton = () => (
-  <a className="header__basket-link" href='https://example.com'>
-    <svg width="16" height="16" aria-hidden="true">
-      <use xlinkHref="#icon-basket"></use>
-    </svg>
-    <span className="header__basket-count">3</span>
-  </a>
-);
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { AppUrl } from '../../../consts';
+import { getProductsInCartCount } from '../../../store/selectors';
+
+const CartButton = () => {
+  const productsCount = useSelector(getProductsInCartCount);
+
+  return (
+    <Link to={AppUrl.Cart} className="header__basket-link">
+      <svg width="16" height="16" aria-hidden="true">
+        <use xlinkHref="#icon-basket"></use>
+      </svg>
+      {productsCount ? <span className="header__basket-count">{productsCount}</span> : null}
+    </Link>
+  );
+};
 
 export default CartButton;

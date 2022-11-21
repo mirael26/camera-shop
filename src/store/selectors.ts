@@ -11,6 +11,8 @@ export const getSimilarProducts = (state: TRootReducer) => state.data.similarPro
 export const getReviews = (state: TRootReducer) => state.data.reviews;
 export const getPromo = (state: TRootReducer) => state.data.promo;
 
+export const getProductsInCart = (state: TRootReducer) => state.cart.productsInCart;
+
 export const getAddingToCartItem = (state: TRootReducer) => state.view.addingToCartItem;
 export const getModalStatus = (state: TRootReducer) => state.view.isModalOpen;
 export const getActiveModal = (state: TRootReducer) => state.view.activeModal;
@@ -32,5 +34,16 @@ export const getFilteredExcludingPriceProductsAsc = createSelector(
     const filteredExcludingPriceProductsAsc = filteredExcludingPriceProducts?.slice();
     filteredExcludingPriceProductsAsc?.sort((a, b) => a.price - b.price);
     return filteredExcludingPriceProductsAsc;
+  }
+);
+
+export const getProductsInCartCount = createSelector(
+  getProductsInCart,
+  (products) => {
+    if (products.length === 0) {
+      return 0;
+    }
+    const count = products.reduce((accumulator, product) => accumulator + product.countInCart, 0);
+    return count;
   }
 );

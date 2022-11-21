@@ -19,16 +19,10 @@ export const cartReducer = (state = initialState, action: TCartAction): ICartRed
     case ActionType.DeleteProductFromCart:
       return {...state, productsInCart: state.productsInCart.filter((product) => product.id !== action.payload)};
 
-    case ActionType.IncreaseProductCountInCart:
+    case ActionType.ChangeProductCountInCart:
       return {...state,
-        productsInCart: state.productsInCart.map((product) => (product.id === action.payload)
-          ? {...product, count: product.countInCart + 1}
-          : product)};
-
-    case ActionType.DecreaseProductCountInCart:
-      return {...state,
-        productsInCart: state.productsInCart.map((product) => (product.id === action.payload)
-          ? {...product, count: product.countInCart - 1}
+        productsInCart: state.productsInCart.map((product) => (product.id === action.payload.id)
+          ? {...product, count: action.payload.count}
           : product)};
     default:
       return state;

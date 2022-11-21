@@ -52,14 +52,9 @@ export interface IDeleteProductFromCart {
   payload: number;
 }
 
-export interface IIncreaseProductCountInCart {
-  type: typeof ActionType.IncreaseProductCountInCart;
-  payload: number;
-}
-
-export interface IDecreaseProductCountInCart {
-  type: typeof ActionType.DecreaseProductCountInCart;
-  payload: number;
+export interface IChangeProductCountInCart {
+  type: typeof ActionType.ChangeProductCountInCart;
+  payload: { id: number, count: number };
 }
 
 export interface IOpenModal {
@@ -87,5 +82,5 @@ export interface ISetProdactsLoadingStatus {
 }
 
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadFilteredExcludingPriceProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
-export type TCartAction = IAddProductToCart | IDeleteProductFromCart | IIncreaseProductCountInCart | IDecreaseProductCountInCart;
+export type TCartAction = IAddProductToCart | IDeleteProductFromCart | IChangeProductCountInCart;
 export type TViewAction = IOpenModal | ICloseModal | IChangeAddingToCartItem | IRedirect | ISetProdactsLoadingStatus;

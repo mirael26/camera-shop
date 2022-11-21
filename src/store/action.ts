@@ -1,4 +1,4 @@
-import { IAddProductToCart, IChangeAddingToCartItem, ICloseModal, IDecreaseProductCountInCart, IDeleteProductFromCart, IIncreaseProductCountInCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetProdactsLoadingStatus } from '../types/actions.type';
+import { IAddProductToCart, IChangeAddingToCartItem, IChangeProductCountInCart, ICloseModal, IDeleteProductFromCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetProdactsLoadingStatus } from '../types/actions.type';
 import { TModal } from '../types/app.type';
 import { IProduct, IPromo, IReview } from '../types/data.type';
 
@@ -14,8 +14,7 @@ export const ActionType = {
 
   AddProductToCart: 'orders/addProductToCart',
   DeleteProductFromCart: 'orders/deleteProductInCart',
-  IncreaseProductCountInCart: 'orders/increaseProductCountInCart',
-  DecreaseProductCountInCart: 'orders/decreaseProductCountInCart',
+  ChangeProductCountInCart: 'orders/changeProductCountInCart',
 
   OpenModal: 'state/openModal',
   CloseModal: 'state/closeModal',
@@ -66,13 +65,9 @@ export const ActionCreator = {
     type: ActionType.DeleteProductFromCart,
     payload: id,
   }),
-  IncreaseProductCountInCart: (id: number): IIncreaseProductCountInCart => ({
-    type: ActionType.IncreaseProductCountInCart,
-    payload: id,
-  }),
-  DecreaseProductCountInCart: (id: number): IDecreaseProductCountInCart => ({
-    type: ActionType.DecreaseProductCountInCart,
-    payload: id,
+  ChangeProductCountInCart: (id: number, count: number): IChangeProductCountInCart => ({
+    type: ActionType.ChangeProductCountInCart,
+    payload: { id, count},
   }),
 
   OpenModal: (modal: TModal): IOpenModal => ({

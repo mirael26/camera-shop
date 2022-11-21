@@ -13,7 +13,7 @@ export interface IDataReducer {
 }
 
 export interface ICartReducer {
-  productsInCart: Array<IProductInCart> | null;
+  productsInCart: Array<IProductInCart>;
   promocode: string | null;
 }
 

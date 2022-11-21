@@ -3,33 +3,33 @@ import { ICartReducer } from '../../types/reducers.type';
 import { ActionType } from '../action';
 
 export const initialState: ICartReducer = {
-  productsInCart: null,
+  productsInCart: [],
   promocode: null,
 };
 
 export const cartReducer = (state = initialState, action: TCartAction): ICartReducer => {
   switch (action.type) {
     case ActionType.AddProductToCart:
-      const isProductInCart = state.productsInCart?.some((product) => product.id === action.payload.id);
-      const newProduct = Object.assign({}, action.payload, {countInCart: 1});
-      return isProductInCart
-        ? {...state, productsInCart: state.productsInCart?.map((product) => (product.id === action.payload.id) ? {...product, count: product.countInCart + 1} : product) || null}
-        : {...state, productsInCart: state.productsInCart?.concat(newProduct) || null};
+      return state.productsInCart.some((product) => product.id === action.payload.id) // проверяем, есть ли товар в корзине
+        // если есть - увеличиваем его количество в корзине на 1
+        ? {...state, productsInCart: state.productsInCart.map((product) => (product.id === action.payload.id) ? {...product, count: product.countInCart + 1} : product) || null}
+        // если нет - добавляем товар с количеством 1
+        : {...state, productsInCart: [...state.productsInCart, {...action.payload, countInCart: 1}]};
 
     case ActionType.DeleteProductFromCart:
-      return {...state, productsInCart: state.productsInCart?.filter((product) => product.id !== action.payload) || null};
+      return {...state, productsInCart: state.productsInCart.filter((product) => product.id !== action.payload)};
 
     case ActionType.IncreaseProductCountInCart:
       return {...state,
-        productsInCart: state.productsInCart?.map((product) => (product.id === action.payload)
+        productsInCart: state.productsInCart.map((product) => (product.id === action.payload)
           ? {...product, count: product.countInCart + 1}
-          : product) || null};
+          : product)};
 
     case ActionType.DecreaseProductCountInCart:
       return {...state,
-        productsInCart: state.productsInCart?.map((product) => (product.id === action.payload)
+        productsInCart: state.productsInCart.map((product) => (product.id === action.payload)
           ? {...product, count: product.countInCart - 1}
-          : product) || null};
+          : product)};
     default:
       return state;
   }

@@ -14,7 +14,6 @@ describe('viewReducer', () => {
     const state = {
       isModalOpen: true,
       activeModal: Modal.AddToCart,
-      addingToCartItem: productMock,
       redirect: null,
       productsIsLoading: false,
     };

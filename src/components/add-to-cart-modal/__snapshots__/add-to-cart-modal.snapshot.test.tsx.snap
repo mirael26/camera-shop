@@ -59,7 +59,7 @@ exports[`AddToCartModal renders correctly 1`] = `
           <li
             class="basket-item__list-item"
           >
-            Фотоаппарат
+            Плёночная фотоаппарат
           </li>
           <li
             class="basket-item__list-item"

@@ -37,7 +37,7 @@ const AddToCartModalCard = ({ onSuccess }: IAddToCartModalCardProps) => {
           <ul className="basket-item__list">
             <li className="basket-item__list-item"><span className="basket-item__article">Артикул:</span> <span className="basket-item__number">{product.vendorCode}</span>
             </li>
-            <li className="basket-item__list-item">{product.category}</li>
+            <li className="basket-item__list-item">{product.type} {product.category.toLowerCase()}</li>
             <li className="basket-item__list-item">{product.level} уровень</li>
           </ul>
           <p className="basket-item__price"><span className="visually-hidden">Цена:</span>{adaptedPrice} ₽</p>

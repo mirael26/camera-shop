@@ -5,6 +5,7 @@ export const AppUrl = {
   Product: '/product',
   Cart: '/cart',
   NotFound: '/404',
+  UnknownError: '/unknown_error',
   ServerUnavailable: '/server_unavailable',
 } as const;
 

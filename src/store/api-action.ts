@@ -179,6 +179,8 @@ export const postOrder = (order: {camerasIds: Array<number>; coupon: string | nu
     .catch((error: NodeJS.ErrnoException) => {
       if (error.code === StatusCode.NoNetwork) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
       throw(error);
     });

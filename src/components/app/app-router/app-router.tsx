@@ -5,6 +5,7 @@ import NotFoundPage from '../../../pages/not-found-page/not-found-page';
 import ServerUnavailablePage from '../../../pages/server-unavailable-page/server-unavailable-page';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CartPage from '../../../pages/cart-page/cart-page';
+import UnknownErrorPage from '../../../pages/unknown-error-page/unknown-error-page';
 
 const Params = {
   Id: '/:id',
@@ -17,6 +18,7 @@ const AppRouter = () => (
     <Route path={`${AppUrl.Catalog}${AppUrl.Product}${Params.Id}`} element={<ProductPage />}/>
     <Route path={`${AppUrl.Catalog}${AppUrl.Cart}`} element={<CartPage />}/>
     <Route path={AppUrl.NotFound} element={<NotFoundPage />}/>
+    <Route path={AppUrl.UnknownError} element={<UnknownErrorPage />}/>
     <Route path={AppUrl.ServerUnavailable} element={<ServerUnavailablePage />}/>
     <Route path='/*' element={<NotFoundPage />}/>
   </Routes>

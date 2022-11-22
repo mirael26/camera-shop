@@ -7,6 +7,7 @@ jest.mock('../../../pages/catalog-page/catalog-page', () => () => (<div data-tes
 jest.mock('../../../pages/product-page/product-page', () => () => (<div data-testid='product-page'></div>));
 jest.mock('../../../pages/cart-page/cart-page', () => () => (<div data-testid='cart-page'></div>));
 jest.mock('../../../pages/not-found-page/not-found-page', () => () => (<div data-testid='not-found-page'></div>));
+jest.mock('../../../pages/unknown-error-page/unknown-error-page', () => () => (<div data-testid='unknown-error-page'></div>));
 jest.mock('../../../pages/server-unavailable-page/server-unavailable-page', () => () => (<div data-testid='server-unavailable-page'></div>));
 
 describe('AppRouter component', () => {
@@ -44,6 +45,12 @@ describe('AppRouter component', () => {
     renderWithReduxAndRouter(<AppRouter/>, { route: '/sdf57sdfsdf58' });
     const notFoundPage = screen.getByTestId('not-found-page');
     expect(notFoundPage).toBeInTheDocument();
+  });
+
+  test('routes to unknown-error page', () => {
+    renderWithReduxAndRouter(<AppRouter/>, { route: AppUrl.UnknownError });
+    const unknownErrorPage = screen.getByTestId('unknown-error-page');
+    expect(unknownErrorPage).toBeInTheDocument();
   });
 
   test('routes to server-unavailable page', () => {

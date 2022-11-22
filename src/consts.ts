@@ -21,6 +21,7 @@ export const Modal = {
   AddToCart: 'addToCartModal',
   DeleteFromCart: 'deleteFromCartModal',
   Review: 'reviewModal',
+  OrderSuccess: 'orderSuccessModal',
 } as const;
 
 export const Tab = {

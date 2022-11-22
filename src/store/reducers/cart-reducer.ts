@@ -13,6 +13,9 @@ export const initialState: ICartReducer = {
 
 export const cartReducer = (state = initialState, action: TCartAction): ICartReducer => {
   switch (action.type) {
+    case ActionType.ClearCart:
+      return {...state, productsInCart: []};
+
     case ActionType.AddProductToCart:
       return state.productsInCart.some((product) => product.id === action.payload.id) // проверяем, есть ли товар в корзине
         // если есть - увеличиваем его количество в корзине на 1

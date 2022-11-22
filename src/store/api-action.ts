@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ApiUrl, AppUrl } from '../consts';
+import { ApiUrl, AppUrl, Modal } from '../consts';
 import { IProduct, IPromo, IReview, IReviewPost } from '../types/data.type';
 import { ActionCreator } from './action';
 import { TAppDispatch } from './store';
@@ -159,6 +159,24 @@ export const postPromocode = (promocode: string) => (dispatch: TAppDispatch) => 
         dispatch(ActionCreator.SetPromocode(null));
         dispatch(ActionCreator.SetDiscount(0));
       }
+      if (error.code === StatusCode.NoNetwork) {
+        dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      }
+      throw(error);
+    });
+};
+
+export const postOrder = (order: {camerasIds: Array<number>; coupon: string | null}) => (dispatch: TAppDispatch) => {
+  axios
+    .post(`${URL}${ApiUrl.Order}`, order)
+    .then(() => {
+      dispatch(ActionCreator.ClearCart());
+      dispatch(ActionCreator.SetPromocode(null));
+      dispatch(ActionCreator.ChangePromocodeConfirmed(null));
+      dispatch(ActionCreator.SetDiscount(0));
+      dispatch(ActionCreator.OpenModal(Modal.OrderSuccess));
+    })
+    .catch((error: NodeJS.ErrnoException) => {
       if (error.code === StatusCode.NoNetwork) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       }

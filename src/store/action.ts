@@ -1,4 +1,4 @@
-import { IAddProductToCart, IChangeProductCountInCart, IChangePromocodeConfirmed, ICloseModal, IDeleteProductFromCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetAddedToCartItem, ISetDelitedFromCartItem, ISetDiscount, ISetProdactsLoadingStatus, ISetPromocode } from '../types/actions.type';
+import { IAddProductToCart, IChangeProductCountInCart, IChangePromocodeConfirmed, IClearCart, ICloseModal, IDeleteProductFromCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetAddedToCartItem, ISetDelitedFromCartItem, ISetDiscount, ISetProdactsLoadingStatus, ISetPromocode } from '../types/actions.type';
 import { TModal } from '../types/app.type';
 import { IProduct, IProductInCart, IPromo, IReview } from '../types/data.type';
 
@@ -12,6 +12,7 @@ export const ActionType = {
   LoadSimilarProducts: 'cameras/loadSimilarProducts',
   LoadReviews: 'cameras/loadReviews',
 
+  ClearCart: 'orders/clearCart',
   AddProductToCart: 'orders/addProductToCart',
   DeleteProductFromCart: 'orders/deleteProductInCart',
   ChangeProductCountInCart: 'orders/changeProductCountInCart',
@@ -61,6 +62,9 @@ export const ActionCreator = {
     payload: reviews,
   }),
 
+  ClearCart: (): IClearCart => ({
+    type: ActionType.ClearCart,
+  }),
   AddProductToCart: (product: IProduct): IAddProductToCart => ({
     type: ActionType.AddProductToCart,
     payload: product,

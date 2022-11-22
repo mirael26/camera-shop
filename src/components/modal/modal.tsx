@@ -7,6 +7,7 @@ import { Modal as ModalType } from '../../consts';
 import AddToCartModal from '../add-to-cart-modal/add-to-cart-modal';
 import ReviewModal from '../review-modal/review-modal';
 import DeleteFromCartModal from '../delete-from-cart-modal/delete-from-cart-modal';
+import OrderSuccessModal from '../cart/order-success-modal/order-success-modal';
 
 const Modal = (): JSX.Element | null => {
   const isOpen = useSelector(getModalStatus);
@@ -69,6 +70,7 @@ const Modal = (): JSX.Element | null => {
           {activeModal === ModalType.AddToCart && <AddToCartModal/>}
           {activeModal === ModalType.DeleteFromCart && <DeleteFromCartModal/>}
           {activeModal === ModalType.Review && <ReviewModal/>}
+          {activeModal === ModalType.OrderSuccess && <OrderSuccessModal/>}
         </div>
       </div>
       : null

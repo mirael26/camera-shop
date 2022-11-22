@@ -1,32 +1,52 @@
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../hooks/use-app-dispatch';
+import { postOrder } from '../../../store/api-action';
+import { getDiscount, getProductsInCart, getPromocode } from '../../../store/selectors';
+import { addPriceSeparators } from '../../../utils';
+import Promocode from '../promocode/promocode';
 
-// не выводить содержимое если корзина пуста
+const CartSummary = () => {
+  const productsInCart = useSelector(getProductsInCart);
+  const promocode = useSelector(getPromocode);
+  const discount = useSelector(getDiscount);
+  const dispatch = useAppDispatch();
 
-const CartSummary = () => (
-  <div className="basket__summary">
-    <div className="basket__promo">
-      <p className="title title--h4">Если у вас есть промокод на скидку, примените его в этом поле</p>
-      <div className="basket-form">
-        <form action="#">
-          <div className="custom-input">
-            <label><span className="custom-input__label">Промокод</span>
-              <input type="text" name="promo" placeholder="Введите промокод"/>
-            </label>
-            <p className="custom-input__error">Промокод неверный</p>
-            <p className="custom-input__success">Промокод принят!</p>
-          </div>
-          <button className="btn" type="submit">Применить
+  const handleOrderButtonCLick = () => {
+    const order = {
+      camerasIds: productsInCart.map((product) => product.id),
+      coupon: promocode,
+    };
+    dispatch(postOrder(order));
+  };
+
+  const total = productsInCart.reduce((sum, product) => sum + product.countInCart * product.price, 0);
+  const discountAmount = discount * total;
+  const totalWithDiscount = (1 - discount) * total;
+
+  return (
+    productsInCart.length
+      ?
+      <div className="basket__summary">
+        <Promocode/>
+        <div className="basket__summary-order">
+          <p className="basket__summary-item">
+            <span className="basket__summary-text">Всего:</span>
+            <span className="basket__summary-value">{addPriceSeparators(total)} ₽</span>
+          </p>
+          <p className="basket__summary-item">
+            <span className="basket__summary-text">Скидка:</span>
+            <span className={`basket__summary-value${discount > 0 ? ' basket__summary-value--bonus' : ''}`}>{addPriceSeparators(discountAmount)} ₽</span>
+          </p>
+          <p className="basket__summary-item">
+            <span className="basket__summary-text basket__summary-text--total">К оплате:</span>
+            <span className="basket__summary-value basket__summary-value--total">{addPriceSeparators(totalWithDiscount)} ₽</span>
+          </p>
+          <button className="btn btn--purple" type="button" onClick={handleOrderButtonCLick}>Оформить заказ
           </button>
-        </form>
+        </div>
       </div>
-    </div>
-    <div className="basket__summary-order">
-      <p className="basket__summary-item"><span className="basket__summary-text">Всего:</span><span className="basket__summary-value">111 390 ₽</span></p>
-      <p className="basket__summary-item"><span className="basket__summary-text">Скидка:</span><span className="basket__summary-value basket__summary-value--bonus">0 ₽</span></p>
-      <p className="basket__summary-item"><span className="basket__summary-text basket__summary-text--total">К оплате:</span><span className="basket__summary-value basket__summary-value--total">111 390 ₽</span></p>
-      <button className="btn btn--purple" type="submit">Оформить заказ
-      </button>
-    </div>
-  </div>
-);
+      : null
+  );
+};
 
 export default CartSummary;

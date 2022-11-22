@@ -15,7 +15,7 @@ const AppRouter = () => (
     <Route path={AppUrl.Main} element={<Navigate replace to={AppUrl.Catalog} />}/>
     <Route path={AppUrl.Catalog} element={<CatalogPage />}/>
     <Route path={`${AppUrl.Catalog}${AppUrl.Product}${Params.Id}`} element={<ProductPage />}/>
-    <Route path={AppUrl.Cart} element={<CartPage />}/>
+    <Route path={`${AppUrl.Catalog}${AppUrl.Cart}`} element={<CartPage />}/>
     <Route path={AppUrl.NotFound} element={<NotFoundPage />}/>
     <Route path={AppUrl.ServerUnavailable} element={<ServerUnavailablePage />}/>
     <Route path='/*' element={<NotFoundPage />}/>

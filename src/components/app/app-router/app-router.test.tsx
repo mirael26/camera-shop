@@ -29,7 +29,7 @@ describe('AppRouter component', () => {
   });
 
   test('routes to cart page', () => {
-    renderWithReduxAndRouter(<AppRouter/>, { route: AppUrl.Cart });
+    renderWithReduxAndRouter(<AppRouter/>, { route: `${AppUrl.Catalog}${AppUrl.Cart}` });
     const productPage = screen.getByTestId('cart-page');
     expect(productPage).toBeInTheDocument();
   });

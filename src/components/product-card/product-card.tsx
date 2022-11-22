@@ -46,7 +46,7 @@ const ProductCard = ({ product, isActive = false }: IProductCardProps): JSX.Elem
       <div className="product-card__buttons">
         {isAddedToCart
           ?
-          <Link to={AppUrl.Cart} className="btn btn--purple-border product-card__btn product-card__btn--in-cart">
+          <Link to={`${AppUrl.Catalog}${AppUrl.Cart}`} className="btn btn--purple-border product-card__btn product-card__btn--in-cart">
             <svg width="16" height="16" aria-hidden="true">
               <use xlinkHref="#icon-basket"></use>
             </svg>В корзине

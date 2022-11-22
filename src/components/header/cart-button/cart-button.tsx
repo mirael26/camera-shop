@@ -7,7 +7,7 @@ const CartButton = () => {
   const productsCount = useSelector(getProductsInCartCount);
 
   return (
-    <Link to={AppUrl.Cart} className="header__basket-link">
+    <Link to={`${AppUrl.Catalog}${AppUrl.Cart}`} className="header__basket-link">
       <svg width="16" height="16" aria-hidden="true">
         <use xlinkHref="#icon-basket"></use>
       </svg>

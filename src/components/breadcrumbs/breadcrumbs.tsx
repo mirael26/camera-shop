@@ -15,6 +15,10 @@ const BreadcrumbsProperties = {
   Product: {
     title: null,
     route: AppUrl.Product,
+  },
+  Cart: {
+    title: 'Корзина',
+    route: AppUrl.Cart,
   }
 } as const;
 

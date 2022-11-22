@@ -14,7 +14,7 @@ const AddToCartModalSuccess = () => {
 
   const handleToCartButtonClick = () => {
     dispatch(ActionCreator.CloseModal());
-    navigate(AppUrl.Cart);
+    navigate(`${AppUrl.Catalog}${AppUrl.Cart}`);
   };
 
   return(

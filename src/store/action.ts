@@ -1,4 +1,4 @@
-import { IAddProductToCart, IChangeProductCountInCart, ICloseModal, IDeleteProductFromCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetAddedToCartItem, ISetDelitedFromCartItem, ISetDiscount, ISetProdactsLoadingStatus, ISetPromocode } from '../types/actions.type';
+import { IAddProductToCart, IChangeProductCountInCart, IChangePromocodeConfirmed, ICloseModal, IDeleteProductFromCart, ILoadCurrentProduct, ILoadDisplayedProducts, ILoadFilteredExcludingPriceProducts, ILoadFilteredProducts, ILoadProducts, ILoadPromo, ILoadReviews, ILoadSimilarProducts, IOpenModal, IRedirect, ISetAddedToCartItem, ISetDelitedFromCartItem, ISetDiscount, ISetProdactsLoadingStatus, ISetPromocode } from '../types/actions.type';
 import { TModal } from '../types/app.type';
 import { IProduct, IProductInCart, IPromo, IReview } from '../types/data.type';
 
@@ -18,6 +18,7 @@ export const ActionType = {
   SetAddedToCartItem: 'state/setAddedToCartItem',
   SetDelitedFromCartItem: 'state/setDelitedFromCartItem',
   SetPromocode: 'coupons/setPromocode',
+  ChangePromocodeConfirmed: 'coupons/changePromocodeConfirmed',
   SetDiscount: 'coupons/setDiscount',
 
   OpenModal: 'state/openModal',
@@ -84,7 +85,11 @@ export const ActionCreator = {
     type: ActionType.SetPromocode,
     payload: promocode,
   }),
-  SetDiscount: (discount: number | null): ISetDiscount => ({
+  ChangePromocodeConfirmed: (isConfirmed: boolean | null): IChangePromocodeConfirmed => ({
+    type: ActionType.ChangePromocodeConfirmed,
+    payload: isConfirmed,
+  }),
+  SetDiscount: (discount: number): ISetDiscount => ({
     type: ActionType.SetDiscount,
     payload: discount,
   }),

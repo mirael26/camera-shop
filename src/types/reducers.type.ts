@@ -17,7 +17,8 @@ export interface ICartReducer {
   addedToCartItem: IProduct | null;
   delitedFromCartItem: IProduct | null;
   promocode: string | null;
-  discount: number | null;
+  isPromocodeConfirmed: boolean | null;
+  discount: number;
 }
 
 export interface IViewReducer {

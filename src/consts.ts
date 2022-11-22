@@ -13,6 +13,8 @@ export const ApiUrl = {
   Products: '/cameras',
   Reviews: '/reviews',
   Similar: '/similar',
+  Promocode: '/coupons',
+  Order: '/orders',
 } as const;
 
 export const Modal = {

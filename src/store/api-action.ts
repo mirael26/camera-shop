@@ -144,3 +144,24 @@ export const postReview = (review: IReviewPost) => (dispatch: TAppDispatch) => {
       throw(error);
     });
 };
+
+export const postPromocode = (promocode: string) => (dispatch: TAppDispatch) => {
+  axios
+    .post(`${URL}${ApiUrl.Promocode}`, { coupon: promocode })
+    .then((response) => {
+      dispatch(ActionCreator.ChangePromocodeConfirmed(true));
+      dispatch(ActionCreator.SetPromocode(promocode));
+      dispatch(ActionCreator.SetDiscount(response.data / 100));
+    })
+    .catch((error: NodeJS.ErrnoException) => {
+      if (error.code === StatusCode.BadRequest) {
+        dispatch(ActionCreator.ChangePromocodeConfirmed(false));
+        dispatch(ActionCreator.SetPromocode(null));
+        dispatch(ActionCreator.SetDiscount(0));
+      }
+      if (error.code === StatusCode.NoNetwork) {
+        dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      }
+      throw(error);
+    });
+};

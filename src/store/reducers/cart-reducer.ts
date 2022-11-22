@@ -7,7 +7,8 @@ export const initialState: ICartReducer = {
   addedToCartItem: null,
   delitedFromCartItem: null,
   promocode: null,
-  discount: null,
+  isPromocodeConfirmed: null,
+  discount: 0,
 };
 
 export const cartReducer = (state = initialState, action: TCartAction): ICartReducer => {
@@ -34,6 +35,8 @@ export const cartReducer = (state = initialState, action: TCartAction): ICartRed
       return {...state, delitedFromCartItem: action.payload};
     case ActionType.SetPromocode:
       return {...state, promocode: action.payload};
+    case ActionType.ChangePromocodeConfirmed:
+      return {...state, isPromocodeConfirmed: action.payload};
     case ActionType.SetDiscount:
       return {...state, discount: action.payload};
     default:

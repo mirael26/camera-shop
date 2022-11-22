@@ -72,9 +72,14 @@ export interface ISetPromocode {
   payload: string | null;
 }
 
+export interface IChangePromocodeConfirmed {
+  type: typeof ActionType.ChangePromocodeConfirmed;
+  payload: boolean | null;
+}
+
 export interface ISetDiscount {
   type: typeof ActionType.SetDiscount;
-  payload: number | null;
+  payload: number;
 }
 
 export interface IOpenModal {
@@ -97,5 +102,5 @@ export interface ISetProdactsLoadingStatus {
 }
 
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadFilteredExcludingPriceProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
-export type TCartAction = IAddProductToCart | IDeleteProductFromCart | IChangeProductCountInCart | ISetAddedToCartItem | ISetDelitedFromCartItem | ISetPromocode | ISetDiscount;
+export type TCartAction = IAddProductToCart | IDeleteProductFromCart | IChangeProductCountInCart | ISetAddedToCartItem | ISetDelitedFromCartItem | ISetPromocode | IChangePromocodeConfirmed | ISetDiscount;
 export type TViewAction = IOpenModal | ICloseModal | IRedirect | ISetProdactsLoadingStatus;

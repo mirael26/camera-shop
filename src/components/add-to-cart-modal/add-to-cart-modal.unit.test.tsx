@@ -1,29 +1,15 @@
-import { fireEvent, screen } from '@testing-library/react';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { ActionCreator } from '../../store/action';
+import { screen } from '@testing-library/react';
 import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
-import { productMock } from '../../test/mocks';
 import AddToCartModal from './add-to-cart-modal';
 
-jest.mock('../../hooks/use-app-dispatch');
-
-const spyDispatch = jest.fn();
+jest.mock('./add-to-cart-modal-card/add-to-cart-modal-card', () => () => <div data-testid='add-to-cart-modal-card'></div>);
+jest.mock('./add-to-cart-modal-success/add-to-cart-modal-success', () => () => <div data-testid='add-to-cart-modal-success'></div>);
 
 describe('AddToCartModal component', () => {
-  beforeEach(() => {
-    jest.mocked(useAppDispatch).mockReturnValue(spyDispatch);
+  test('renders AddToCartModalCard after init', () => {
+    renderWithReduxAndRouter(<AddToCartModal/>);
 
-  });
-
-  test('should close by click on close-button', () => {
-    renderWithReduxAndRouter(<AddToCartModal/>, { initialState: {
-      cart: {
-        addedToCartItem: productMock,
-      }
-    }});
-
-    fireEvent.click(screen.getByLabelText('Закрыть попап'));
-
-    expect(spyDispatch).toHaveBeenCalledWith(ActionCreator.CloseModal());
+    expect(screen.getByTestId('add-to-cart-modal-card')).toBeInTheDocument();
+    expect(screen.queryByTestId('add-to-cart-modal-success')).not.toBeInTheDocument();
   });
 });

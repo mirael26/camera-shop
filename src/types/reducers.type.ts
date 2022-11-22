@@ -14,9 +14,10 @@ export interface IDataReducer {
 
 export interface ICartReducer {
   productsInCart: Array<IProductInCart>;
-  promocode: string | null;
   addedToCartItem: IProduct | null;
   delitedFromCartItem: IProduct | null;
+  promocode: string | null;
+  discount: number | null;
 }
 
 export interface IViewReducer {

@@ -4,9 +4,10 @@ import { ActionType } from '../action';
 
 export const initialState: ICartReducer = {
   productsInCart: [],
-  promocode: null,
   addedToCartItem: null,
   delitedFromCartItem: null,
+  promocode: null,
+  discount: null,
 };
 
 export const cartReducer = (state = initialState, action: TCartAction): ICartReducer => {
@@ -31,6 +32,10 @@ export const cartReducer = (state = initialState, action: TCartAction): ICartRed
       return {...state, addedToCartItem: action.payload};
     case ActionType.SetDelitedFromCartItem:
       return {...state, delitedFromCartItem: action.payload};
+    case ActionType.SetPromocode:
+      return {...state, promocode: action.payload};
+    case ActionType.SetDiscount:
+      return {...state, discount: action.payload};
     default:
       return state;
   }

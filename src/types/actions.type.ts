@@ -58,7 +58,7 @@ export interface IDeleteProductFromCart {
 
 export interface IChangeProductCountInCart {
   type: typeof ActionType.ChangeProductCountInCart;
-  payload: { id: number, count: number };
+  payload: { id: number; count: number };
 }
 
 export interface ISetAddedToCartItem {

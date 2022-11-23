@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart component renders correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="basket"
+  >
+    <div
+      class="container"
+    >
+      <h1
+        class="title title--h2"
+      >
+        Корзина
+      </h1>
+      <ul
+        class="basket__list"
+      >
+        <cartproductcard
+          product="[object Object]"
+        />
+        <cartproductcard
+          product="[object Object]"
+        />
+      </ul>
+      <cartsummary />
+    </div>
+  </section>
+</DocumentFragment>
+`;

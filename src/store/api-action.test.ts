@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { ApiUrl, AppUrl } from '../consts';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { ApiUrl, AppUrl, Modal } from '../consts';
 import { productMock, productsMock, promoMock, reviewsMock } from '../test/mocks';
 import { ActionCreator } from './action';
-import { loadCurrentProduct, loadDisplayedProducts, loadFilteredProducts, loadProducts, loadPromo, loadReviews, loadSimilarProducts, postReview, StatusCode, URL } from './api-action';
+import { ErrorStatus, loadCurrentProduct, loadDisplayedProducts, loadFilteredProducts, loadProducts, loadPromo, loadReviews, loadSimilarProducts, postOrder, postPromocode, postReview, URL } from './api-action';
 
 jest.mock('axios');
 
@@ -24,37 +24,28 @@ describe('loadPromo api-action', () => {
     await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadPromo(response.data));
   });
 
-  test('should throw error when network error', async() => {
+  test('should redirect if server is unavailable', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.NoNetwork,
+      response: { status: ErrorStatus.ServerUnavailable }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadPromo()(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
-      expect(error).toThrowError();
-    }
+    await loadPromo()(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
   });
 
-  test('should throw error', async() => {
+  test('should redirect if unknown error', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: 'SOME_ERROR',
+      response: { status: 111 }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadPromo()(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(0);
-      expect(error).toThrowError();
-    }
+    await loadPromo()(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
   });
 });
 
@@ -74,37 +65,28 @@ describe('loadProducts api-action', () => {
     await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadProducts(response.data));
   });
 
-  test('should throw error when network error', async() => {
+  test('should redirect if server is unavailable', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.NoNetwork,
+      response: { status: ErrorStatus.ServerUnavailable }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadProducts()(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
-      expect(error).toThrowError();
-    }
+    await loadProducts()(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
   });
 
-  test('should throw error', async() => {
+  test('should redirect if unknown error', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: 'SOME_ERROR',
+      response: { status: 111 }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadProducts()(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(0);
-      expect(error).toThrowError();
-    }
+    await loadProducts()(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
   });
 });
 
@@ -161,38 +143,40 @@ describe('loadCurrentProduct api-action', () => {
     await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadCurrentProduct(response.data));
   });
 
-  test('should throw error when network error', async() => {
-    const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.NoNetwork,
-    };
-    jest.mocked(axios).get.mockResolvedValue(error);
-
-    try {
-      await loadCurrentProduct(2)(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
-      expect(error).toThrowError();
-    }
-  });
-
   test('should throw error when bad-request error', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.BadRequest,
+      response: { status: ErrorStatus.BadRequest }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadCurrentProduct(2)(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
-      expect(error).toThrowError();
-    }
+    await loadCurrentProduct(2)(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
+  });
+
+  test('should redirect if server is unavailable', async() => {
+    const error = {
+      response: { status: ErrorStatus.ServerUnavailable }
+    };
+    jest.mocked(axios).get.mockRejectedValue(error);
+
+    await loadCurrentProduct(2)(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+  });
+
+  test('should redirect if unknown error', async() => {
+    const error = {
+      response: { status: 111 }
+    };
+    jest.mocked(axios).get.mockRejectedValue(error);
+
+    await loadCurrentProduct(2)(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
   });
 });
 
@@ -212,38 +196,40 @@ describe('loadSimilarProducts api-action', () => {
     await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadSimilarProducts(response.data));
   });
 
-  test('should throw error when network error', async() => {
-    const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.NoNetwork,
-    };
-    jest.mocked(axios).get.mockResolvedValue(error);
-
-    try {
-      await loadSimilarProducts(2)(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
-      expect(error).toThrowError();
-    }
-  });
-
   test('should throw error when bad-request error', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.BadRequest,
+      response: { status: ErrorStatus.BadRequest }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadSimilarProducts(2)(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
-      expect(error).toThrowError();
-    }
+    await loadSimilarProducts(2)(dispatchSpy);
+    
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
+  });
+
+  test('should redirect if server is unavailable', async() => {
+    const error = {
+      response: { status: ErrorStatus.ServerUnavailable }
+    };
+    jest.mocked(axios).get.mockRejectedValue(error);
+
+    await loadSimilarProducts(2)(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+  });
+
+  test('should redirect if unknown error', async() => {
+    const error = {
+      response: { status: 111 }
+    };
+    jest.mocked(axios).get.mockRejectedValue(error);
+
+    await loadSimilarProducts(2)(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
   });
 });
 
@@ -263,38 +249,28 @@ describe('loadReviews api-action', () => {
     await expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.LoadReviews(response.data));
   });
 
-  test('should throw error when network error', async() => {
+  test('should redirect if server is unavailable', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.NoNetwork,
+      response: { status: ErrorStatus.ServerUnavailable }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadReviews(2)(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
-      expect(error).toThrowError();
-    }
+    await loadReviews(2)(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
   });
 
-  test('should throw error when bad-request error', async() => {
+  test('should redirect if unknown error', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.BadRequest,
+      response: { status: 111 }
     };
-    jest.mocked(axios).get.mockResolvedValue(error);
+    jest.mocked(axios).get.mockRejectedValue(error);
 
-    try {
-      await loadReviews(2)(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.NotFound));
-      expect(error).toThrowError();
-    }
+    await loadReviews(2)(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
   });
 });
 
@@ -308,20 +284,136 @@ describe('postReview api-action', () => {
     await expect(dispatchSpy).toHaveBeenCalledTimes(0);
   });
 
-  test('should throw error when network error', async() => {
+  test('should redirect if server is unavailable', async() => {
     const error = {
-      message: 'Network Error',
-      name: 'AxiosError',
-      code: StatusCode.NoNetwork,
+      response: { status: ErrorStatus.ServerUnavailable }
     };
-    jest.mocked(axios).post.mockResolvedValue(error);
+    jest.mocked(axios).post.mockRejectedValue(error);
 
-    try {
-      await postReview(reviewsMock[0])(dispatchSpy);
-    } catch (error) {
-      expect(dispatchSpy).toHaveBeenCalledTimes(1);
-      expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
-      expect(error).toThrowError();
-    }
+    await postReview(reviewsMock[0])(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+  });
+
+  test('should redirect if unknown error', async() => {
+    const error = {
+      response: { status: 111 }
+    };
+    jest.mocked(axios).post.mockRejectedValue(error);
+
+    await postReview(reviewsMock[0])(dispatchSpy);
+
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
+  });
+});
+
+describe('postPromocode api-action', () => {
+  test('post correct promocode correctly', async() => {
+    const response = {
+      status: 200,
+      statusText: "OK",
+      data: 15,
+    };
+    jest.mocked(axios).post.mockResolvedValue(response);
+
+    await postPromocode('abc')(dispatchSpy);
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledTimes(3);
+    expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.ChangePromocodeConfirmed(true));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.SetPromocode('abc'));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.SetDiscount(0.15));
+  });
+
+  test('post incorrect promocode correctly', async() => {
+    const error = {
+      response: { status: ErrorStatus.BadRequest }
+    };
+    jest.mocked(axios).post.mockRejectedValue(error);
+
+    await postPromocode('abc')(dispatchSpy);
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(await dispatchSpy).toHaveBeenCalledTimes(3);
+    expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.ChangePromocodeConfirmed(false));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.SetPromocode(null));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.SetDiscount(0));
+  });
+
+  test('should redirect if server is unavailable', async() => {
+    const error = {
+      response: { status: ErrorStatus.ServerUnavailable }
+    };
+    jest.mocked(axios).post.mockRejectedValue(error);
+
+    await postPromocode('abc')(dispatchSpy);
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+  });
+
+  test('should redirect if unknown error', async() => {
+    const error = {
+      response: { status: 100 }
+    };
+    jest.mocked(axios).post.mockRejectedValue(error);
+
+    await postPromocode('abc')(dispatchSpy);
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
+  });
+});
+
+describe('postOrder api-action', () => {
+  test('post order correctly', async() => {
+    const response = {
+      status: 200,
+      statusText: "OK",
+    };
+    jest.mocked(axios).post.mockResolvedValue(response);
+    const mockOrder = {camerasIds: [1, 2], coupon: null};
+
+    await postOrder(mockOrder)(dispatchSpy);
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(await dispatchSpy).toHaveBeenCalledTimes(5);
+    expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.ClearCart());
+    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.SetPromocode(null));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.ChangePromocodeConfirmed(null));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(4, ActionCreator.SetDiscount(0));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(5, ActionCreator.OpenModal(Modal.OrderSuccess));
+  });
+
+  test('should redirect if server is unavailable', async() => {
+    const error = {
+      response: { status: ErrorStatus.ServerUnavailable }
+    };
+    jest.mocked(axios).post.mockRejectedValue(error);
+    const mockOrder = {camerasIds: [1, 2], coupon: null};
+
+    await postOrder(mockOrder)(dispatchSpy);
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(await dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+  });
+
+  test('should redirect if unknown error', async() => {
+    const error = {
+      response: { status: 100 }
+    };
+    jest.mocked(axios).post.mockRejectedValue(error);
+  const mockOrder = {camerasIds: [1, 2], coupon: null};
+
+
+    await postOrder(mockOrder)(dispatchSpy);
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    expect(await dispatchSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledWith(ActionCreator.Redirect(AppUrl.UnknownError));
   });
 });

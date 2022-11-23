@@ -6,20 +6,22 @@ import { TAppDispatch } from './store';
 
 export const URL = 'https://camera-shop.accelerator.pages.academy';
 
-export const StatusCode = {
-  BadRequest: 'ERR_BAD_REQUEST',
-  NoNetwork: 'ERR_NETWORK',
+export const ErrorStatus = {
+  BadRequest: 400,
+  ServerUnavailable: 503,
 } as const;
 
 export const loadPromo = () => (dispatch: TAppDispatch) => {
   axios
     .get(`${URL}${ApiUrl.Promo}`)
     .then((response) => dispatch(ActionCreator.LoadPromo(response.data as IPromo)))
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.NoNetwork) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -29,11 +31,13 @@ export const loadProducts = () => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadProducts(response.data as Array<IProduct>));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.NoNetwork) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -43,11 +47,13 @@ export const loadFilteredProducts = (params: {[key: string]: string | null} | UR
     .then((response) => {
       dispatch(ActionCreator.LoadFilteredProducts(response.data as Array<IProduct>));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.NoNetwork) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -57,11 +63,13 @@ export const loadFilteredExcludingPriceProducts = (params: {[key: string]: strin
     .then((response) => {
       dispatch(ActionCreator.LoadFilteredExcludingPriceProducts(response.data as Array<IProduct>));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.NoNetwork) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -74,12 +82,14 @@ export const loadDisplayedProducts = (params: {[key: string]: string | null} | U
       dispatch(ActionCreator.LoadDisplayedProducts(response.data as Array<IProduct>));
       dispatch(ActionCreator.SetProdactsLoadingStatus(false));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.NoNetwork) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
       dispatch(ActionCreator.SetProdactsLoadingStatus(false));
-      throw(error);
     });
 };
 
@@ -89,14 +99,16 @@ export const loadCurrentProduct = (id: number) => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadCurrentProduct(response.data as IProduct));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.BadRequest) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.Redirect(AppUrl.NotFound));
-      }
-      if (error.code === StatusCode.NoNetwork) {
+      } else
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -106,14 +118,16 @@ export const loadSimilarProducts = (id: number) => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadSimilarProducts(response.data as Array<IProduct>));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.BadRequest) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.Redirect(AppUrl.NotFound));
-      }
-      if (error.code === StatusCode.NoNetwork) {
+      } else
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -123,25 +137,29 @@ export const loadReviews = (id: number) => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadReviews(response.data as Array<IReview>));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.BadRequest) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.Redirect(AppUrl.NotFound));
-      }
-      if (error.code === StatusCode.NoNetwork) {
+      } else
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
 export const postReview = (review: IReviewPost) => (dispatch: TAppDispatch) => {
   axios
     .post(`${URL}${ApiUrl.Reviews}`, review)
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.NoNetwork) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -153,16 +171,18 @@ export const postPromocode = (promocode: string) => (dispatch: TAppDispatch) => 
       dispatch(ActionCreator.SetPromocode(promocode));
       dispatch(ActionCreator.SetDiscount(response.data / 100));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.BadRequest) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.ChangePromocodeConfirmed(false));
         dispatch(ActionCreator.SetPromocode(null));
         dispatch(ActionCreator.SetDiscount(0));
-      }
-      if (error.code === StatusCode.NoNetwork) {
+      } else
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
+      } else {
+        dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };
 
@@ -176,12 +196,12 @@ export const postOrder = (order: {camerasIds: Array<number>; coupon: string | nu
       dispatch(ActionCreator.SetDiscount(0));
       dispatch(ActionCreator.OpenModal(Modal.OrderSuccess));
     })
-    .catch((error: NodeJS.ErrnoException) => {
-      if (error.code === StatusCode.NoNetwork) {
+    .catch((error) => {
+      const status = error.response.status;
+      if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {
         dispatch(ActionCreator.Redirect(AppUrl.UnknownError));
       }
-      throw(error);
     });
 };

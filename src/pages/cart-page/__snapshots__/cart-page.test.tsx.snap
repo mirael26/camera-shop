@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartPage renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="wrapper"
+  >
+    <header />
+    <modal />
+    <main>
+      <div
+        class="page-content"
+      >
+        <breadcrumbs />
+        <cart />
+      </div>
+    </main>
+    <footer />
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnknownErrorPage renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="wrapper"
+    data-testid="not-found-page"
+  >
+    <main>
+      <div
+        class="page-content"
+      >
+        <section
+          class="unknown-error"
+          data-testid="unknown-error"
+        >
+          <div
+            class="container"
+          >
+            <h1
+              class="title title--h2 unknown-error__title"
+            >
+              Что-то пошло не так :(
+            </h1>
+            <a
+              class="btn btn--purple"
+              href="/"
+            >
+              Вернутся на главную
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;

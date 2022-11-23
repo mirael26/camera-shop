@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddToCartModalSuccess component renders correctly 1`] = `
+<DocumentFragment>
+  <p
+    class="title title--h4"
+  >
+    Товар успешно добавлен в корзину
+  </p>
+  <svg
+    aria-hidden="true"
+    class="modal__icon"
+    height="80"
+    width="86"
+  >
+    <use
+      xlink:href="#icon-success"
+    />
+  </svg>
+  <div
+    class="modal__buttons"
+  >
+    <button
+      class="btn btn--transparent modal__btn"
+    >
+      Продолжить покупки
+    </button>
+    <button
+      class="btn btn--purple modal__btn modal__btn--fit-width"
+    >
+      Перейти в корзину
+    </button>
+  </div>
+  <button
+    aria-label="Закрыть попап"
+    class="cross-btn"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      height="10"
+      width="10"
+    >
+      <use
+        xlink:href="#icon-close"
+      />
+    </svg>
+  </button>
+</DocumentFragment>
+`;

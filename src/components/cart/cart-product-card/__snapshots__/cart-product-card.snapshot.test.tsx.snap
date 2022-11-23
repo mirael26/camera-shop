@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartProductCard component renders correctly 1`] = `
+<DocumentFragment>
+  <li
+    class="basket-item"
+  >
+    <div
+      class="basket-item__img"
+    >
+      <picture>
+        <source
+          srcset="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+          type="image/webp"
+        />
+        <img
+          alt="Орлёнок"
+          height="120"
+          src="img/content/orlenok.jpg"
+          srcset="img/content/orlenok@2x.jpg 2x"
+          width="140"
+        />
+      </picture>
+    </div>
+    <div
+      class="basket-item__description"
+    >
+      <p
+        class="basket-item__title"
+      >
+        Орлёнок
+      </p>
+      <ul
+        class="basket-item__list"
+      >
+        <li
+          class="basket-item__list-item"
+        >
+          <span
+            class="basket-item__article"
+          >
+            Артикул:
+          </span>
+           
+          <span
+            class="basket-item__number"
+          >
+            O78DFGSD83
+          </span>
+        </li>
+        <li
+          class="basket-item__list-item"
+        >
+          Плёночная фотоаппарат
+        </li>
+        <li
+          class="basket-item__list-item"
+        >
+          Любительский уровень
+        </li>
+      </ul>
+    </div>
+    <p
+      class="basket-item__price"
+    >
+      <span
+        class="visually-hidden"
+      >
+        Цена:
+      </span>
+      19 970 ₽
+    </p>
+    <div
+      class="quantity"
+    >
+      <button
+        aria-label="уменьшить количество товара"
+        class="btn-icon btn-icon--prev"
+        disabled=""
+      >
+        <svg
+          aria-hidden="true"
+          height="12"
+          width="7"
+        >
+          <use
+            xlink:href="#icon-arrow"
+          />
+        </svg>
+      </button>
+      <label
+        class="visually-hidden"
+        for="counter1"
+      />
+      <input
+        aria-label="количество товара"
+        id="counter1"
+        max="99"
+        min="1"
+        type="number"
+        value="1"
+      />
+      <button
+        aria-label="увеличить количество товара"
+        class="btn-icon btn-icon--next"
+      >
+        <svg
+          aria-hidden="true"
+          height="12"
+          width="7"
+        >
+          <use
+            xlink:href="#icon-arrow"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="basket-item__total-price"
+      data-testid="total-price"
+    >
+      <span
+        class="visually-hidden"
+      >
+        Общая цена:
+      </span>
+      19 970 ₽
+    </div>
+    <button
+      aria-label="Удалить товар"
+      class="cross-btn"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        height="10"
+        width="10"
+      >
+        <use
+          xlink:href="#icon-close"
+        />
+      </svg>
+    </button>
+  </li>
+</DocumentFragment>
+`;

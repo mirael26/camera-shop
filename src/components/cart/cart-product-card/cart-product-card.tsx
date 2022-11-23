@@ -5,8 +5,8 @@ import { ActionCreator } from '../../../store/action';
 import { IProductInCart } from '../../../types/data.type';
 import { addPriceSeparators } from '../../../utils';
 
-const MIN_COUNT = 1;
-const MAX_COUNT = 99;
+export const MIN_COUNT = 1;
+export const MAX_COUNT = 99;
 
 interface ICartProductCardProps {
   product: IProductInCart;
@@ -105,7 +105,7 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
           </svg>
         </button>
       </div>
-      <div className="basket-item__total-price"><span className="visually-hidden">Общая цена:</span>{addPriceSeparators(product.price * product.countInCart)} ₽</div>
+      <div className="basket-item__total-price" data-testid='total-price'><span className="visually-hidden">Общая цена:</span>{addPriceSeparators(product.price * product.countInCart)} ₽</div>
       <button className="cross-btn" type="button" aria-label="Удалить товар" onClick={handleDeleteButtonClick}>
         <svg width="10" height="10" aria-hidden="true">
           <use xlinkHref="#icon-close"></use>

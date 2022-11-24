@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartSummary component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="basket__summary"
+  >
+    <promocode />
+    <div
+      class="basket__summary-order"
+    >
+      <p
+        class="basket__summary-item"
+      >
+        <span
+          class="basket__summary-text"
+        >
+          Всего:
+        </span>
+        <span
+          class="basket__summary-value"
+          data-testid="total"
+        >
+          469 940 ₽
+        </span>
+      </p>
+      <p
+        class="basket__summary-item"
+      >
+        <span
+          class="basket__summary-text"
+        >
+          Скидка:
+        </span>
+        <span
+          class="basket__summary-value"
+          data-testid="discount-amount"
+        >
+          NaN ₽
+        </span>
+      </p>
+      <p
+        class="basket__summary-item"
+      >
+        <span
+          class="basket__summary-text basket__summary-text--total"
+        >
+          К оплате:
+        </span>
+        <span
+          class="basket__summary-value basket__summary-value--total"
+          data-testid="total-with-discount"
+        >
+          NaN ₽
+        </span>
+      </p>
+      <button
+        class="btn btn--purple"
+        type="button"
+      >
+        Оформить заказ
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

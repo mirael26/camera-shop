@@ -31,15 +31,15 @@ const CartSummary = () => {
         <div className="basket__summary-order">
           <p className="basket__summary-item">
             <span className="basket__summary-text">Всего:</span>
-            <span className="basket__summary-value">{addPriceSeparators(total)} ₽</span>
+            <span className="basket__summary-value" data-testid='total'>{addPriceSeparators(total)} ₽</span>
           </p>
           <p className="basket__summary-item">
             <span className="basket__summary-text">Скидка:</span>
-            <span className={`basket__summary-value${discount > 0 ? ' basket__summary-value--bonus' : ''}`}>{addPriceSeparators(discountAmount)} ₽</span>
+            <span className={`basket__summary-value${discount > 0 ? ' basket__summary-value--bonus' : ''}`} data-testid='discount-amount'>{addPriceSeparators(discountAmount)} ₽</span>
           </p>
           <p className="basket__summary-item">
             <span className="basket__summary-text basket__summary-text--total">К оплате:</span>
-            <span className="basket__summary-value basket__summary-value--total">{addPriceSeparators(totalWithDiscount)} ₽</span>
+            <span className="basket__summary-value basket__summary-value--total" data-testid='total-with-discount'>{addPriceSeparators(totalWithDiscount)} ₽</span>
           </p>
           <button className="btn btn--purple" type="button" onClick={handleOrderButtonCLick}>Оформить заказ
           </button>

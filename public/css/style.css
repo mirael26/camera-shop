@@ -954,6 +954,7 @@ button,
 
 .modal__content {
   position: relative;
+  min-width: 485px;
   padding: 32px 40px 36px;
   color: #333333;
   background-color: #ffffff;
@@ -963,6 +964,7 @@ button,
 }
 
 .modal__content--narrow {
+  min-width: 320px;
   width: 320px;
 }
 

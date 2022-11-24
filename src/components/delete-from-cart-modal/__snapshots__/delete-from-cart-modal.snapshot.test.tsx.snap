@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteFromCartModal component 1`] = `
+<DocumentFragment>
+  <div
+    class="modal__content"
+  >
+    <p
+      class="title title--h4"
+    >
+      Удалить этот товар?
+    </p>
+    <div
+      class="basket-item basket-item--short"
+    >
+      <div
+        class="basket-item__img"
+      >
+        <picture>
+          <source
+            srcset="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+            type="image/webp"
+          />
+          <img
+            alt="Орлёнок"
+            height="120"
+            src="img/content/orlenok.jpg"
+            srcset="img/content/orlenok@2x.jpg 2x"
+            width="140"
+          />
+        </picture>
+      </div>
+      <div
+        class="basket-item__description"
+      >
+        <p
+          class="basket-item__title"
+        >
+          Орлёнок
+        </p>
+        <ul
+          class="basket-item__list"
+        >
+          <li
+            class="basket-item__list-item"
+          >
+            <span
+              class="basket-item__article"
+            >
+              Артикул:
+            </span>
+             
+            <span
+              class="basket-item__number"
+            >
+              O78DFGSD83
+            </span>
+          </li>
+          <li
+            class="basket-item__list-item"
+          >
+            Плёночная фотоаппарат
+          </li>
+          <li
+            class="basket-item__list-item"
+          >
+            Любительский уровень
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="modal__buttons"
+    >
+      <button
+        class="btn btn--purple modal__btn modal__btn--half-width"
+        type="button"
+      >
+        Удалить
+      </button>
+      <button
+        class="btn btn--transparent modal__btn modal__btn--half-width"
+      >
+        Продолжить покупки
+      </button>
+    </div>
+    <button
+      aria-label="Закрыть попап"
+      class="cross-btn"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        height="10"
+        width="10"
+      >
+        <use
+          xlink:href="#icon-close"
+        />
+      </svg>
+    </button>
+  </div>
+</DocumentFragment>
+`;

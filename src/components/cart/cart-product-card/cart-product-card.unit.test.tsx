@@ -20,7 +20,7 @@ describe('CartProductCard component', () => {
     renderWithReduxAndRouter(<CartProductCard product={productsInCartMock[1]}/>);
 
     expect(screen.getByLabelText('количество товара')).toHaveValue(3);
-    expect(screen.getByTestId('total-price').textContent?.includes('449 970')).toBeTruthy();
+    expect(screen.getByTestId('total-price').textContent).toContain('449 970');
   });
 
   test('disables buttons when min and max prices', async() => {

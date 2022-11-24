@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartButton component renders correctly 1`] = `
+<DocumentFragment>
+  <a
+    class="header__basket-link"
+    href="/catalog/cart"
+  >
+    <svg
+      aria-hidden="true"
+      height="16"
+      width="16"
+    >
+      <use
+        xlink:href="#icon-basket"
+      />
+    </svg>
+  </a>
+</DocumentFragment>
+`;

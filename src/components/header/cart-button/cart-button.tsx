@@ -11,7 +11,7 @@ const CartButton = () => {
       <svg width="16" height="16" aria-hidden="true">
         <use xlinkHref="#icon-basket"></use>
       </svg>
-      {productsCount ? <span className="header__basket-count">{productsCount}</span> : null}
+      {productsCount ? <span className="header__basket-count" data-testid='header-cart-counter'>{productsCount}</span> : null}
     </Link>
   );
 };

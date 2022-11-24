@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnknownError component renders correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="unknown-error"
+    data-testid="unknown-error"
+  >
+    <div
+      class="container"
+    >
+      <h1
+        class="title title--h2 unknown-error__title"
+      >
+        Что-то пошло не так :(
+      </h1>
+      <a
+        class="btn btn--purple"
+        href="/"
+      >
+        Вернутся на главную
+      </a>
+    </div>
+  </section>
+</DocumentFragment>
+`;

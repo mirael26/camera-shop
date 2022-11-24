@@ -13,7 +13,7 @@ export const getPromo = (state: TRootReducer) => state.data.promo;
 
 export const getProductsInCart = (state: TRootReducer) => state.cart.productsInCart;
 export const getAddedToCartItem = (state: TRootReducer) => state.cart.addedToCartItem;
-export const getDelitedFromCartItem = (state: TRootReducer) => state.cart.delitedFromCartItem;
+export const getDeletedFromCartItem = (state: TRootReducer) => state.cart.deletedFromCartItem;
 export const getPromocode = (state: TRootReducer) => state.cart.promocode;
 export const getPromocodeConfirmed = (state: TRootReducer) => state.cart.isPromocodeConfirmed;
 export const getDiscount = (state: TRootReducer) => state.cart.discount;

@@ -53,10 +53,10 @@ describe('cartReducer', () => {
     expect(newState.addedToCartItem).toEqual(productMock);
   });
 
-  test('sets delited from cart item correctly', () => {
-    const newState = cartReducer(undefined, ActionCreator.SetDelitedFromCartItem(productsInCartMock[0]));
+  test('sets deleted from cart item correctly', () => {
+    const newState = cartReducer(undefined, ActionCreator.SetDeletedFromCartItem(productsInCartMock[0]));
 
-    expect(newState.delitedFromCartItem).toEqual(productsInCartMock[0]);
+    expect(newState.deletedFromCartItem).toEqual(productsInCartMock[0]);
   });
 
   test('sets promocode correctly', () => {

@@ -66,8 +66,8 @@ export interface ISetAddedToCartItem {
   payload: IProduct | null;
 }
 
-export interface ISetDelitedFromCartItem {
-  type: typeof ActionType.SetDelitedFromCartItem;
+export interface ISetDeletedFromCartItem {
+  type: typeof ActionType.SetDeletedFromCartItem;
   payload: IProductInCart | null;
 }
 
@@ -106,5 +106,5 @@ export interface ISetProdactsLoadingStatus {
 }
 
 export type TDataAction = ILoadPromo | ILoadProducts | ILoadFilteredProducts | ILoadFilteredExcludingPriceProducts | ILoadDisplayedProducts | ILoadCurrentProduct | ILoadSimilarProducts | ILoadReviews;
-export type TCartAction = IClearCart | IAddProductToCart | IDeleteProductFromCart | IChangeProductCountInCart | ISetAddedToCartItem | ISetDelitedFromCartItem | ISetPromocode | IChangePromocodeConfirmed | ISetDiscount;
+export type TCartAction = IClearCart | IAddProductToCart | IDeleteProductFromCart | IChangeProductCountInCart | ISetAddedToCartItem | ISetDeletedFromCartItem | ISetPromocode | IChangePromocodeConfirmed | ISetDiscount;
 export type TViewAction = IOpenModal | ICloseModal | IRedirect | ISetProdactsLoadingStatus;

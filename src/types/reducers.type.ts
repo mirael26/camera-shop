@@ -15,7 +15,7 @@ export interface IDataReducer {
 export interface ICartReducer {
   productsInCart: Array<IProductInCart>;
   addedToCartItem: IProduct | null;
-  delitedFromCartItem: IProduct | null;
+  deletedFromCartItem: IProduct | null;
   promocode: string | null;
   isPromocodeConfirmed: boolean | null;
   discount: number;

@@ -101,7 +101,7 @@ describe('CartProductCard component', () => {
     fireEvent.click(screen.getByLabelText(/Удалить товар/i));
 
     expect(dispatchSpy).toHaveBeenCalledTimes(2);
-    expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.SetDelitedFromCartItem(productsInCartMock[1]));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.SetDeletedFromCartItem(productsInCartMock[1]));
     expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.DeleteFromCart));
   });
 });

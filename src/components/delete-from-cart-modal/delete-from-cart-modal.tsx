@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
-import { getDelitedFromCartItem } from '../../store/selectors';
+import { getDeletedFromCartItem } from '../../store/selectors';
 
 const DeleteFromCartModal = () => {
-  const deletedProduct = useSelector(getDelitedFromCartItem);
+  const deletedProduct = useSelector(getDeletedFromCartItem);
   const dispatch = useAppDispatch();
 
   const handleDeleteButtonCLick = () => {

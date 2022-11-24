@@ -36,6 +36,13 @@ describe('ProductCard', () => {
     expect(spyDispatch).toHaveBeenNthCalledWith(2, ActionCreator.SetAddedToCartItem(productMock));
   });
 
+  test('renders in-cart button if product is already in cart', () => {
+    renderWithReduxAndRouter(<ProductCard product={productMock}/>, {initialState: { cart: { productsInCart: [productMock]}}});
+
+    expect(screen.getByText(/В корзине/i)).toBeInTheDocument();
+    expect(screen.getByText(/В корзине/i)).toHaveAttribute('href', `${AppUrl.Catalog}${AppUrl.Cart}`);
+  });
+
   test('Renders details-link correctly', () => {
     renderWithReduxAndRouter(<ProductCard product={productMock}/>);
     

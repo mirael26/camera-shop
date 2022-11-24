@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { ApiUrl, AppUrl, Modal } from '../consts';
 import { IProduct, IPromo, IReview, IReviewPost } from '../types/data.type';
 import { ActionCreator } from './action';
@@ -15,8 +15,8 @@ export const loadPromo = () => (dispatch: TAppDispatch) => {
   axios
     .get(`${URL}${ApiUrl.Promo}`)
     .then((response) => dispatch(ActionCreator.LoadPromo(response.data as IPromo)))
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {
@@ -31,8 +31,8 @@ export const loadProducts = () => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadProducts(response.data as Array<IProduct>));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {
@@ -47,8 +47,8 @@ export const loadFilteredProducts = (params: {[key: string]: string | null} | UR
     .then((response) => {
       dispatch(ActionCreator.LoadFilteredProducts(response.data as Array<IProduct>));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {
@@ -63,8 +63,8 @@ export const loadFilteredExcludingPriceProducts = (params: {[key: string]: strin
     .then((response) => {
       dispatch(ActionCreator.LoadFilteredExcludingPriceProducts(response.data as Array<IProduct>));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {
@@ -82,8 +82,8 @@ export const loadDisplayedProducts = (params: {[key: string]: string | null} | U
       dispatch(ActionCreator.LoadDisplayedProducts(response.data as Array<IProduct>));
       dispatch(ActionCreator.SetProdactsLoadingStatus(false));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {
@@ -99,8 +99,8 @@ export const loadCurrentProduct = (id: number) => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadCurrentProduct(response.data as IProduct));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.Redirect(AppUrl.NotFound));
       } else
@@ -118,8 +118,8 @@ export const loadSimilarProducts = (id: number) => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadSimilarProducts(response.data as Array<IProduct>));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.Redirect(AppUrl.NotFound));
       } else
@@ -137,8 +137,8 @@ export const loadReviews = (id: number) => (dispatch: TAppDispatch) => {
     .then((response) => {
       dispatch(ActionCreator.LoadReviews(response.data as Array<IReview>));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.Redirect(AppUrl.NotFound));
       } else
@@ -153,8 +153,8 @@ export const loadReviews = (id: number) => (dispatch: TAppDispatch) => {
 export const postReview = (review: IReviewPost) => (dispatch: TAppDispatch) => {
   axios
     .post(`${URL}${ApiUrl.Reviews}`, review)
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {
@@ -171,8 +171,8 @@ export const postPromocode = (promocode: string) => (dispatch: TAppDispatch) => 
       dispatch(ActionCreator.SetPromocode(promocode));
       dispatch(ActionCreator.SetDiscount(response.data / 100));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.BadRequest) {
         dispatch(ActionCreator.ChangePromocodeConfirmed(false));
         dispatch(ActionCreator.SetPromocode(null));
@@ -196,8 +196,8 @@ export const postOrder = (order: {camerasIds: Array<number>; coupon: string | nu
       dispatch(ActionCreator.SetDiscount(0));
       dispatch(ActionCreator.OpenModal(Modal.OrderSuccess));
     })
-    .catch((error) => {
-      const status = error.response.status;
+    .catch((error: AxiosError) => {
+      const status = error.response?.status;
       if (status === ErrorStatus.ServerUnavailable) {
         dispatch(ActionCreator.Redirect(AppUrl.ServerUnavailable));
       } else {

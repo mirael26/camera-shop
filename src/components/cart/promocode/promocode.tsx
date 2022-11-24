@@ -49,7 +49,10 @@ const Promocode = () => {
       <p className="title title--h4">Если у вас есть промокод на скидку, примените его в этом поле</p>
       <div className="basket-form">
         <form action="#" onSubmit={handleFormSubmit}>
-          <div className={`custom-input${isPromocodeConfirmed ? ' is-valid' : ''}${isInputValid === false || isPromocodeConfirmed === false ? ' is-invalid' : ''}`}>
+          <div
+            className={`custom-input${isPromocodeConfirmed ? ' is-valid' : ''}${isInputValid === false || isPromocodeConfirmed === false ? ' is-invalid' : ''}`}
+            data-testid='promocode-container'
+          >
             <label><span className="custom-input__label">Промокод</span>
               <input type="text" name="promo" placeholder="Введите промокод"
                 value={inputValue}

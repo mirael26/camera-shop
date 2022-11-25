@@ -18,7 +18,7 @@ const ProductCard = ({ product, isActive = false }: IProductCardProps): JSX.Elem
   const dispatch = useAppDispatch();
 
   const handleAddToCartButtonClick = () => {
-    dispatch(ActionCreator.OpenModal(Modal.AddToCart));
+    dispatch(ActionCreator.OpenModal(Modal.AddingToCart));
     dispatch(ActionCreator.SetAddedToCartItem(product));
   };
 

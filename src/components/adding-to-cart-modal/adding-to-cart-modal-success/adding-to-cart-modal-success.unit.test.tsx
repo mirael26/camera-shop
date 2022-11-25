@@ -4,7 +4,7 @@ import { AppUrl } from '../../../consts';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../../store/action';
 import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
-import AddToCartModalSuccess from './add-to-cart-modal-success';
+import AddingToCartModalSuccess from './adding-to-cart-modal-success';
 
 jest.mock('../../../hooks/use-app-dispatch');
 jest.mock('react-router-dom', () => ({
@@ -15,14 +15,14 @@ jest.mock('react-router-dom', () => ({
 const dispatchSpy = jest.fn();
 const navigateSpy = jest.fn();
 
-describe('AddToCartModalSuccess component', () => {
+describe('AddingToCartModalSuccess component', () => {
   beforeEach(() => {
     jest.mocked(useAppDispatch).mockReturnValue(dispatchSpy);
     jest.mocked(useNavigate).mockReturnValue(navigateSpy);
   });
  
   test('closes modal and redirect on to-catalog-button click', () => {
-    renderWithReduxAndRouter(<AddToCartModalSuccess/>);
+    renderWithReduxAndRouter(<AddingToCartModalSuccess/>);
 
     fireEvent.click(screen.getByText(/Продолжить покупки/i));
 
@@ -31,7 +31,7 @@ describe('AddToCartModalSuccess component', () => {
   });
 
   test('closes modal and redirect to cart on to-cart-button click', () => {
-    renderWithReduxAndRouter(<AddToCartModalSuccess/>);
+    renderWithReduxAndRouter(<AddingToCartModalSuccess/>);
 
     fireEvent.click(screen.getByText(/Перейти в корзину/i));
 
@@ -40,7 +40,7 @@ describe('AddToCartModalSuccess component', () => {
   });
 
   test('closes modal on close-button click', () => {
-    renderWithReduxAndRouter(<AddToCartModalSuccess/>);
+    renderWithReduxAndRouter(<AddingToCartModalSuccess/>);
 
     fireEvent.click(screen.getByLabelText(/Закрыть попап/i));
 

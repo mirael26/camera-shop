@@ -4,11 +4,11 @@ import { ActionCreator } from '../../../store/action';
 import { getAddedToCartItem } from '../../../store/selectors';
 import { addPriceSeparators } from '../../../utils';
 
-interface IAddToCartModalCardProps {
+interface IAddingToCartModalCardProps {
   onSuccess: () => void;
 }
 
-const AddToCartModalCard = ({ onSuccess }: IAddToCartModalCardProps) => {
+const AddingToCartModalCard = ({ onSuccess }: IAddingToCartModalCardProps) => {
   const product = useSelector(getAddedToCartItem);
   const dispatch = useAppDispatch();
 
@@ -59,4 +59,4 @@ const AddToCartModalCard = ({ onSuccess }: IAddToCartModalCardProps) => {
   );
 };
 
-export default AddToCartModalCard;
+export default AddingToCartModalCard;

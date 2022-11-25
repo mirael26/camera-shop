@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
 import { getDeletedFromCartItem } from '../../store/selectors';
 
-const DeleteFromCartModal = () => {
+const DeletingFromCartModal = () => {
   const deletedProduct = useSelector(getDeletedFromCartItem);
   const dispatch = useAppDispatch();
 
@@ -50,4 +50,4 @@ const DeleteFromCartModal = () => {
   );
 };
 
-export default DeleteFromCartModal;
+export default DeletingFromCartModal;

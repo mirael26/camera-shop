@@ -61,7 +61,7 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
 
   const handleDeleteButtonClick = () => {
     dispatch(ActionCreator.SetDeletedFromCartItem(product));
-    dispatch(ActionCreator.OpenModal(Modal.DeleteFromCart));
+    dispatch(ActionCreator.OpenModal(Modal.DeletingFromCart));
   };
 
   return (

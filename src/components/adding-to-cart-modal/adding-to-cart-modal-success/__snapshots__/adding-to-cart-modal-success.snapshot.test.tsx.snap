@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddToCartModalSuccess component renders correctly 1`] = `
+exports[`AddingToCartModalSuccess component renders correctly 1`] = `
 <DocumentFragment>
   <p
     class="title title--h4"

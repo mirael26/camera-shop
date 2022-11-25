@@ -76,7 +76,7 @@ describe('Product component', () => {
     const toCartButton = screen.getByText(/Добавить в корзину/i);
     fireEvent.click(toCartButton);
 
-    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.AddToCart));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.AddingToCart));
     expect(dispatchSpy).toHaveBeenNthCalledWith(3, ActionCreator.SetAddedToCartItem(productMock));
   });
 

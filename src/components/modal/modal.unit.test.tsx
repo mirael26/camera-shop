@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
 
-jest.mock('../add-to-cart-modal/add-to-cart-modal', () => () => <div data-testid='add-to-cart-modal'></div>);
+jest.mock('../adding-to-cart-modal/adding-to-cart-modal', () => () => <div data-testid='adding-to-cart-modal'></div>);
 jest.mock('../review-modal/review-modal', () => () => <div data-testid='review-modal'></div>);
 jest.mock('../../hooks/use-app-dispatch');
 
@@ -21,11 +21,11 @@ describe('Modal component', () => {
     renderWithReduxAndRouter(<Modal/>, { initialState: {
       view: {
         isModalOpen: true,
-        activeModal: ModalType.AddToCart,
+        activeModal: ModalType.AddingToCart,
       }
     }});
 
-    expect(screen.getByTestId('add-to-cart-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('adding-to-cart-modal')).toBeInTheDocument();
     expect(screen.queryByTestId('review-modal')).not.toBeInTheDocument();
   });
 
@@ -33,7 +33,7 @@ describe('Modal component', () => {
     renderWithReduxAndRouter(<Modal/>, { initialState: {
       view: {
         isModalOpen: true,
-        activeModal: ModalType.AddToCart,
+        activeModal: ModalType.AddingToCart,
       }
     }});
 
@@ -47,11 +47,11 @@ describe('Modal component', () => {
     renderWithReduxAndRouter(<Modal/>, { initialState: {
       view: {
         isModalOpen: true,
-        activeModal: ModalType.AddToCart,
+        activeModal: ModalType.AddingToCart,
       }
     }});
     
-    const modalContent = screen.getByTestId('add-to-cart-modal');
+    const modalContent = screen.getByTestId('adding-to-cart-modal');
     fireEvent.click(modalContent);
 
     expect(spyDispatch).toBeCalledTimes(0);
@@ -61,7 +61,7 @@ describe('Modal component', () => {
     renderWithReduxAndRouter(<Modal/>, { initialState: {
       view: {
         isModalOpen: true,
-        activeModal: ModalType.AddToCart,
+        activeModal: ModalType.AddingToCart,
       }
     }});
   
@@ -74,7 +74,7 @@ describe('Modal component', () => {
     renderWithReduxAndRouter(<Modal/>, { initialState: {
       view: {
         isModalOpen: true,
-        activeModal: ModalType.AddToCart,
+        activeModal: ModalType.AddingToCart,
       }
     }});
 
@@ -87,7 +87,7 @@ describe('Modal component', () => {
     renderWithReduxAndRouter(<Modal/>, { initialState: {
       view: {
         isModalOpen: true,
-        activeModal: ModalType.AddToCart,
+        activeModal: ModalType.AddingToCart,
       }
     }});
   
@@ -104,7 +104,7 @@ describe('Modal component', () => {
     renderWithReduxAndRouter(<Modal/>, { initialState: {
       view: {
         isModalOpen: true,
-        activeModal: ModalType.AddToCart,
+        activeModal: ModalType.AddingToCart,
       }
     }});
   

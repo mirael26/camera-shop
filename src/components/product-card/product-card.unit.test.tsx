@@ -32,7 +32,7 @@ describe('ProductCard', () => {
     fireEvent.click(buyButton);
 
     expect(spyDispatch).toHaveBeenCalledTimes(2);
-    expect(spyDispatch).toHaveBeenNthCalledWith(1, ActionCreator.OpenModal(Modal.AddToCart));
+    expect(spyDispatch).toHaveBeenNthCalledWith(1, ActionCreator.OpenModal(Modal.AddingToCart));
     expect(spyDispatch).toHaveBeenNthCalledWith(2, ActionCreator.SetAddedToCartItem(productMock));
   });
 

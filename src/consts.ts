@@ -19,8 +19,8 @@ export const ApiUrl = {
 } as const;
 
 export const Modal = {
-  AddToCart: 'addToCartModal',
-  DeleteFromCart: 'deleteFromCartModal',
+  AddingToCart: 'addingToCartModal',
+  DeletingFromCart: 'deletingFromCartModal',
   Review: 'reviewModal',
   OrderSuccess: 'orderSuccessModal',
 } as const;

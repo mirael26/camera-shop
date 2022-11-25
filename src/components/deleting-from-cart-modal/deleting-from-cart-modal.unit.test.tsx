@@ -3,19 +3,19 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
 import { renderWithReduxAndRouter } from '../../test/helpers/render-with-redux-and-router';
 import { productsInCartMock } from '../../test/mocks';
-import DeleteFromCartModal from './delete-from-cart-modal';
+import DeletingFromCartModal from './deleting-from-cart-modal';
 
 jest.mock('../../hooks/use-app-dispatch');
 
 const dispatchSpy = jest.fn();
 
-describe('DeleteFromCartModal component', () => {
+describe('DeletingFromCartModal component', () => {
   beforeEach(() => {
     jest.mocked(useAppDispatch).mockReturnValue(dispatchSpy);
   });
 
   test('should delete button on delete-button click', () => {
-    renderWithReduxAndRouter(<DeleteFromCartModal/>, { initialState: { cart: { deletedFromCartItem: productsInCartMock[0]}}});
+    renderWithReduxAndRouter(<DeletingFromCartModal/>, { initialState: { cart: { deletedFromCartItem: productsInCartMock[0]}}});
     
     fireEvent.click(screen.getByText('Удалить'));
   
@@ -25,7 +25,7 @@ describe('DeleteFromCartModal component', () => {
   });
 
   test('should close modal on return-to-shopping-button click', () => {
-    renderWithReduxAndRouter(<DeleteFromCartModal/>, { initialState: { cart: { deletedFromCartItem: productsInCartMock[0]}}});
+    renderWithReduxAndRouter(<DeletingFromCartModal/>, { initialState: { cart: { deletedFromCartItem: productsInCartMock[0]}}});
     
     fireEvent.click(screen.getByText('Продолжить покупки'));
   
@@ -33,7 +33,7 @@ describe('DeleteFromCartModal component', () => {
   });
 
   test('should close modal on close-button click', () => {
-    renderWithReduxAndRouter(<DeleteFromCartModal/>, { initialState: { cart: { deletedFromCartItem: productsInCartMock[0]}}});
+    renderWithReduxAndRouter(<DeletingFromCartModal/>, { initialState: { cart: { deletedFromCartItem: productsInCartMock[0]}}});
     
     fireEvent.click(screen.getByLabelText('Закрыть попап'));
   

@@ -4,9 +4,9 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../store/action';
 import { getActiveModal, getModalStatus } from '../../store/selectors';
 import { Modal as ModalType } from '../../consts';
-import AddToCartModal from '../add-to-cart-modal/add-to-cart-modal';
+import AddingToCartModal from '../adding-to-cart-modal/adding-to-cart-modal';
 import ReviewModal from '../review-modal/review-modal';
-import DeleteFromCartModal from '../delete-from-cart-modal/delete-from-cart-modal';
+import DeletingFromCartModal from '../deleting-from-cart-modal/deleting-from-cart-modal';
 import OrderSuccessModal from '../cart/order-success-modal/order-success-modal';
 
 const Modal = (): JSX.Element | null => {
@@ -67,8 +67,8 @@ const Modal = (): JSX.Element | null => {
         <div className="modal__wrapper">
           <div className="modal__overlay" data-testid='modal-overlay' onClick={handleOverlayClick}></div>
 
-          {activeModal === ModalType.AddToCart && <AddToCartModal/>}
-          {activeModal === ModalType.DeleteFromCart && <DeleteFromCartModal/>}
+          {activeModal === ModalType.AddingToCart && <AddingToCartModal/>}
+          {activeModal === ModalType.DeletingFromCart && <DeletingFromCartModal/>}
           {activeModal === ModalType.Review && <ReviewModal/>}
           {activeModal === ModalType.OrderSuccess && <OrderSuccessModal/>}
         </div>

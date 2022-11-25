@@ -102,6 +102,6 @@ describe('CartProductCard component', () => {
 
     expect(dispatchSpy).toHaveBeenCalledTimes(2);
     expect(dispatchSpy).toHaveBeenNthCalledWith(1, ActionCreator.SetDeletedFromCartItem(productsInCartMock[1]));
-    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.DeleteFromCart));
+    expect(dispatchSpy).toHaveBeenNthCalledWith(2, ActionCreator.OpenModal(Modal.DeletingFromCart));
   });
 });

@@ -4,15 +4,15 @@ import { viewReducer } from './view-reducer';
 
 describe('viewReducer', () => {
   test('opens modal correctly', () => {
-    const newState = viewReducer(undefined, ActionCreator.OpenModal(Modal.AddToCart));
+    const newState = viewReducer(undefined, ActionCreator.OpenModal(Modal.AddingToCart));
     expect(newState.isModalOpen).toBe(true);
-    expect(newState.activeModal).toBe(Modal.AddToCart);
+    expect(newState.activeModal).toBe(Modal.AddingToCart);
   });
 
   test('closes modal correctly', () => {
     const state = {
       isModalOpen: true,
-      activeModal: Modal.AddToCart,
+      activeModal: Modal.AddingToCart,
       redirect: null,
       productsIsLoading: false,
     };

@@ -3,7 +3,7 @@ import { AppUrl } from '../../../consts';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../../store/action';
 
-const AddToCartModalSuccess = () => {
+const AddingToCartModalSuccess = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -36,4 +36,4 @@ const AddToCartModalSuccess = () => {
   );
 };
 
-export default AddToCartModalSuccess;
+export default AddingToCartModalSuccess;

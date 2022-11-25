@@ -5,8 +5,10 @@ import { ActionCreator } from '../../../store/action';
 import { IProductInCart } from '../../../types/data.type';
 import { addPriceSeparators } from '../../../utils';
 
-export const MIN_COUNT = 1;
-export const MAX_COUNT = 99;
+export const ProductsCount = {
+  Min: 1,
+  Max: 99,
+} as const;
 
 interface ICartProductCardProps {
   product: IProductInCart;
@@ -21,13 +23,13 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
   const setCount = (evt: FocusEvent) => {
     const value = +(evt.target as HTMLInputElement).value;
 
-    if (value <= MIN_COUNT) {
-      setCountValue(MIN_COUNT);
-      dispatch(ActionCreator.ChangeProductCountInCart(product.id, MIN_COUNT));
+    if (value <= ProductsCount.Min) {
+      setCountValue(ProductsCount.Min);
+      dispatch(ActionCreator.ChangeProductCountInCart(product.id, ProductsCount.Min));
     } else
-    if (value >= MAX_COUNT) {
-      setCountValue(MAX_COUNT);
-      dispatch(ActionCreator.ChangeProductCountInCart(product.id, MAX_COUNT));
+    if (value >= ProductsCount.Max) {
+      setCountValue(ProductsCount.Max);
+      dispatch(ActionCreator.ChangeProductCountInCart(product.id, ProductsCount.Max));
     } else {
       dispatch(ActionCreator.ChangeProductCountInCart(product.id, value));
     }
@@ -82,7 +84,7 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
       <p className="basket-item__price"><span className="visually-hidden">Цена:</span>{addPriceSeparators(product.price)} ₽</p>
       <div className="quantity">
         <button className="btn-icon btn-icon--prev" aria-label="уменьшить количество товара"
-          disabled={product.countInCart === MIN_COUNT}
+          disabled={product.countInCart === ProductsCount.Min}
           onClick={handleDecreaseButtonClick}
         >
           <svg width="7" height="12" aria-hidden="true">
@@ -97,7 +99,7 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
           onFocus={handleInputFocus}
         />
         <button className="btn-icon btn-icon--next" aria-label="увеличить количество товара"
-          disabled={product.countInCart === MAX_COUNT}
+          disabled={product.countInCart === ProductsCount.Max}
           onClick={handleIncreaseButtonClick}
         >
           <svg width="7" height="12" aria-hidden="true">

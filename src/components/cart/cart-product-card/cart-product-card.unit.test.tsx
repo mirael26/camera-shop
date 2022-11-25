@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../../store/action';
 import { renderWithReduxAndRouter } from '../../../test/helpers/render-with-redux-and-router';
 import { productsInCartMock } from '../../../test/mocks';
-import CartProductCard, { MAX_COUNT, MIN_COUNT } from './cart-product-card';
+import CartProductCard, { ProductsCount } from './cart-product-card';
 
 jest.mock('../../../hooks/use-app-dispatch');
 
@@ -24,18 +24,18 @@ describe('CartProductCard component', () => {
   });
 
   test('disables buttons when min and max prices', async() => {
-    const {unmount} = renderWithReduxAndRouter(<CartProductCard product={{...productsInCartMock[0], countInCart: MIN_COUNT}}/>);
+    const {unmount} = renderWithReduxAndRouter(<CartProductCard product={{...productsInCartMock[0], countInCart: ProductsCount.Min}}/>);
 
     let input = screen.getByLabelText('количество товара');
-    expect(input).toHaveValue(MIN_COUNT);
+    expect(input).toHaveValue(ProductsCount.Min);
     expect(screen.getByLabelText('уменьшить количество товара')).toBeDisabled();
     expect(screen.getByLabelText('увеличить количество товара')).not.toBeDisabled();
 
     unmount();
-    renderWithReduxAndRouter(<CartProductCard product={{...productsInCartMock[0], countInCart: MAX_COUNT}}/>);
+    renderWithReduxAndRouter(<CartProductCard product={{...productsInCartMock[0], countInCart: ProductsCount.Max}}/>);
 
     input = screen.getByLabelText('количество товара');
-    expect(input).toHaveValue(MAX_COUNT);
+    expect(input).toHaveValue(ProductsCount.Max);
     expect(screen.getByLabelText('уменьшить количество товара')).not.toBeDisabled();
     expect(screen.getByLabelText('увеличить количество товара')).toBeDisabled();
   });

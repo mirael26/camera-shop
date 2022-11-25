@@ -41,7 +41,7 @@ const Promocode = () => {
     if (isPromocodeConfirmed !== null) {
       dispatch(ActionCreator.ChangePromocodeConfirmed(null));
     }
-    setInputValue(evt.target.value);
+    setInputValue(evt.target.value.trim());
   };
 
   return(

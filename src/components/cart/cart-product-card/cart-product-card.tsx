@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { Modal } from '../../../consts';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch';
 import { ActionCreator } from '../../../store/action';
@@ -17,7 +17,7 @@ interface ICartProductCardProps {
 const CartProductCard = ({ product }: ICartProductCardProps) => {
   const dispatch = useAppDispatch();
 
-  const [countValue, setCountValue] = useState(product.countInCart);
+  const [countValue, setCountValue] = useState<number | ''>(product.countInCart);
   const refInput = useRef<HTMLInputElement>(null);
 
   const setCount = (evt: FocusEvent) => {
@@ -47,6 +47,15 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
   const handleInputFocus = () => {
     refInput.current?.addEventListener('blur', setCount);
     document.addEventListener('keydown', handleInputEnterKeydown);
+  };
+
+  const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const value = evt.target.value;
+    if (value === '') {
+      setCountValue('');
+    } else {
+      setCountValue(+evt.target.value);
+    }
   };
 
   const handleDecreaseButtonClick = () => {
@@ -95,7 +104,7 @@ const CartProductCard = ({ product }: ICartProductCardProps) => {
         <input type="number" id="counter1" min="1" max="99" aria-label="количество товара"
           ref={refInput}
           value={countValue}
-          onChange={(evt) => setCountValue(+evt.target.value)}
+          onChange={handleInputChange}
           onFocus={handleInputFocus}
         />
         <button className="btn-icon btn-icon--next" aria-label="увеличить количество товара"
